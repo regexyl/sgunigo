@@ -395,14 +395,16 @@
     </div>
 
     <script>
-      function makePayment(){
-        document.getElementById("modal-content").innerHTML = "
-          // Paypal API
+      function makePayment(){document.getElementById("modal-content").innerHTML = ""}
+    </script>
+
+        
+          <!-- Paypal API -->
             <div id="smart-button-container">
               <div style="text-align: center;">
                 <div id="paypal-button-container"></div>
               </div>
-            </div>"}
+            </div>
             <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=SGD" data-sdk-integration-source="button-factory"></script>
             <script>
               function initPayPalButton() {
@@ -434,7 +436,6 @@
               }
               initPayPalButton();
             </script>
-        </script>
 
 
 
