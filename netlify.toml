@@ -1,3 +1,4 @@
-[build]
-    publish = "php/"
-    baseurl = "./"
+[[redirects]]
+    from = "/"
+    to = "/php"
+    status = 200
