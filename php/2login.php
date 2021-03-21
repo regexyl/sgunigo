@@ -77,8 +77,8 @@
       <div class="logo-area">
           <div class="row align-items-center">
             <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-                <a class="d-block" href="index.html">
-                  <img loading="lazy" src="../images/logo.png" alt="sgunigo">
+                <a class="d-block" href="../php/1homepage.php">
+                  <img loading="lazy" src="../images/sgunigo2.png" alt="sgunigo">
                 </a>
             </div><!-- logo end -->
   
@@ -102,7 +102,7 @@
                   </li>
               
                   <li class="header-get-a-quote">
-                    <a class="btn btn-primary" href="../php/1login.php">Login</a>
+                    <a class="btn btn-primary" href="../php/2login.php">Login</a>
                   </li>
                 </ul><!-- Ul end -->
             </div><!-- header right end -->
@@ -124,7 +124,7 @@
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto">
                       <li class="nav-item dropdown active">
-                          <a href="../php/1login.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
+                          <a href="../php/1homepage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
                       </li>
                 </div>
               </nav>
@@ -151,16 +151,17 @@
 </header>
 <!--/ Header end -->
 
+<!-- Body -->
+
 <div class="banner-carousel banner-carousel-1 mb-0">
-  <div class="banner-carousel-item" style="background-image:url(../images/slider-main/welcomenus.jpg)">
+  <div class="banner-carousel-item" style="background-image:url(../images/slider-main/smulaw.jpg)">
     <div class="slider-content">
         <div class="container h-100">
           <div class="row align-items-center h-100">
               <div class="col-md-12 text-center">
-                <h2 class="slide-title" data-animation-in="slideInLeft">41 Years of excellence in</h2>
+                <h2 class="slide-title" data-animation-in="slideInLeft">20 Years of excellence</h2>
                 <h3 class="slide-sub-title" data-animation-in="slideInRight">An Education For Tomorrow</h3>
                 <p data-animation-in="slideInLeft" data-duration-in="1.2">
-                    <a href="services.html" class="slider btn btn-primary">Learn More</a>
                 </p>
               </div>
           </div>
@@ -168,35 +169,16 @@
     </div>
   </div>
 
-  <div class="banner-carousel-item" style="background-image:url(../images/slider-main/bg2.jpg)">
+  <div class="banner-carousel-item" style="background-image:url(../images/slider-main/smucampus.jpg)">
     <div class="slider-content text-left">
         <div class="container h-100">
           <div class="row align-items-center h-100">
               <div class="col-md-12">
                 <h2 class="slide-title-box" data-animation-in="slideInDown">World Class Service</h2>
-                <h3 class="slide-title" data-animation-in="fadeIn">When Service Matters</h3>
+                <h3 class="slide-title" data-animation-in="fadeIn">When Education Matters</h3>
                 <h3 class="slide-sub-title" data-animation-in="slideInLeft">Your Choice is Simple</h3>
                 <p data-animation-in="slideInRight">
-                    <a href="services.html" class="slider btn btn-primary border">Our Services</a>
                 </p>
-              </div>
-          </div>
-        </div>
-    </div>
-  </div>
-
-  <div class="banner-carousel-item" style="background-image:url(images/slider-main/bg3.jpg)">
-    <div class="slider-content text-right">
-        <div class="container h-100">
-          <div class="row align-items-center h-100">
-              <div class="col-md-12">
-                <h2 class="slide-title" data-animation-in="slideInDown">Meet Our Engineers</h2>
-                <h3 class="slide-sub-title" data-animation-in="fadeIn">We believe sustainability</h3>
-                <p class="slider-description lead" data-animation-in="slideInRight">We will deal with your failure that determines how you achieve success.</p>
-                <div data-animation-in="slideInLeft">
-                    <a href="contact.html" class="slider btn btn-primary" aria-label="contact-with-us">Get Free Quote</a>
-                    <a href="about.html" class="slider btn btn-primary border" aria-label="learn-more-about-us">Learn more</a>
-                </div>
               </div>
           </div>
         </div>
@@ -207,10 +189,10 @@
 <section id="facts" class="facts-area dark-bg">
   <div class="container">
     <div class="facts-wrapper">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
           <div class="col-md-3 col-sm-6 ts-facts">
               <div class="ts-facts-img">
-                <img loading="lazy" src="images/icon-image/fact1.png" alt="facts-img">
+                <img loading="lazy" src="../images/icon-image/service-icon1.png" alt="facts-img">
               </div>
               <div class="ts-facts-content">
                 <h2 class="ts-facts-num"><span class="counterUp" data-count="6">0</span></h2>
@@ -220,7 +202,7 @@
 
           <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-sm-0">
               <div class="ts-facts-img">
-                <img loading="lazy" src="images/icon-image/fact2.png" alt="facts-img">
+                <img loading="lazy" src="../images/icon-image/service-icon4.png" alt="facts-img">
               </div>
               <div class="ts-facts-content">
                 <h2 class="ts-facts-num"><span class="counterUp" data-count="134">0</span></h2>
@@ -244,152 +226,10 @@
     </div>
     <!--/ Title row end -->
 
-    <div class="row">
-      <div class="col-12">
-        <div class="shuffle-btn-group">
-          <label class="active" for="all">
-            <input type="radio" name="shuffle-filter" id="all" value="all" checked="checked">Show All
-          </label>
-          <label for="nus">
-            <input type="radio" name="shuffle-filter" id="nus" value="nus">NUS
-          </label>
-          <label for="ntu">
-            <input type="radio" name="shuffle-filter" id="ntu" value="ntu">NTU
-          </label>
-          <label for="smu">
-            <input type="radio" name="shuffle-filter" id="smu" value="smu">SMU
-          </label>
-          <label for="sit">
-            <input type="radio" name="shuffle-filter" id="sit" value="sit">SIT
-          </label>
-          <label for="suss">
-            <input type="radio" name="shuffle-filter" id="suss" value="suss">SUSS
-          </label>
-          <label for="sutd">
-            <input type="radio" name="shuffle-filter" id="healthcare" value="healthcare">SUTD
-          </label>
-        </div><!-- project filter end -->
+ 
 
 
-        <div class="row shuffle-wrapper">
-          <div class="col-1 shuffle-sizer"></div>
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;nus&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project1.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project1.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">Capital Teltway Building</a>
-                  </h3>
-                  <p class="project-cat">Commercial, Interiors</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 1 end -->
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;ntu&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project2.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project2.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">Ghum Touch Hospital</a>
-                  </h3>
-                  <p class="project-cat">Healthcare</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 2 end -->
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;smu&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project3.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project3.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">TNT East Facility</a>
-                  </h3>
-                  <p class="project-cat">Government</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 3 end -->
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;sit&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project4.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project4.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">Narriot Headquarters</a>
-                  </h3>
-                  <p class="project-cat">Infrastructure</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 4 end -->
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;suss&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project5.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project5.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">Kalas Metrorail</a>
-                  </h3>
-                  <p class="project-cat">Infrastructure</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 5 end -->
-
-          <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;sutd&quot;]">
-            <div class="project-img-container">
-              <a class="gallery-popup" href="images/projects/project6.jpg" aria-label="project-img">
-                <img class="img-fluid" src="images/projects/project6.jpg" alt="project-img">
-                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
-              </a>
-              <div class="project-item-info">
-                <div class="project-item-info-content">
-                  <h3 class="project-item-title">
-                    <a href="projects-single.html">Ancraft Avenue House</a>
-                  </h3>
-                  <p class="project-cat">Residential</p>
-                </div>
-              </div>
-            </div>
-          </div><!-- shuffle item 6 end -->
-        </div><!-- shuffle end -->
-      </div>
-
-      <div class="col-12">
-        <div class="general-btn text-center">
-          <a class="btn btn-primary" href="comparison.html">Compare</a>
-        </div>
-      </div>
-
-    </div><!-- Content row end -->
-  </div>
-  <!--/ Container end -->
-</section><!-- Project area end -->
-
-<!--/ News end -->
+<!--Footer -->
 
   <footer id="footer" class="footer bg-overlay">
     <div class="footer-main">
@@ -397,7 +237,6 @@
         <div class="row justify-content-between">
           <div class="col-lg-4 col-md-6 footer-widget footer-about">
             <h3 class="widget-title">About Us</h3>
-            <img loading="lazy" class="footer-logo" src="../images/footer-logo.png" alt="Constra">
             <p>SGUniGo is a one-stop integrated portal for all of your University applications! Worry no more about your University applications as this platform allows you to
               to apply into any local Singapore Universities with ease.</p>
             <div class="footer-social">
