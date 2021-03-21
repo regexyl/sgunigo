@@ -126,6 +126,12 @@
                       <li class="nav-item dropdown active">
                           <a href="../php/1homepage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
                       </li>
+                      <li class="nav-item">
+                          <a href="../php/3userpage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Applications <i class="fa fa-angle-down"></i></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="../php/6payments.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Payments <i class="fa fa-angle-down"></i></a>
+                      </li>
                 </div>
               </nav>
           </div>
