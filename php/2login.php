@@ -151,7 +151,7 @@
 </header>
 <!--/ Header end -->
 
-<!-- Body -->
+<!-- Banner -->
 
 <div class="banner-carousel banner-carousel-1 mb-0">
   <div class="banner-carousel-item" style="background-image:url(../images/slider-main/smulaw.jpg)">
@@ -185,49 +185,21 @@
     </div>
   </div>
 </div>
+ <!--/ Title row end -->
 
-<section id="facts" class="facts-area dark-bg">
-  <div class="container">
-    <div class="facts-wrapper">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-3 col-sm-6 ts-facts">
-              <div class="ts-facts-img">
-                <img loading="lazy" src="../images/icon-image/service-icon1.png" alt="facts-img">
-              </div>
-              <div class="ts-facts-content">
-                <h2 class="ts-facts-num"><span class="counterUp" data-count="6">0</span></h2>
-                <h3 class="ts-facts-title">Universities</h3>
-              </div>
-          </div><!-- Col end -->
+    <!-- Body -->
+    <!-- SingPass Login -->
 
-          <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-sm-0">
-              <div class="ts-facts-img">
-                <img loading="lazy" src="../images/icon-image/service-icon4.png" alt="facts-img">
-              </div>
-              <div class="ts-facts-content">
-                <h2 class="ts-facts-num"><span class="counterUp" data-count="134">0</span></h2>
-                <h3 class="ts-facts-title">Courses</h3>
-              </div>
-          </div><!-- Col end -->
-        </div> <!-- Facts end -->
-    </div>
-    <!--/ Content row end -->
+
+
+
+
+
+    
+    </div><!-- Content row end -->
   </div>
   <!--/ Container end -->
-</section><!-- Facts end -->
-
-<section id="project-area" class="project-area solid-bg">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-lg-12">
-        <h2 class="section-title">Education of Excellence</h2>
-        <h3 class="section-sub-title">Universities</h3>
-      </div>
-    </div>
-    <!--/ Title row end -->
-
- 
-
+</section><!-- Project area end -->
 
 <!--Footer -->
 

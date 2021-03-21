@@ -151,7 +151,7 @@
 </header>
 <!--/ Header end -->
 
-<!-- Body -->
+<!-- Banner -->
 
 <div class="banner-carousel banner-carousel-1 mb-0">
   <div class="banner-carousel-item" style="background-image:url(../images/slider-main/smulaw.jpg)">
@@ -225,6 +225,8 @@
       </div>
     </div>
     <!--/ Title row end -->
+
+    <!-- Body -->
 
     <div class="row">
       <div class="col-12">
@@ -360,7 +362,7 @@
 
       <div class="col-12">
         <div class="general-btn text-center">
-          <a class="btn btn-primary" href="comparison.html">Apply via SingPass</a>
+          <a class="btn btn-primary" href="../php/2login.php">Apply via SingPass</a>
         </div>
       </div>
 
