@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `application` (
   `application_id` int(11) NOT NULL AUTO_INCREMENT,
   `nric` varchar(10) NOT NULL,
   `grades` varchar(10) NOT NULL,
+  `statement` varchar(1000) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'NEW',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `application` (
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`application_id`, `nric`, `grades`, `status`, `created`, `modified`) VALUES
+INSERT INTO `application` (`application_id`, `nric`, `grades`, `statement`,`status`, `created`, `modified`) VALUES
 (1, 'S9704965C', 'AABC', 'NEW', '2020-06-12 02:14:55', '2020-06-12 02:14:55');
 
 -- --------------------------------------------------------
