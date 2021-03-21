@@ -153,26 +153,142 @@
 
 <!-- Banner -->
 
-<div class="banner-carousel banner-carousel-1 mb-0">
-  <div class="banner-carousel-item" style="background-image:url(../images/singpass.jpeg)">
-    <div class="slider-content">
-        <div class="container h-100">
-          <div class="row align-items-center h-100">
-              <div class="col-md-12 text-center">
-                <h2 class="slide-title" data-animation-in="slideInLeft">Apply Here</h2>
-                <h3 class="slide-sub-title" data-animation-in="slideInRight">Login using SingPass</h3>
-                <p data-animation-in="slideInLeft" data-duration-in="1.2">
-                </p>
+<div id="banner-area" class="banner-area" style="background-image:url(../images/banner/banner1.jpg)">
+  <div class="banner-text">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="banner-heading">
+                <h1 class="banner-title">Payment Summary</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                      <li class="breadcrumb-item"><a href="../php/1homepage.php">Home</a></li>
+                      <li class="breadcrumb-item"><a href="../php/3userpage.php">Applications</a></li>
+                      <li class="breadcrumb-item"><a href="../php/6payment.php">Payments</a></li>
+                    </ol>
+                </nav>
               </div>
-          </div>
-        </div>
-    </div>
-  </div>
-</div>
- <!--/ Title row end -->
+          </div><!-- Col end -->
+        </div><!-- Row end -->
+    </div><!-- Container end -->
+  </div><!-- Banner text end -->
+</div><!-- Banner area end --> 
 
-    <!-- Body -->
-    <!-- SingPass Login -->
+<!-- Body -->
+
+<section id="main-container" class="main-container">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h2 class="section-title">Here are your outstanding payments</h2>
+        <h3 class="section-sub-title">Application payments</h3>
+        <h3 class="section-title">Please note that all application fees are non-refundable</h3>
+      </div>
+    </div>
+    <!--/ Title row end -->
+
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">NUS</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>10</strong>
+            </h2>
+          </div><!-- Pricing header -->
+          <!-- <div class="ts-pricing-features">
+            <ul class="list-unstyled">
+              <li>Project Management for Owners</li>
+              <li>Pre-construction feasibility</li>
+              <li>On-site representation</li>
+              <li>Quality control inspections</li>
+              <li>Schedule claim preparation/defense</li>
+              <li>Project phasing development</li>
+            </ul>
+          </div>Features end -->
+          <div class="plan-action">
+            <a href="../php/7paypal.php" class="btn btn-dark">Pay Now</a>
+          </div>
+        </div><!-- Plan 1 end -->
+      </div><!-- Col end -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box ts-pricing-featured">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">NTU</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>21.40</strong>
+            </h2>
+          </div><!-- Pricing header -->
+          <div class="plan-action">
+            <a href="#" class="btn btn-primary">Pay Now</a>
+          </div>
+        </div><!-- Plan 2 end -->
+      </div><!-- Col end -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">SMU</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>15</strong>
+            </h2>
+          </div><!-- Pricing header -->
+          <div class="plan-action">
+            <a href="#" class="btn btn-dark">Pay Now</a>
+          </div>
+        </div><!-- Plan 3 end -->
+      </div><!-- Col end -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box ts-pricing-featured">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">SUSS</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>15</strong>
+            </h2>
+          </div>
+          <div class="plan-action">
+            <a href="#" class="btn btn-primary">Pay Now</a>
+          </div>
+        </div><!-- Plan 2 end -->
+      </div><!-- Col end -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">SIT</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>18</strong>
+            </h2>
+          </div><!-- Pricing header -->
+          <div class="plan-action">
+            <a href="#" class="btn btn-dark">Pay Now</a>
+          </div>
+        </div><!-- Plan 3 end -->
+      </div><!-- Col end -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="ts-pricing-box ts-pricing-featured">
+          <div class="ts-pricing-header">
+            <h2 class="ts-pricing-name">SUTD</h2>
+            <h2 class="ts-pricing-price">
+              <span class="currency">$</span><strong>0</strong>
+            </h2>
+          </div>
+            <div class="ts-pricing-features">
+              <ul class="list-unstyled">
+                <li>SUTD does not charge an application fee</li>
+              </ul>
+            </div>
+          <!-- <div class="plan-action">
+            <a href="#" class="btn btn-primary">Pay Now</a>
+          </div> -->
+        </div><!-- Plan 2 end -->
+      </div><!-- Col end -->
+
+  
 
 
 
