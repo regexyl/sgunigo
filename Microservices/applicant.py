@@ -16,14 +16,29 @@ class applicant_details(db.Model):
  
     nric = db.Column(db.String(9), primary_key=True)
     applicant_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    contact_no = db.Column(db.String(8), nullable=False)
+    grades = db.Column(db.String(4), nullable=False)
+    applications = db.Column(db.String(100), nullable=True)
+    
  
-    def __init__(self, nric, applicant_name):
+    def __init__(self, nric, applicant_name,email,contact_no,grades,applications):
         self.nric = nric
         self.applicant_name = applicant_name
+        self.email = email
+        self.contact_no = contact_no
+        self.grades = grades
+        self.applications = applications
 
- 
     def json(self):
-        return {"nric": self.nric, "applicant_name": self.applicant_name}
+        return {
+            "nric": self.nric, 
+            "applicant_name": self.applicant_name,
+            "email": self.email,
+            "contact_no": self.contact_no,
+            "grades": self.grades,
+            "applications": self.applications
+            }
 
 @app.route("/applicant_details")
 def get_all():

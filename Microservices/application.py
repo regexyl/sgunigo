@@ -21,7 +21,13 @@ class application(db.Model):
 
     application_id = db.Column(db.Integer, primary_key=True)
     nric = db.Column(db.String(10), nullable=False)
+    applicant_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    contact_no = db.Column(db.String(8), nullable=False)
     grades = db.Column(db.String(10), nullable=False)
+    university = db.Column(db.String(100), nullable=False)
+    courses = db.Column(db.String(1000), nullable=False)
+    statement = db.Column(db.String(1000), nullable=False)
     status = db.Column(db.String(10), nullable=False)
     created = db.Column(db.DateTime, nullable=False, default=datetime.now)
     modified = db.Column(db.DateTime, nullable=False,
@@ -29,13 +35,19 @@ class application(db.Model):
 
     def json(self):
         dto = {
-            'application_id': self.application_id,
-            'nric': self.nric,
-            'grades': self.grades,
-            'status': self.status,
-            'modified': self.modified,
-            'created': self.created,
-            'modified': self.modified
+            "application_id": self.application_id,
+            "nric": self.nric, 
+            "applicant_name": self.applicant_name,
+            "email": self.email,
+            "contact_no": self.contact_no,
+            "grades": self.grades,
+            "university": self.university,
+            "courses": self.courses,
+            "statement": self.statement,
+            "status": self.status,
+            "modified": self.modified,
+            "created": self.created,
+            "modified": self.modified
         }
 
         return dto

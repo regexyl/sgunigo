@@ -34,7 +34,12 @@ DROP TABLE IF EXISTS `application`;
 CREATE TABLE IF NOT EXISTS `application` (
   `application_id` int(11) NOT NULL AUTO_INCREMENT,
   `nric` varchar(10) NOT NULL,
+  `applicant_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contact_no` int(8) NOT NUll,
   `grades` varchar(10) NOT NULL,
+  `university` varchar (100) NOT NULL,
+  `courses` varchar (1000) NOT NULL,
   `statement` varchar(1000) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'NEW',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -46,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `application` (
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`application_id`, `nric`, `grades`, `statement`,`status`, `created`, `modified`) VALUES
-(1, 'S9704965C', 'AABC', 'NEW', '2020-06-12 02:14:55', '2020-06-12 02:14:55');
-
+INSERT INTO `application` (`application_id`, `nric`, `applicant_name`, `email`, `contact_no`, `grades`,`university`,`courses`, `statement`, `status`, `created`, `modified`) VALUES
+(1, 'S9704965C', 'Aidil', 'aidil393@gmail.com', '90227421', 'AAAA', 'SMU', '[SIS,SOA,SOB]', 'Accept me in pls i just want to study pls','NEW', '2020-06-12 02:14:55', '2020-06-12 02:14:55');
+COMMIT;
 -- --------------------------------------------------------
 
 --

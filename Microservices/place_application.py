@@ -24,7 +24,7 @@ def place_application():
             print("\nReceived an order in JSON:", application1)
 
             # do the actual work
-            # 1. Send order info {cart items}
+            # 1. Send application info
             result = processPlaceApplication(application1)
             return jsonify(result), result["code"]
 

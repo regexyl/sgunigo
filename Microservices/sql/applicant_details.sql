@@ -34,6 +34,10 @@ CREATE TABLE IF NOT EXISTS `applicant_details`
 (
   `nric` varchar(9) NOT NULL,
   `applicant_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contact_no` int(8) NOT NUll,
+  `grades` varchar(4) NOT NULL,
+  `applications` varchar (100) NULL,
   PRIMARY KEY (`nric`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `applicant_details`
 -- Dumping data for table `applicant_details`
 --
 
-INSERT INTO `applicant_details` (`nric`,`applicant_name`) VALUES
-('S9704965C', 'Aidil'),
-('S1234567A', 'test1'),
-('S7654321B', 'test2');
+INSERT INTO `applicant_details` (`nric`, `applicant_name`, `email`, `contact_no`,`grades`) VALUES
+('S9704965C', 'Aidil', 'aidil393@gmail.com','90227421','AAAA'),
+('S1234567A', 'test1','test1@gmail.com','90000000','AABB'),
+('S7654321B', 'test2','test2@gmail.com','91111111','AABA');
 COMMIT;
