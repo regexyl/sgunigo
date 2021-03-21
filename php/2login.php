@@ -4,7 +4,8 @@
 
   <!-- Basic Page Needs ========== -->
   <meta charset="utf-8">
-  <title>SGUniGo - One stop University application portal</title>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Mobile Specific Metas ================ -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -171,16 +172,21 @@
 </div>
  <!--/ Title row end -->
 
-    <!-- Body -->
+<!-- Body -->
+<section id="main-container" class="main-container">
+  <div class="container">
     <!-- SingPass Login -->
 
 
 
 
 
-
+    <div class="col-12">
+        <div class="general-btn text-center">
+            <a class="btn btn-primary" href="../php/3userpage.php">Go to User Application Page</a>
+        </div>
+    </div>
     
-    </div><!-- Content row end -->
   </div>
   <!--/ Container end -->
 </section><!-- Project area end -->

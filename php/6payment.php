@@ -4,7 +4,8 @@
 
   <!-- Basic Page Needs ========== -->
   <meta charset="utf-8">
-  <title>SGUniGo - One stop University application portal</title>
+  <title>Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Mobile Specific Metas ================ -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -124,13 +125,13 @@
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto">
                       <li class="nav-item dropdown active">
-                          <a href="../php/1homepage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
+                          <a href="../php/1homepage.php" class="nav-link">Home <i class="fa fa-angle-down"></i></a>
                       </li>
                       <li class="nav-item">
-                          <a href="../php/3userpage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Applications <i class="fa fa-angle-down"></i></a>
+                          <a href="../php/3userpage.php" class="nav-link">Applications <i class="fa fa-angle-down"></i></a>
                       </li>
                       <li class="nav-item">
-                          <a href="../php/6payments.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Payments <i class="fa fa-angle-down"></i></a>
+                          <a href="../php/6payment.php" class="nav-link">Payments <i class="fa fa-angle-down"></i></a>
                       </li>
                 </div>
               </nav>

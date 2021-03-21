@@ -4,7 +4,7 @@
 
   <!-- Basic Page Needs ========== -->
   <meta charset="utf-8">
-  <title>User Application Page</title>
+  <title>New Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Mobile Specific Metas ================ -->
@@ -125,13 +125,7 @@
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto">
                       <li class="nav-item dropdown active">
-                          <a href="../php/1homepage.php" class="nav-link">Home <i class="fa fa-angle-down"></i></a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="../php/3userpage.php" class="nav-link">Applications <i class="fa fa-angle-down"></i></a>
-                      </li>
-                      <li class="nav-item">
-                          <a href="../php/6payment.php" class="nav-link">Payments <i class="fa fa-angle-down"></i></a>
+                          <a href="../php/1homepage.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
                       </li>
                 </div>
               </nav>
@@ -158,99 +152,41 @@
 </header>
 <!--/ Header end -->
 
-<!-- Banner -->
-
-<div id="banner-area" class="banner-area" style="background-image:url(../images/banner/banner3.jpg)">
-  <div class="banner-text">
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-              <div class="banner-heading">
-                <h1 class="banner-title">Applications</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                      <li class="breadcrumb-item"><a href="../php/1homepage.php">Home</a></li>
-                      <li class="breadcrumb-item"><a href="../php/3userpage.php">Applications</a></li>
-                      <li class="breadcrumb-item"><a href="../php/6payment.php">Payments</a></li>
-                    </ol>
-                </nav>
-              </div>
-          </div><!-- Col end -->
-        </div><!-- Row end -->
-    </div><!-- Container end -->
-  </div><!-- Banner text end -->
-</div><!-- Banner area end --> 
-
 <!-- Body -->
-
 <section id="main-container" class="main-container">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-12">
-                <h2 class="section-title">Here are your current applications</h2>
-                <h3 class="section-sub-title">University Applications</h3>
-            </div>
-        </div>
+  <div class="container">
+    <!-- Form application -->
+    <div class="col-lg-4 mt-5 mt-lg-0">
 
- <!--/ Title row end -->
+        <h1 class="form-title">Fill in your details</h1>
 
-    <!-- Body -->
-    <div class="row">
+            <form>
+              <div class="name input type= text placeholder=NAME">
+              <div class="beside">
+                  <input type="number" placeholder="PHONE NUMBER">
+                  <select>
+                      <option>GENDER</option>
+                      <option>MALE</option>
+                      <option>FEMALE</option>
+                      <option>NON-BINARY</option>
+                  </select>
+              </div>
 
-        <div class="col-lg-4 col-md-6">
-        <div class="ts-pricing-box">
-            <div class="ts-pricing-header">
-            <h2 class="ts-pricing-name">NUS</h2>
-            <h1 class="ts-pricing-price">
-                <span class="status">Applied</span>
-            </h1>
-            </div><!-- Pricing header -->
-            <div class="ts-pricing-features">
-            <ul class="list-unstyled">
-                <li>Please wait for the University's reply</li>
-            </ul>
-            </div>
-        </div><!-- Plan 1 end -->
-        </div><!-- Col end -->
+                  <input type="email" placeholder="EMAIL ADDRESS">
+                  <input type="number" placeholder="CODE"><br>
 
-        <div class="col-lg-4 col-md-6">
-        <div class="ts-pricing-box ts-pricing-featured">
-            <div class="ts-pricing-header">
-            <h2 class="ts-pricing-name">NTU</h2>
-            <h1 class="ts-pricing-price">
-                <span class="status">Payment Outstanding</span>
-            </h1>
-            </div><!-- Pricing header -->
-            <div class="plan-action">
-            <a href="../php/6payment.php" class="btn btn-primary">Check payments</a>
-            </div>
-        </div><!-- Plan 2 end -->
-        </div><!-- Col end -->
+            </form>
 
-        <div class="col-lg-4 col-md-6">
-        <div class="ts-pricing-box">
-            <div class="ts-pricing-header">
-            <h2 class="ts-pricing-name">SMU</h2>
-            <h1 class="ts-pricing-price">
-                <span class="currency">Payment Outstanding</span>
-            </h1>
-            </div><!-- Pricing header -->
-            <div class="plan-action">
-            <a href="../php/6payment.php" class="btn btn-dark">Check payments</a>
-            </div>
-        </div><!-- Plan 3 end -->
-        </div><!-- Col end -->
-
-    <div class="col-12">
-        <div class="general-btn text-center">
-            <a class="btn btn-info" href="../php/jaeform1.php">New Application</a>
-        </div>
     </div>
 
-    
-        
-    </div>
-    <!--/ Container end -->
+    <li>
+        <p class="project-link">
+        <a class="btn btn-primary" target="_blank" href="#">Next</a>
+        </p>
+    </li>
+
+  </div>
+  <!--/ Container end -->
 </section><!-- Project area end -->
 
 <!--Footer -->
