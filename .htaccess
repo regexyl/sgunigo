@@ -1,4 +1,6 @@
-RewriteEngine on
-
-RewriteCond %{THE_REQUEST} /html/([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R]
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule ^html/(.*)\.html$ /$1 [R=301,L]
+</IfModule>
