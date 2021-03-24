@@ -1,0 +1,17 @@
+RewriteEngine on
+
+RewriteCond %{THE_REQUEST} /html/([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+
+
+
+
+
+curl -v POST https://api-m.sandbox.paypal.com/v1/oauth2/token \
+  -H "Accept: application/json" \
+  -H "Accept-Language: en_US" \
+  -u "AXpXwZyIVu2sOIqTaKWz2Qp1jfWZRcYET2PNB6WTJfNAP8pQHktzTj3hDts5bbez57eowOGGAEpxaMBn:EM6Nh_z61DHWWHkmjGVi8DLS9bjSm-HyapJnLedsSn3ZyKmaJa9DB75dT2LseZArNXKNfyJrGv38cN0k" \
+  -d "grant_type=client_credentials"
