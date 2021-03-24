@@ -52,26 +52,6 @@ class application(db.Model):
 
         return dto
 
-
-# class Order_Item(db.Model):
-#     __tablename__ = 'order_item'
-
-#     item_id = db.Column(db.Integer, primary_key=True)
-#     order_id = db.Column(db.ForeignKey(
-#         'order.order_id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False, index=True)
-
-#     book_id = db.Column(db.String(13), nullable=False)
-#     quantity = db.Column(db.Integer, nullable=False)
-
-#     # order_id = db.Column(db.String(36), db.ForeignKey('order.order_id'), nullable=False)
-#     # order = db.relationship('Order', backref='order_item')
-#     order = db.relationship(
-#         'Order', primaryjoin='Order_Item.order_id == Order.order_id', backref='order_item')
-
-#     def json(self):
-#         return {'item_id': self.item_id, 'book_id': self.book_id, 'quantity': self.quantity, 'order_id': self.order_id}
-
-
 @app.route("/application")
 def get_all():
     application_list = application.query.all()

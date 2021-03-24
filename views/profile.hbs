@@ -83,7 +83,7 @@
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
 			var authCode = $.url(this.location.href).param('code');
-			alert ("authorisation code="+authCode);
+			//alert ("authorisation code="+authCode);
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
@@ -93,7 +93,7 @@
 				},
 				type: "POST", // post to serverside
 				success: function(data) {
-					alert ("data:"+JSON.stringify(data));
+					//alert ("data:"+JSON.stringify(data));
 					// successful response from serverside
 					if (data.status == "OK") { // successful
 						// fill up the application form
@@ -196,7 +196,7 @@
 <body class="myinfo">
 	<section class="hero-area">
 		<div class="container">
-			<div class="row justify-content-around">
+			<div class="row justify-content-center">
 					<div class="hero-content-div text-center">
 						<div class="hero-content">
 							<h1>Personal Details</h1>
@@ -271,14 +271,14 @@
 						</div>
 						<hr>
 						<div class="form-group">
-							<label>Highest Education Level</label>
+							<label>Grades</label>
 							<div class="input-group">
-								<input type="text" class="form-control" name="edulevel" value="" placeholder="" required="">
+								<input type="text" class="form-control" name="grades" value="" placeholder="" required="">
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12 text-center">
-						<a href="#" class="btn btn-danger">Submit Application</a>
+						<a href="#" class="btn btn-danger">Save Profile</a>
 					</div>
 				</div>
 			</div>
