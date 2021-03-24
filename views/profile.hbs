@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Sample Application</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <script src="/jQuery/jquery.min.js"></script>
+	<script src="/jQuery/purl.js"></script>
+
+	<script>
+		// SETUP VARIABLES
+		var scrollToAppForm = false;
+
+		// Variables for API #1 - Authorise API
+		var authApiUrl; // URL for authorise API
+		var clientId; // your app_id/client_id provided to you during onboarding
+		var redirectUrl; //callback url for your application
+
+		var attributes; // the attributes you are retrieving for your application to fill the form
+		var authLevel; // the auth level, determines the flow
+		// the purpose of your data retrieval
+		var purpose = "demonstrating MyInfo APIs";
+
+		// randomly generated state
+		var state = "123";
+
+		window.onload = function(e) {
+			// invoke AJAX call to get the clientId & redirectURL from serverside
+			$.ajax({
+				url: "/getEnv",
+				data: {},
+				type: "GET", // get from serverside
+				success: function(data) {
+					// successful response from serverside
+					if (data.status == "OK") { // successful
+						// fill up the application form
+						clientId = data.clientId;
+						redirectUrl = data.redirectUrl;
+						authApiUrl = data.authApiUrl;
+						attributes = data.attributes;
+						authLevel = data.authLevel;
+					} else {
+						// error occured
+						alert("ERROR:" + JSON.stringify(data.msg));
+					}
+
+				}
+			});
+		}
+
+		// main function for handling form events
+		$(function() {
+
+			$("#formAuthorise").submit(function(event) {
+				event.preventDefault();
+				callAuthoriseApi();
+				console.log('#formAuthorise')
+			});
+			$("#formApplication").submit(function(event) {
+				event.preventDefault();
+				// add code here to submit the application form back to server for processing
+				$('#complete').toggleClass('hidden');
+			});
+
+		});
+
+		// Function for calling API #1 - Authorise
+		function callAuthoriseApi() {
+			var authoriseUrl = authApiUrl + "?client_id=" + clientId +
+				"&attributes=" + attributes +
+				"&purpose=" + purpose +
+				"&state=" + encodeURIComponent(state)  +
+				"&redirect_uri=" + redirectUrl;
+			console.log('callAuthoriseApi executed')
+			window.location = authoriseUrl;
+		}
+
+
+		// Function for calling server side APIs (token & person) to get the person data for prefilling form
+		function callServerAPIs() {
+			var authCode = $.url(this.location.href).param('code');
+			alert ("authorisation code="+authCode);
+
+			// invoke AJAX call from frontend clientside to your backend serverside
+			$.ajax({
+				url: "/getPersonData",
+				data: {
+					code: authCode,
+				},
+				type: "POST", // post to serverside
+				success: function(data) {
+					alert ("data:"+JSON.stringify(data));
+					// successful response from serverside
+					if (data.status == "OK") { // successful
+						// fill up the application form
+						console.log("data",data);
+						prefillForm(data.text);
+					} else {
+						// error occured
+						alert("ERROR:" + JSON.stringify(data.msg));
+					}
+
+
+				}
+			});
+
+
+		}
+
+
+		// Prefill Online Form with MyInfo data
+		function prefillForm(data) {
+			// prefill form data
+			var noaData = "";
+			var address = "";
+			if (data["noa-basic"]) {
+				noaData = str(data["noa-basic"].amount) ? formatMoney(str(data["noa-basic"].amount), 2, ".", ",") : "";
+			}
+			if (data.regadd.type == "SG") {
+				address = str(data.regadd.country) == "" ? "" :
+					str(data.regadd.block) + " " +
+					str(data.regadd.building) + " \n" +
+					"#" + str(data.regadd.floor) + "-" + str(data.regadd.unit) + " " +
+					str(data.regadd.street) + " \n" +
+					"Singapore " + str(data.regadd.postal)
+			} else if (data.regadd.type == "Unformatted") {
+				address = str(data.regadd.line1) + "\n" +
+					str(data.regadd.line2)
+			}
+			var formValues = {
+				"uinfin": str(data.uinfin),
+				"name": str(data.name),
+				"sex": str(data.sex),
+				"race": str(data.race),
+				"nationality": str(data.nationality),
+				"dob": str(data.dob),
+				"email": str(data.email),
+				"mobileno": str(data.mobileno.prefix) + str(data.mobileno.areacode) + " " + str(data.mobileno.nbr),
+				"regadd": address,
+				"edulevel": str(data.edulevel),
+			};
+
+			// Populate values
+			populate('#formApplication', formValues);
+
+		}
+
+		function formatMoney(n, c, d, t) {
+			var c = isNaN(c = Math.abs(c)) ? 2 : c,
+				d = d == undefined ? "." : d,
+				t = t == undefined ? "," : t,
+				s = n < 0 ? "-" : "",
+				i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+				j = (j = i.length) > 3 ? j % 3 : 0;
+
+			return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+		}
+
+		// CALLBACK HANDLER
+		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
+			console.log('this.location.href has callback?')
+			scrollToAppForm = true;
+
+			// call the backend server APIs
+			callServerAPIs();
+		}
+
+		function populate(frm, data) {
+			$.each(data, function(key, value) {
+				$('[name=' + key + ']', frm).val(value);
+				$('[name=' + key + ']', frm).prop('disabled', true);
+			});
+		}
+
+		// used to output data items with value or desc
+		function str(data) {
+			if (!data)
+				return null;
+			if (data.value)
+				return data.value;
+			else if (data.desc)
+				return data.desc;
+			else if (typeof data == "string")
+				return data;
+			else
+				return "";
+		}
+	</script>
+
+</head>
+
+<body class="myinfo">
+	<section class="hero-area">
+		<div class="container">
+			<div class="row justify-content-around">
+					<div class="hero-content-div text-center">
+						<div class="hero-content">
+							<h1>Personal Details</h1>
+							<p>Click on the button below to pre-fill your form using SingPass.</p>
+						</div>
+						<form id="formAuthorise">
+							<a href="#" onclick="$(this).closest('form').submit()" class="btn btn-danger">Retrieve MyInfo</a>
+						</form>
+					</div>
+			</div>
+		</div>
+        
+		<form id="formApplication" class="toggle_content">
+			<div class="container">
+				<div class="row justify-content-around">
+					<div class="col-md-12 col-lg-5 form-box mb-4">
+						<hr>
+						<div class="form-group">
+							<label>NRIC</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="uinfin" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Full Name</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="name" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Sex</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="sex" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Race</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="race" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Nationality</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="nationality" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Date Of Birth</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="dob" value="" placeholder="" required="">
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Email</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="email" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Mobile Number</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="mobileno" value="" placeholder="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Registered Address</label>
+							<div class="input-group">
+								<textarea cols="53" rows="3" name="regadd"></textarea>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Highest Education Level</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="edulevel" value="" placeholder="" required="">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 text-center">
+						<a href="#" class="btn btn-danger">Submit Application</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+
+	<!-- jQuery -->
+	<script src="/jQuery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/bootstrap/bootstrap.min.js"></script>
+
+	<script>
+		if (authLevel == 'L0') {
+			$("#formPerson").show();
+		} else {
+			$("#formPerson").hide();
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "sgunigo",
+  "version": "1.0.0",
+  "description": "An all-in-one university application portal for Singaporean students.",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "connect-mongo": "^4.4.1",
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "express-session": "^1.17.1",
+    "firebase": "^8.3.1",
+    "jose": "^3.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "loadsh": "0.0.4",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.2",
+    "morgan": "^1.10.0",
+    "node-jose": "^2.0.0",
+    "nonce": "^1.0.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "querystring": "^0.2.1",
+    "serve-favicon": "^2.5.0",
+    "superagent": "^6.1.0",
+    "superagent-bluebird-promise": "^4.2.0",
+    "urlsafe-base64": "^1.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7"
+  }
+}
