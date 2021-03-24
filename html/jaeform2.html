@@ -165,18 +165,78 @@
 <section id="main-container" class="main-container">
   <div class="container">
     <!-- Form application -->
-    <div class="col-lg-4 mt-5 mt-lg-0">
+    <div class="form-group">
 
-        <h1 class="form-title">Course registration</h1>
+        <h1 class="form-title">Course registration: Top 3 Choice of Course</h1>
+        <br>
 
             <form action='' method='POST'>
-              
+              <table class="table">
+                <thread>
+                  <tr>
+                    <th scope="col">Choice Order</th>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Course Name</th>
+                  </tr>
+                </thread>
+                <tbody>
+                  <tr>
+                    <th scope="row">1st</th>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='code1' class="form-control" placeholder="COURSE CODE" required>
+                      </div>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='course1' class="form-control" placeholder="COURSE NAME" required>
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2nd</th>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='code2' class="form-control" placeholder="COURSE CODE" required>
+                      </div>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='course2' class="form-control" placeholder="COURSE NAME" required>
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3rd</th>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='code3' class="form-control" placeholder="COURSE CODE" required>
+                      </div>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group row">
+                      <div class="col-sm-9">
+                        <input type="text" name='course3' class="form-control" placeholder="COURSE NAME" required>
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
 
+                  </tbody>
+                  </table>
+                <p>By creating an account, you agree to our <a href="https://www.termsandconditionsgenerator.com/live.php?token=mDNKCXF21YZLJlKGi1MmcSszfdSdFLo5" style="color:dodgerblue">Terms & Conditions</a>.</p>
 
-              <p>By creating an account, you agree to our <a href="https://www.termsandconditionsgenerator.com/live.php?token=mDNKCXF21YZLJlKGi1MmcSszfdSdFLo5" style="color:dodgerblue">Terms & Conditions</a>.</p>
-
-              <button type='submit' style="margin-bottom: 20px;" class="btn btn-primary col-8 col-offset-2 size" id="next" onclick=jaeform2()>Next</button><br>
-
+                <button type='submit' style="margin-bottom: 20px;" class="btn btn-primary col-8 col-offset-2 size" id="next" onclick=jaeform2()>Next</button><br>
             </form>
 
     </div>
