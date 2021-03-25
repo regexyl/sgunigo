@@ -85,7 +85,9 @@ You can treat *.hbs* just like HTML. You may find the different pages here:
 <br>
 **❗️NOTE**<br>
 The files are renamed from the *'2login'* format to just *'login'*. It feels like it would be easier for the user to understand when looking at the URL, e.g. www.sgunigo.netlify.app/login.<br>
-The same goes for renaming *'3userpage'* to *'applications'*. I think the latter carries more meaning, but do change it if there's a better way of expressing it.
+The same goes for renaming *'3userpage'* to *'applications'*. I think the latter carries more meaning in conveying that the page is a list of his/her submitted applications.
+
+**If we keep this .hbs change, then the HTML folder will not be used anymore.**
 
 #### 📄 .gitignore
 The files/folders that will not get pushed through Git.
