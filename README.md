@@ -55,7 +55,7 @@ Schema for MongoDB; it defines the information that gets posted to the database.
 
 #### 📂 public
 Utilities like CSS, JS, jQuery, bootstrap.<br>
-⚠️ Express.js recognises the *public* folder. If you want to reference a CSS stylesheet, you can simply type '/css/example.css' instead of typing relative paths like '../../css/example.css'.
+⚠️  Express.js recognises the *public* folder. If you want to reference a CSS stylesheet, you can simply type '/css/example.css' instead of typing relative paths like '../../css/example.css'.
 
 #### 📂 routes
 Needed by Express.js to identify which files to load based on the URL.
@@ -83,7 +83,7 @@ You can treat *.hbs* just like HTML. You may find the different pages here:
 6. applications/payment.hbs
 7. applications/paypal.hbs
 <br>
-##### ❗️NOTE
+❗️NOTE<br>
 The files are renamed from the *'2login'* format to just *'login'*. It feels like it would be easier for the user to understand when looking at the URL, e.g. www.sgunigo.netlify.app/login.<br>
 The same goes for renaming *'3userpage'* to *'applications'*. I think the latter carries more meaning, but do change it if there's a better way of expressing it.
 
