@@ -1,8 +1,8 @@
 # SGUniGo
 
-#### Current status of Netlify
-It is not supposed to display anything. The *html* directory has been migrated to *views*, so the *netlify.toml* file is pointing to the latter folder.<br><br>
-We can try to piece everything together on Netlify after we integrate all microservices and make sure they work on localhost.
+#### Current status of Netlify: ❌
+It is not supposed to display anything. The *html* directory has been migrated to *views*, so the *netlify.toml* file is pointing to the *views* folder. However, Netlify's default configuration does not support *.hbs* files, but it's ok for now.<br><br>
+We can try to piece everything together on Netlify after **we make sure all microservices work on localhost first**. We may even eventually shift to another PaaS (e.g. Heroku) that supports Docker, or not submit an online version at all (as it's not the requirement).<br>
 
 ## How to run app (on localhost)
 Run this in the command line:
