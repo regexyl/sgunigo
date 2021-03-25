@@ -4,7 +4,7 @@
 1. Regarding New Commits
     1. Why use Node.js
     2. Using Express.js
-    3. Function of new folders
+    3. Function of new folders + files
 2. Other Info
 
 ## Regarding New Commits
