@@ -1,7 +1,7 @@
 # SGUniGo
 
-*Current status of Netlify*  
-It is not supposed to display anything. The *html* directory has been migrated to *views*, so the *netlify.toml* file is pointing to the latter folder.  
+#### Current status of Netlify
+It is not supposed to display anything. The *html* directory has been migrated to *views*, so the *netlify.toml* file is pointing to the latter folder.<br><br>
 We can try to piece everything together on Netlify after we integrate all microservices and make sure they work on localhost.
 
 ## How to run app (on localhost)
