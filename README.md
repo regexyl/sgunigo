@@ -57,6 +57,8 @@ Schema for MongoDB; it defines the information that gets posted to the database.
 Utilities like CSS, JS, jQuery, bootstrap.<br>
 ⚠️ Express.js recognises the *public* folder. If you want to reference a CSS stylesheet, you can simply type '/css/example.css' instead of typing relative paths like '../../css/example.css'.
 
+**So all the JS, CSS etc. files will be referenced from here.**
+
 #### 📂 routes
 Needed by Express.js to identify which files to load based on the URL.
 
