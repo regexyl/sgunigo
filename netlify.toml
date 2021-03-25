@@ -1,4 +1,4 @@
 [[redirects]]
     from = "/"
-    to = "/html"
+    to = "/views"
     status = 200
