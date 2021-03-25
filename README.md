@@ -9,6 +9,7 @@ Run this in the command line:
 ```
 npm run dev
 ```
+Go to http://localhost:3001 to view app.
 
 ## Outline
 1. Regarding New Commits
