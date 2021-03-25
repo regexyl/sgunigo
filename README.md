@@ -6,7 +6,9 @@ We try to piece everything together on Netlify after we integrate all microservi
 
 ## How to run app (on localhost)
 Run this in the command line:
-`npm run dev`
+```
+npm run dev
+```
 
 ## Outline
 1. Regarding New Commits
