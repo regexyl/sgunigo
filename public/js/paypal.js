@@ -19,9 +19,9 @@ function sent(){
 }
 
 function back(){
-    window.location.href = "../html/3userpage.html";
+    window.location.href = "/applications";
 }
 
 function paymentback(){
-    window.location.href = "../html/6payment.html";
+    window.location.href = "/applications/payment";
 }
