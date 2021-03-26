@@ -31,9 +31,12 @@ app.use(express.json());
 // Logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); // Add Morgan middleware that shows HTTP methods, etc. in the console while in dev mode
-  process.env.GOOGLE_CLIENT_ID = '919348868535-61a1qhomq6nsed3118hg3bg186dh1ij9.apps.googleusercontent.com'
-  process.env.GOOGLE_CLIENT_SECRET = '3vYe84Z5kWCY9kxsGokW2Lps'
+  process.env.GOOGLE_CLIENT_ID = '919348868535-1v8ntc8d3aiqprf5752tc0qc84qn7c44.apps.googleusercontent.com'
+  process.env.GOOGLE_CLIENT_SECRET = '-V9EwL0BvpEeTxjvz7NhPnzV'
 }
+
+console.log(process.env.GOOGLE_CLIENT_ID)
+console.log(process.env.GOOGLE_CLIENT_SECRET)
 
 // Handlebars
 app.engine(
