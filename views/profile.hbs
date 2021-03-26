@@ -31,7 +31,7 @@
 		window.onload = function(e) {
 			// invoke AJAX call to get the clientId & redirectURL from serverside
 			$.ajax({
-				url: "/getEnv",
+				url: "/profile/getEnv",
 				data: {},
 				type: "GET", // get from serverside
 				success: function(data) {
@@ -58,7 +58,6 @@
 			$("#formAuthorise").submit(function(event) {
 				event.preventDefault();
 				callAuthoriseApi();
-				console.log('#formAuthorise')
 			});
 			$("#formApplication").submit(function(event) {
 				event.preventDefault();
@@ -75,7 +74,6 @@
 				"&purpose=" + purpose +
 				"&state=" + encodeURIComponent(state)  +
 				"&redirect_uri=" + redirectUrl;
-			console.log('callAuthoriseApi executed')
 			window.location = authoriseUrl;
 		}
 
@@ -83,17 +81,17 @@
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
 			var authCode = $.url(this.location.href).param('code');
-			//alert ("authorisation code="+authCode);
+			alert ("authorisation code="+authCode);
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
-				url: "/getPersonData",
+				url: "/profile/getPersonData",
 				data: {
 					code: authCode,
 				},
 				type: "POST", // post to serverside
 				success: function(data) {
-					//alert ("data:"+JSON.stringify(data));
+					alert ("data:"+JSON.stringify(data));
 					// successful response from serverside
 					if (data.status == "OK") { // successful
 						// fill up the application form
@@ -114,6 +112,7 @@
 
 		// Prefill Online Form with MyInfo data
 		function prefillForm(data) {
+			alert("prefillForm")
 			// prefill form data
 			var noaData = "";
 			var address = "";
@@ -162,7 +161,7 @@
 
 		// CALLBACK HANDLER
 		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
-			console.log('this.location.href has callback?')
+			alert('this.location.href has callback?')
 			scrollToAppForm = true;
 
 			// call the backend server APIs

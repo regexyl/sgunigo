@@ -54,7 +54,7 @@ Besides Passport.js, we also have other packages installed in SGUniGo such as ex
 1. 🍪 **Allow sessions on SGUniGo**
     - Users not logged in cannot access their applications, payment or profile page.
     - All users who have a current session will also be redirected to their applications page if they access the SGUniGo home page.
-    - Session data is saved in MongoDB Atlas, a cloud and NoSQL databse connected to SGUniGo. The MONGO_URI can be seen in *config > config.env*. It is connected via the Mongoose package in *config > db.js*.
+    - Session data is saved in MongoDB Atlas, a cloud and NoSQL databse connected to SGUniGo. The MONGO_URI can be seen in *config > development.env* or *production.env*, depending on the command you run in the CLI (i.e. `npm run dev` *or* `npm start`, respectively). It is connected via the Mongoose package in *config > db.js*.
 
 ### 2. Using Express.js
 Express.js is a framework for Node.js, which makes writing the code easier.

@@ -76,9 +76,9 @@ router.get('/getEnv', function(req, res, next) {
     });
 });
 
-app.post('/saveProfile', function(req, res) {
+// app.post('/saveProfile', function(req, res) {
 
-})
+// })
 
 // function for frontend to call backend
 router.post('/getPersonData', function(req, res, next) {
