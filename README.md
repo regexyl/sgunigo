@@ -142,8 +142,8 @@ Client ID: 919348868535-r7hk6ldskidu8r4smarkaadhaa24s4se.apps.googleusercontent.
 Client Secret: 5rgJex2aRF1g04I_YVktZg_Z
 
 #### Testing
-Client ID: 919348868535-61a1qhomq6nsed3118hg3bg186dh1ij9.apps.googleusercontent.com<br>
-Client Secret: 3vYe84Z5kWCY9kxsGokW2Lps
+Client ID: 564255958454-or392ml3skef9gj0ga1ohet6qogck68l.apps.googleusercontent.com<br>
+Client Secret: JDMauOx7bS6hOrh8639auG-y
 
 #### Emails that can use Google OAuth
 ![](images/google-oauth-email.png)

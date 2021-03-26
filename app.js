@@ -15,7 +15,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 // Load config - pass config.env object with global variables to path
-dotenv.config({ path: "./config/config.env" });
+const envFile = `${process.env.NODE_ENV}.env`;
+dotenv.config({ path: `./config/${envFile}` });
 
 // Passport config
 require("./config/passport")(passport); // pass in const passport as an argument - refer to passport.js' module.exports function argument
@@ -31,8 +32,8 @@ app.use(express.json());
 // Logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); // Add Morgan middleware that shows HTTP methods, etc. in the console while in dev mode
-  process.env.GOOGLE_CLIENT_ID = '919348868535-1v8ntc8d3aiqprf5752tc0qc84qn7c44.apps.googleusercontent.com'
-  process.env.GOOGLE_CLIENT_SECRET = '-V9EwL0BvpEeTxjvz7NhPnzV'
+  // process.env.GOOGLE_CLIENT_ID = '564255958454-or392ml3skef9gj0ga1ohet6qogck68l.apps.googleusercontent.com'
+  // process.env.GOOGLE_CLIENT_SECRET = 'JDMauOx7bS6hOrh8639auG-y'
 }
 
 console.log(process.env.GOOGLE_CLIENT_ID)
