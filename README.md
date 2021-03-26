@@ -1,10 +1,12 @@
 # SGUniGo
 
 #### Current status of Netlify (Thu, 25 Mar at 8PM): ❌
+(https://sgunigo.netlify.app)<br>
 It is not supposed to display anything. The *html* directory has been migrated to *views*, so the *netlify.toml* file is pointing to the *views* folder. However, Netlify's default configuration does not support *.hbs* files, but it's ok for now.<br><br>
 We can try to piece everything together on Netlify after **we make sure all microservices work on localhost first**. We may even eventually shift to another PaaS (e.g. Heroku) that supports Docker, or not submit an online version at all (as it's not the requirement).<br>
 
 #### Current status of Heroku (Fri, 25 Mar at 1PM): ✅½
+(https://sgunigo.heroku.app)<br>
 Heroku supports Node.js, so the pages can be loaded here. However, some stylings and pages went wrong so that needs some fixing on Heroku's side. We can add new collaborators for free on Heroku so this will be more transparent for everyone.<br><br>
 
 More info here: [Netlify vs Heroku | What are the differences?](https://blog.back4app.com/netlify-vs-heroku/)
