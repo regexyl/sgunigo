@@ -35,15 +35,18 @@ Node.js is a backend platform for supporting routing to different pages of our w
 #### Mainly due to SingPass' API
 ⚠️ The main reason we need to use Node.js is due to SingPass' MyInfo API. The developers at SingPass wrote the API in Node.js, and this involved many files (as seen on the [MyInfo GitHub repo](https://github.com/ndi-trusted-data/myinfo-demo-app)).<br>
 To rewrite their entire code in Flask would be too tedious and error-prone, so this means it's best to do the retrieval of MyInfo data in Node.js itself.<br>
+
 Many node module packages are installed because of this, as seen in *package.json > dependencies*. The following packages deal with the encryption and safe retrieval of MyInfo data from the API:
 1. bluebird
 2. jose
 3. jsonwebtoken
 4. nonce  
+
 Some of the other packages are for Google's authentication service, while others I'm not too sure. But I think we can just ignore them for now as long as our microservice works.
 
 #### Better for Google authentication
 Node.js has an established package manager (i.e. NPM), and one of the packages it manages is **Passport.js**. This allows for the easier integration of Google OAuth 2.0 and the recording of sessions in the database.<br>
+
 ![passportjs-example](images/passportjs-example.png)
 
 Besides Passport.js, we also have other packages installed in SGUniGo such as express-session, connect-mongo, mongoose, etc. to mainly help with the following feature:<br>
@@ -75,7 +78,9 @@ Schema for MongoDB; it defines the information that gets posted to the database.
 
 #### 📂 public
 Utilities like CSS, JS, jQuery, bootstrap.<br>
+
 ⚠️ Express.js recognises the *public* folder. If you want to reference a CSS stylesheet, you can simply type '/css/example.css' instead of typing relative paths like '../../css/example.css'.<br>
+
 **So all the JS, CSS etc. files will be referenced from here.**
 
 #### 📂 routes
@@ -86,7 +91,9 @@ Strictly to store keys for SingPass' API.
 
 #### 📂 views
 Stores files that function like HTML, but with less clutter.<br>
+
 ⚠️ These files have the extension *.hbs*, which stands for Handlebars, a simple templating language.<br>
+
 If we just use HTML and want to change a link in the header or footer, we have to go into all files to make the single change. With Handlebars, we can separate the header/fooder section from the rest of the HTML by putting it in an individual file. (See *views > layouts > main.hbs*.) <br>
 
 If we want to go to the login page, we can then tell Express.js that we want a certain file, e.g. *login.hbs*, and add it to the template *main.hbs* to render the full page for the client.
@@ -104,8 +111,10 @@ You can treat *.hbs* just like HTML. You may find the different pages here:
 6. applications/payment.hbs
 7. applications/paypal.hbs
 <br>
-**❗️NOTE**<br>
+
+**❗️ NOTE**<br>
 The files are renamed from the *'2login'* format to just *'login'*. It feels like it would be easier for the user to understand when looking at the URL, e.g. www.sgunigo.netlify.app/login.<br>
+
 The same goes for renaming *'3userpage'* to *'applications'*. I think the latter carries more meaning in conveying that the page is a list of his/her submitted applications.
 
 **If we keep this .hbs change, then the HTML folder will not be used anymore.**
@@ -121,6 +130,7 @@ Instructions for Netlify that changes the default way they load our repo.
 
 #### 📄 package.json
 The "director" of a Node.js project.<br>
+
 Contains metadata regarding the whole project, node packages involved and commands to follow when running the project.
 
 ## Other Info
