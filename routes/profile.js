@@ -12,6 +12,9 @@ const querystring = require('querystring');
 const securityHelper = require('../lib/security/security');
 const crypto = require('crypto');
 const colors = require('colors');
+const { profile } = require('console');
+
+const app = express()
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -72,6 +75,10 @@ router.get('/getEnv', function(req, res, next) {
       authLevel: _authLevel
     });
 });
+
+app.post('/saveProfile', function(req, res) {
+
+})
 
 // function for frontend to call backend
 router.post('/getPersonData', function(req, res, next) {

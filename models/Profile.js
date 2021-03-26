@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ApplicationSchema = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
     nric: {
         type: String,
         required: true
@@ -51,4 +51,4 @@ const ApplicationSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Application', ApplicationSchema)
+module.exports = mongoose.model('Profile', ProfileSchema)
