@@ -11,9 +11,11 @@
         <div class="col s12 m7">
             <div class="card horizontal">
             <div class="card-stacked white-text">
+                {{#unless userProfileExists}}
                 <div class="card-content red darken-1">
                 <p><b>You have not filled in your profile details yet. Use SingPass' MyInfo to fill it up!</b></p>
                 </div>
+                {{/unless}}
                 <div class="card-action">
                     <a class="red-text" href="/profile">Go to Profile</a>
                 </div>
