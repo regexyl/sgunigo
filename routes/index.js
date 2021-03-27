@@ -59,10 +59,18 @@ var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,ho
 
 // @desc  Show profile page
 // @route GET /profile
-router.get('/profile', ensureAuth, function(req, res, next) {
-  res.render("profile", {
-    layout: "empty"
-  })
+router.get('/profile', ensureAuth, async (req, res) => {
+  try {
+    const userProfile = await Profile.findOne({ user: req.user.id }).lean()
+    res.render("profile", { 
+      layout: "empty",
+      userProfile,
+      name: req.user.id
+    })
+  } catch (err) {
+    console.error(err)
+    res.render('error/500')
+  }
 });
 
 // @desc  Process add profile
@@ -70,11 +78,11 @@ router.get('/profile', ensureAuth, function(req, res, next) {
 router.post('/profile', async (req, res) => {
   try {
     req.body.user = req.user.id
-    await Profile.create(req.body)
+    await Profile.updateOne({user: req.user.id}, req.body, {upsert: true}) // upsert: creates a new record if it doesn't exist
     res.redirect('/applications')
   } catch (err) {
     console.error(err)
-    res.render('/error/500')
+    res.render('error/500')
   }
 });
 
