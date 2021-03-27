@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const ProfileSchema = new mongoose.Schema({
+    
     nric: {
         type: String,
         required: true
