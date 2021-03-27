@@ -57,14 +57,14 @@ var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,ho
 /* GET profile page. */
 router.get('/profile', function(req, res, next) {
   res.render("profile", {
-    layout: "main_session"
+    layout: "empty"
   })
 });
 
 // callback function - directs back to home page
 router.get('/callback', function(req, res, next) {
   res.render("profile", {
-    layout: "main_session"
+    layout: "empty"
   })
 });
 
