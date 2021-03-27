@@ -14,11 +14,15 @@ Heroku supports Node.js, so the pages can be loaded here. However, some stylings
 More info here: [Netlify vs Heroku | What are the differences?](https://blog.back4app.com/netlify-vs-heroku/)
 
 ## How to run app (on localhost)
-Run this in the command line:
+1. Install npm packages:
+```
+npm install
+```
+2. Run this in the command line:
 ```
 npm run dev
 ```
-Go to http://localhost:3001 to view app.
+3. Go to http://localhost:3001 to view app.
 
 ## Outline
 1. Regarding New Commits
