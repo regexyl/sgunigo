@@ -12,6 +12,9 @@ const querystring = require('querystring');
 const securityHelper = require('../lib/security/security');
 const crypto = require('crypto');
 const colors = require('colors');
+const { profile } = require("console");
+
+const Profile = require('../models/Profile')
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -54,22 +57,37 @@ var _personApiUrl = process.env.MYINFO_API_PERSON;
 
 var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,noa-basic,ownerprivate,cpfcontributions,cpfbalances";
 
-/* GET profile page. */
-router.get('/profile', function(req, res, next) {
+// @desc  Show profile page
+// @route GET /profile
+router.get('/profile', ensureAuth, function(req, res, next) {
   res.render("profile", {
     layout: "empty"
   })
+});
+
+// @desc  Process add profile
+// @route POST /profile
+router.post('/profile', async (req, res) => {
+  try {
+    req.body.user = req.user.id
+    await Profile.create(req.body)
+    res.redirect('/applications')
+  } catch (err) {
+    console.error(err)
+    res.render('/error/500')
+  }
 });
 
 // callback function - directs back to home page
-router.get('/callback', function(req, res, next) {
+router.get('/callback', ensureAuth, function(req, res, next) {
   res.render("profile", {
     layout: "empty"
   })
 });
 
+
 // function for getting environment variables to the frontend
-router.get('/getEnv', function(req, res, next) {
+router.get('/getEnv', ensureAuth, function(req, res, next) {
   if (_clientId == undefined || _clientId == null)
     res.jsonp({
       status: "ERROR",
@@ -87,7 +105,7 @@ router.get('/getEnv', function(req, res, next) {
 });
 
 // function for frontend to call backend
-router.post('/getPersonData', function(req, res, next) {
+router.post('/getPersonData', ensureAuth, function(req, res, next) {
   // get variables from frontend
   var code = req.body.code;
 

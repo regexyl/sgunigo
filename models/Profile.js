@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 
 const ProfileSchema = new mongoose.Schema({
-    
-    nric: {
+    uinfin: {
         type: String,
         required: true
     },
-    fullName: {
+    name: {
         type: String,
         required: true
     },
@@ -22,29 +21,30 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dateOfBirth: {
-        type: Date,
+    dob: {
+        type: String,
         required: true
     },
     email: {
         type: String,
         required: true
     },
-    mobileNumber: {
-        type: Number,
-        required: true
-    },
-    registeredAddress: {
+    mobileno: {
         type: String,
         required: true
     },
-    highestEduLevel: {
+    regadd: {
         type: String,
         required: true
     },
     grades: {
         type: String,
         required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', //  Connects to User model
+        unique: true
     },
     createdAt: {
         type: Date,

@@ -80,7 +80,7 @@ app.use(function(req, res, next) {
 // print stacktrace on error
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render(`error/${err.status}`, {
+    res.render(`err/${err.status}`, {
         message: err.message,
         error: err
     });
