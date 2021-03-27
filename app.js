@@ -15,8 +15,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 // Load config - pass  object with global variables to path
-const envFile = `${process.env.NODE_ENV}.env`;
-dotenv.config({ path: `./config/${envFile}` });
+dotenv.config({ path: `./config/${process.env.NODE_ENV}.env` });
 
 console.log(process.env.MYINFO_APP_REDIRECT_URL)
 // Passport config
@@ -69,7 +68,6 @@ app.use(express.static(path.join(__dirname, "public"))) // __dirname - current d
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/applications", require("./routes/applications"))
-app.use("/profile", require("./routes/profile"))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
