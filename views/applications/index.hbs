@@ -42,7 +42,11 @@
                 </div>
                 {{/unless}}
                 <div class="card-action">
+                    {{#if userProfileExists}}
+                    <a class="red-text" href="/profile">Edit Profile</a>
+                    {{else}}
                     <a class="red-text" href="/profile">Go to Profile</a>
+                    {{/if}}
                 </div>
             </div>
             </div>

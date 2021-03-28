@@ -14,8 +14,6 @@ function sent(){
         var addError = function() { element.classList.add('error'); };
         var removeError = function() { element.classList.remove('error'); };
     }
-   
-    
 }
 
 function back(){
