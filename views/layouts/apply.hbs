@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+  <!-- Animation -->
+  <link rel="stylesheet" href="/animate-css/animate.css">
+  <!-- slick Carousel -->
+  <link rel="stylesheet" href="/slick/slick.css">
+  <link rel="stylesheet" href="/slick/slick-theme.css">
+  <!-- Colorbox -->
+  <link rel="stylesheet" href="/colorbox/colorbox.css">
+  <!-- Template styles-->
+  <link rel="stylesheet" href="/css/style.css">
+  {{> _apply_head}}
+</head>
+
+<body>
+  <div class="body-inner">
+    
+    {{> _top_bar}}
+    {{> _main_bar_logout}}
+
+    {{{body}}}
+
+    {{> _footer}}
+
+    {{> _scripts}}
+    <script src="/js/apply.js"></script>
+  </div>
+</body>

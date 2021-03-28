@@ -24,9 +24,10 @@ router.get("/", ensureAuth, async (req, res) => {
 // @route   GET /applications/apply
 router.get("/apply", ensureAuth, async (req, res) => {
   try {
+    const userProfile = await Profile.findOne({ user: req.user.id }).lean()
     res.render("applications/apply", {
-      name: req.user.firstName,
-      layout: "main_session"
+      layout: "apply",
+      userProfile
     });
   } catch (err) {
     console.error(err)
