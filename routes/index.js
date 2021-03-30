@@ -14,7 +14,10 @@ const crypto = require('crypto');
 const colors = require('colors');
 const { profile } = require("console");
 
-const Profile = require('../models/Profile')
+const Profile = require('../models/Profile');
+const { request } = require("http");
+
+const request_mod = require('request')
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -30,6 +33,22 @@ router.get("/login", ensureGuest, (req, res) => {
   res.render("login", {
     layout: "login",
   });
+});
+
+// @desc    Login and landing page
+// @route   GET /
+router.get("/microservices", (req, res) => {
+  request_mod('http://127.0.0.1:5000/applicant_details', (error, response, body) => {
+    console.error('error:', error) // print the error
+    console.log('statusCode:', response && response.statusCode) // print the response status code if a response was received
+    console.log('body:', body) // print the data received
+    res.send(body) // Display the response on the website
+  })
+});
+// @desc    Login and landing page
+// @route   GET /
+router.get("/testing", (req, res) => {
+  res.send('testing')
 });
 
 // ####################

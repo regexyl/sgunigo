@@ -15,7 +15,7 @@ services:
     image: ideal97/applicant:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/applicant_details
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/applicant_details
       PYTHONUNBUFFERED: 1
     ports:
       - "5000:5000" 
@@ -30,7 +30,7 @@ services:
     image: ideal97/application:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/application
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/application
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
@@ -45,7 +45,7 @@ services:
     image: ideal97/admin_cost:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/admin_cost
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/admin_cost
       PYTHONUNBUFFERED: 1
     ports:
       - "5200:5200"
@@ -60,7 +60,7 @@ services:
     image: ideal97/admin_portal_application:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/admin_portal
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/admin_portal
       PYTHONUNBUFFERED: 1
     ports:
       - "5300:5300"
@@ -75,7 +75,7 @@ services:
     image: ideal97/payment:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/payment
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/payment
       PYTHONUNBUFFERED: 1
     ports:
       - "5400:5400"

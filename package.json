@@ -30,6 +30,7 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "querystring": "^0.2.1",
+    "request": "^2.88.2",
     "serve-favicon": "^2.5.0",
     "superagent": "^6.1.0",
     "superagent-bluebird-promise": "^4.2.0",

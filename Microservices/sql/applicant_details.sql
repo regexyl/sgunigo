@@ -2,7 +2,7 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
+-- Host: 127.0.0.1:8889
 -- Generation Time: Jan 14, 2019 at 06:42 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
