@@ -18,9 +18,7 @@ services:
       dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/applicant_details
       PYTHONUNBUFFERED: 1
     ports:
-      - "5000:5000"
-    networks:
-      - kong-net 
+      - "5000:5000" 
  
   #######################################################
   # application: The application microservice
