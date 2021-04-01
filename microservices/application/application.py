@@ -167,13 +167,6 @@ def update_application(application_id):
             ), 404
 
         # update status
-<<<<<<< HEAD:microservices/sgunigo/application.py
-        # application1.status='PAID'
-        # db.session.commit()
-        # data = request.get_json()
-        # if data['status']:
-=======
->>>>>>> new-microservices:microservices/application/application.py
         application1.status = 'PAID'
         db.session.commit()
         return jsonify(

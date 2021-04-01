@@ -127,11 +127,11 @@ services:
   #########################################################
   # application_complex: The Submit Application microservice
   #########################################################
-  application_submit:
+  application_complex:
     build:
       context: ./microservices/
       dockerfile: application_complex/application_complex.Dockerfile
-    image: g10t4/application_submit:esd
+    image: g10t4/application_complex:esd
     restart: always
     depends_on:
       - application
