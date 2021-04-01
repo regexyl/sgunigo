@@ -29,7 +29,7 @@ services:
     image: g10t4/applicant:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/applicant_details
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/applicant_details
       PYTHONUNBUFFERED: 1
     ports:
       - "5000:5000" 
@@ -44,25 +44,10 @@ services:
     image: g10t4/application:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/application
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/application
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
-
-  #########################################
-  # admin_cost: The admin_cost microservice
-  #########################################
-  admin_cost:
-    build:
-      context: ./microservices/
-      dockerfile: admin_cost/admin_cost.Dockerfile
-    image: g10t4/admin_cost:esd
-    restart: always
-    environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/admin_cost
-      PYTHONUNBUFFERED: 1
-    ports:
-      - "5200:5200"
   
   ####################################
   # payment: The payment microservice
@@ -74,7 +59,7 @@ services:
     image: g10t4/payment:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/payment
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/payment
       PYTHONUNBUFFERED: 1
     ports:
       - "5400:5400"
