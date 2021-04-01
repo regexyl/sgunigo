@@ -8,12 +8,8 @@ from os import environ
 
 from datetime import datetime
 app = Flask(__name__)
-<<<<<<< HEAD:microservices/sgunigo/payment.py
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:3306/payment'
-=======
 MYSQL_URI = 'mysql+mysqlconnector://root' + config('MYSQL_PASSWORD') + '@localhost:' + config('MYSQL_PORT') + '/payment'
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
->>>>>>> new-microservices:Microservices/payment/payment.py
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
  
