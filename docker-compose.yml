@@ -1,0 +1,230 @@
+version: "3.8"
+
+volumes:
+  rabbitmq_data:
+  pgdata: 
+  kongadata:
+
+networks:
+  kong-net:
+    driver: bridge
+
+services:
+
+  app:
+    build:
+      context: ./app/
+      dockerfile: Dockerfile
+    image: g10t4/app:esd
+    ports:
+      - "3001:3001"
+ 
+  #######################################
+  # applicant: The Applicant microservice
+  #######################################
+  applicant:
+    build:
+      context: ./microservices/
+      dockerfile: applicant/applicant.Dockerfile
+    image: g10t4/applicant:esd
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/applicant_details
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5000:5000" 
+ 
+  #####################################################
+  # application: The Application View microservice
+  #####################################################
+  application_view:
+    build:
+      context: ./microservices/
+      dockerfile: application/application.Dockerfile
+    image: g10t4/application:esd
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/application
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5001:5001"
+
+  #########################################
+  # admin_cost: The admin_cost microservice
+  #########################################
+  admin_cost:
+    build:
+      context: ./microservices/
+      dockerfile: admin_cost/admin_cost.Dockerfile
+    image: g10t4/admin_cost:esd
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/admin_cost
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5200:5200"
+  
+  ####################################
+  # payment: The payment microservice
+  ####################################
+  payment:
+    build:
+      context: ./microservices/
+      dockerfile: payment/payment.Dockerfile
+    image: g10t4/payment:esd
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:8889/payment
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5400:5400"
+
+  ################################
+  # RabbitMQ: The messaging broker   
+  ################################
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: esd-rabbit
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes: 
+      - rabbitmq_data:/var/lib/rabbitmq
+      
+  ##############################################
+  # Activity Log: The Activity Log microservice
+  ##############################################
+  activity_log:
+    build:
+      context: ./microservices/
+      dockerfile: activity_log/activity_log.Dockerfile
+    image: g10t4/activity_log:esd
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
+
+  ###############################
+  # Error: The Error microservice
+  ################################
+  error:
+    build:
+      context: ./microservices/
+      dockerfile: error/error.Dockerfile
+    image: g10t4/error:esd
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
+
+  #########################################################
+  # application_complex: The Submit Application microservice
+  #########################################################
+  application_submit:
+    build:
+      context: ./microservices/
+      dockerfile: application_complex/application_complex.Dockerfile
+    image: g10t4/application_submit:esd
+    restart: always
+    depends_on:
+      - application
+      - activity_log
+      - error
+      - rabbitmq
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      application_URL: http://application:5001/application
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5100:5100"
+
+ #######################################
+  # Postgres: The database used by Kong
+  #######################################
+  kong-database:
+    image: postgres:9.6
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  #######################################
+  # Kong database migration
+  #######################################
+  kong-migration:
+    image: kong:2.0.4
+    command: "kong migrations bootstrap"
+    restart: on-failure
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+    depends_on:
+      - kong-database
+
+  #######################################
+  # Kong: The API Gateway
+  #######################################
+  kong:
+    image: kong:2.0.4
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    depends_on:
+      - kong-migration
+    ports:
+      - "8000:8000"
+  
+  #######################################
+  # Konga: Kong GUI
+  #######################################
+  konga:
+    image: pantsel/konga
+    restart: always
+    networks:
+        - kong-net
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: password
+      DB_DATABASE: konga_db
+    depends_on:
+      - kong
+    ports:
+      - "1337:1337"
+    volumes:
+      - kongadata:/app/kongadata
+
+  
+  

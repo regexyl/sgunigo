@@ -1,0 +1,271 @@
+<section class="hero-area">
+		<div class="container">
+			<div class="row justify-content-center">
+					<div class="hero-content-div text-center">
+						<div class="hero-content">
+							<h1>Submit Your Application</h1>
+							<p>Note that you can only submit one application per university and application cycle.</p>
+						</div>
+					</div>
+			</div>
+		</div>
+        <br>
+        <br>
+
+    <div class="pagination-container">
+        <div class="sized-container">
+            <div class="pagination"></div>
+        </div>
+        </div>
+        <div class="viewport">
+        <form action="/profile" method="POST" id="formApplication" class="toggle_content">
+        <ul class="slide-container">
+            <li class="slide" data-tag="Personal Details">
+            <div class="sized-container special">
+                <div class="col-md-12 col-lg-6 form-box mb-4">
+                        <h4>1. Personal Details</h4>
+						<br>
+						<div class="form-group">
+							<label>NRIC</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="uinfin" id="uinfin" value="{{userProfile.uinfin}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Full Name</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="name" id="name" value="{{userProfile.name}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Sex</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="sex" id="sex" value="{{userProfile.sex}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Race</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="race" id="race" value="{{userProfile.race}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Nationality</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="nationality" id="nationality" value="{{userProfile.nationality}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Date Of Birth</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="dob" id="dob" value="{{userProfile.dob}}" required>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Email</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="email" id="email" value="{{userProfile.email}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Mobile Number</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="mobileno" id="mobileno" value="{{userProfile.mobileno}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Registered Address</label>
+							<div class="input-group">
+								<textarea cols="53" rows="3" name="regadd" id="regadd" required>{{userProfile.regadd}}</textarea>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Grades</label>
+							<div class="input-group">
+								<input type="text" class="form-control" name="grades" id="grades" value="{{userProfile.grades}}" required>
+							</div>
+						</div>
+					</div>
+            </div>
+            </li>
+
+            <li class="slide" data-tag="Course Preference">
+			<div class="sized-container special">
+                <h1>2. Course Preference</h1>
+                <h2>Please Indicate Your Top 3 Choice of Course</h2><br>
+				
+				<div class="form-group">
+				<table class="table">
+					<div class="form-group row">
+						<div class="col-sm-5">
+						<label for="university" class="font-weight-bold">Choose a University:</label>
+						<select id="university" name="university" class="form-control col-sm-12">
+							<option>Choose a university</option>
+							<option value="NUS">NUS</option>
+							<option value="NTU">NTU</option>
+							<option value="SMU">SMU</option>
+							<option value="SIT">SIT</option>
+							<option value="SUSS">SUSS</option>
+							<option value="SUTD">SUTD</option>
+						</select>
+						</div>
+					</div><br>
+
+					<thread>
+						<tr>
+							<th scope="col">Choice Order</th>
+							<th scope="col">Course Name</th>
+						</tr>
+					</thread>
+					<tbody>
+						<tr>
+							<th scope="row">1st</th>
+							{{!-- <td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='uniname1' class="form-control" placeholder="UNIVERSITY NAME" required>
+							</div>
+							</div>
+							</td> --}}
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course_1' id='course_1' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row">2nd</th>
+							{{!-- <td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='university2' class="form-control" placeholder="UNIVERSITY NAME" required>
+							</div>
+							</div>
+							<td> --}}
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course_2' id='course_2' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">3rd</th>
+							{{!-- <td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='code3' class="form-control" placeholder="COURSE CODE" required>
+							</div>
+							</div>
+							</td> --}}
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course_3' id='course_3' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				</div>
+            </div>
+            </li>
+
+            {{!-- <li class="slide" data-tag="Academic Details">
+            <div class="sized-container">
+                <h1>3. Academic Details</h1>
+                <h2>Please fill in your academic details</h2><br>
+
+				<div class="form-group">
+				<table class="table">
+					<thread>
+						<tr>
+							<th scope="col">Subject Name</th>
+							<th scope="col">Subject Grade</th>
+						</tr>
+					</thread>
+					<tbody>
+						<td>
+						<div class="form-group row">
+						<div class="col-sm-9">
+							<input type="text" name='subject1' class="form-control" placeholder="SUBJECT NAME" required>
+						</div>
+						</div>
+						</td>
+						<td>
+						<div class="form-group row">
+						<div class="col-sm-9">
+							<input type="text" name='subjectgrade1' class="form-control" placeholder="SUBJECT GRADE" required>
+						</div>
+						</div>
+						</td>
+						<button id="b1" class="btn btn-light add-more" type="button" id='addNew'>Add new +</button>
+					</tbody>
+				</table>
+				</div>
+
+				<br>
+
+				<div class="form-group col-md-12 col-lg-5 form-box mb-4">
+					<label>Overall Grade</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="grades" id="grades" value="{{userProfile.grades}}" required>
+					</div>
+				</div>
+            </div>
+            </li> --}}
+
+            {{!-- <li class="slide" data-tag="Upload Files">
+            <div class="sized-container">
+                <h1>Lets get a little more in depth.</h1>
+                <h2>Information about this section.</h2>
+            </div>
+            </li> --}}
+
+            {{!-- <li class="slide" data-tag="Confirmation">
+            <div class="sized-container">
+				<div class="container login-container">
+        			<div class="card"> 
+						<h1>Lets get a little more in depth.</h1>
+						<h2>Information about this section.</h2>
+					</div>
+				</div>	
+            </div>
+            </li> --}}
+        </ul>
+        </div>
+        <div class="full-width-container">
+<<<<<<< HEAD:views/applications/apply.hbs
+        <div class="button-container sized-container">
+			<p>By creating an account, you agree to our <a href="https://www.termsandconditionsgenerator.com/live.php?token=mDNKCXF21YZLJlKGi1MmcSszfdSdFLo5" style="color:dodgerblue">Terms & Conditions</a>.</p>
+            <button class="next">next</button>
+            <button class="previous">previous</button>
+        </div>
+    </div>
+=======
+			<div class="button-container sized-container">
+				<button class="next">next</button>
+				<button class="previous">previous</button>
+			</div>
+		</div>
+>>>>>>> new-microservices:app/views/applications/apply.hbs
+
+
+		
+				
+					<div class="col-md-12 text-center">
+						<input type="submit" class="btn btn-danger" id="submit" value="Submit">
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</section>

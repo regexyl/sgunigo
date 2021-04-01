@@ -2,7 +2,7 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:8889
+-- Host: 127.0.0.1:${MYSQL_PORT}
 -- Generation Time: Jun 12, 2020 at 02:17 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
