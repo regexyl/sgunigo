@@ -5,21 +5,22 @@
 import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
 
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/admin_portal'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/application'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
 
 db = SQLAlchemy(app)
 
 
-class admin_portal(db.Model):
-    __tablename__ = 'admin_portal_application'
+class application(db.Model):
+    __tablename__ = 'application'
 
     application_id = db.Column(db.Integer, primary_key=True)
     nric = db.Column(db.String(10), nullable=False)
@@ -47,7 +48,6 @@ class admin_portal(db.Model):
         self.statement= statement
         self.status=status
 
-
     def json(self):
         dto = {
             "application_id": self.application_id,
@@ -60,18 +60,24 @@ class admin_portal(db.Model):
             "courses": self.courses,
             "statement": self.statement,
             "status": self.status,
-            "modified": self.modified,
             "created": self.created,
             "modified": self.modified
         }
 
         return dto
 
+# Create new database if it does not exist
+if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+    create_database(app.config['SQLALCHEMY_DATABASE_URI'])
+    print("New database created: " + database_exists(app.config['SQLALCHEMY_DATABASE_URI']))
+    print("Database location: " + app.config['SQLALCHEMY_DATABASE_URI'])
+else:
+    print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
 
 
-@app.route("/admin_portal_application")
+@app.route("/admin_view")
 def get_all():
-    application_list = admin_portal.query.all()
+    application_list = application.query.all()
     if len(application_list):
         return jsonify(
             {
@@ -89,9 +95,9 @@ def get_all():
     ), 404
 
 
-@app.route("/admin_portal_application/<int:application_id>")
+@app.route("/admin_view/<int:application_id>")
 def find_by_application_id(application_id):
-    application1 = admin_portal.query.filter_by(application_id=application_id).first()
+    application1 = application.query.filter_by(application_id=application_id).first()
     if application1:
         return jsonify(
             {
@@ -110,21 +116,21 @@ def find_by_application_id(application_id):
     ), 404
 
 
-@app.route("/admin_portal_application/<string:application_id>", methods=['POST'])
+@app.route("/admin_view/<string:application_id>", methods=['POST'])
 def create_application(application_id):
-    if (admin_portal.query.filter_by(application_id=application_id).first()):
+    if (application.query.filter_by(application_id=application_id).first()):
         return jsonify(
             {
                 "code": 400,
                 "data": {
                     "application_id": application_id
                 },
-                "message": "Applicant already exists."
+                "message": "Applicantion already exists."
             }
         ), 400
 
     data = request.get_json()
-    application1 = admin_portal(application_id,**data,status='RECEIVED')
+    application1 = application(application_id,**data,status='RECEIVED')
 
     try:
         db.session.add(application1)
@@ -145,10 +151,10 @@ def create_application(application_id):
     ), 201
 
 #PUT got error unsure how to do 
-@app.route("/admin_portal_application/<string:application_id>", methods=['PUT'])
+@app.route("/admin_view/<string:application_id>", methods=['PUT'])
 def update_application(application_id):
     try:
-        application1 = admin_portal.query.filter_by(application_id=application_id).first()
+        application1 = application.query.filter_by(application_id=application_id).first()
         if not application1:
             return jsonify(
                 {
@@ -156,7 +162,7 @@ def update_application(application_id):
                     "data": {
                         "application_id": application_id
                     },
-                    "message": "application not found."
+                    "message": "Application not found."
                 }
             ), 404
 
@@ -168,7 +174,7 @@ def update_application(application_id):
             return jsonify(
                 {
                     "code": 200,
-                    "data": admin_portal.json()
+                    "data": application.json()
                 }
             ), 200
     except Exception as e:

@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
 
@@ -24,6 +25,15 @@ class payment_log(db.Model):
             "university": self.university, 
             "cost": self.cost
             }
+
+# Create new database if it does not exist
+if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+    create_database(app.config['SQLALCHEMY_DATABASE_URI'])
+    print("New database created: " + database_exists(app.config['SQLALCHEMY_DATABASE_URI']))
+    print("Database location: " + app.config['SQLALCHEMY_DATABASE_URI'])
+else:
+    print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
+
 
 @app.route("/admin_cost")
 def get_all():

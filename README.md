@@ -51,7 +51,7 @@ Some of the other packages are for Google's authentication service, while others
 #### Better for Google authentication
 Node.js has an established package manager (i.e. NPM), and one of the packages it manages is **Passport.js**. This allows for the easier integration of Google OAuth 2.0 and the recording of sessions in the database.<br>
 
-![passportjs-example](images/passportjs-example.png)
+![passportjs-example](demo/passportjs-example.png)
 
 Besides Passport.js, we also have other packages installed in SGUniGo such as express-session, connect-mongo, mongoose, etc. to mainly help with the following feature:<br>
 
@@ -68,7 +68,7 @@ Express.js is a framework for Node.js, which makes writing the code easier.
 #### 📂 config
 To set "environment variables" such as port number, database URI, etc. This is required by Node.js so it knows which port to listen on, where to post data, and identifiers needed for APIs.
 
-#### 📂 images
+#### 📂 demo
 To store images and screenshots used in this README.md file.
 
 #### 📂 lib/security
@@ -150,4 +150,4 @@ Client ID: 564255958454-or392ml3skef9gj0ga1ohet6qogck68l.apps.googleusercontent.
 Client Secret: JDMauOx7bS6hOrh8639auG-y
 
 #### Emails that can use Google OAuth
-![](images/google-oauth-email.png)
+![](demo/google-oauth-email.png)

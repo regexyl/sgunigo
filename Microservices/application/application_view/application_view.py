@@ -5,6 +5,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
 
@@ -47,31 +48,19 @@ class application(db.Model):
             "courses": self.courses,
             "statement": self.statement,
             "status": self.status,
-            "modified": self.modified,
             "created": self.created,
             "modified": self.modified
         }
 
         return dto
 
-
-# class Order_Item(db.Model):
-#     __tablename__ = 'order_item'
-
-#     item_id = db.Column(db.Integer, primary_key=True)
-#     order_id = db.Column(db.ForeignKey(
-#         'order.order_id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False, index=True)
-
-#     book_id = db.Column(db.String(13), nullable=False)
-#     quantity = db.Column(db.Integer, nullable=False)
-
-#     # order_id = db.Column(db.String(36), db.ForeignKey('order.order_id'), nullable=False)
-#     # order = db.relationship('Order', backref='order_item')
-#     order = db.relationship(
-#         'Order', primaryjoin='Order_Item.order_id == Order.order_id', backref='order_item')
-
-#     def json(self):
-#         return {'item_id': self.item_id, 'book_id': self.book_id, 'quantity': self.quantity, 'order_id': self.order_id}
+# Create new database if it does not exist
+if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+    create_database(app.config['SQLALCHEMY_DATABASE_URI'])
+    print("New database created: " + database_exists(app.config['SQLALCHEMY_DATABASE_URI']))
+    print("Database location: " + app.config['SQLALCHEMY_DATABASE_URI'])
+else:
+    print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
 
 
 @app.route("/application")
@@ -178,7 +167,6 @@ def update_application(application_id):
         # update status
         data = request.get_json()
         if data['status']:
-            # application1.status = application1['status']
             db.session.commit()
             return jsonify(
                 {
