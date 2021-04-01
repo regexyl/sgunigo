@@ -3,4 +3,4 @@ WORKDIR /usr/src/app
 COPY ./http.reqs.txt ./
 RUN pip install --no-cache-dir -r http.reqs.txt
 COPY ./application/application.py .
-CMD [ "python", "./application_view.py" ]
+CMD [ "python", "./application.py" ]
