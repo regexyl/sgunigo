@@ -148,7 +148,7 @@ def create_application():
         }
     ), 201
 
-#PUT got error unsure how to do 
+#Update Application status to "PAID"
 @app.route("/application/<string:application_id>", methods=['PUT'])
 def update_application(application_id):
     try:
@@ -165,15 +165,14 @@ def update_application(application_id):
             ), 404
 
         # update status
-        data = request.get_json()
-        if data['status']:
-            db.session.commit()
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": application.json()
-                }
-            ), 200
+        application1.status = 'PAID'
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": application1.json()
+            }
+        ), 200
     except Exception as e:
         return jsonify(
             {
