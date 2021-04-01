@@ -35,9 +35,9 @@ services:
       - "5000:5000" 
  
   #####################################################
-  # application: The Application View microservice
+  # application: The Application microservice
   #####################################################
-  application_view:
+  application:
     build:
       context: ./microservices/
       dockerfile: application/application.Dockerfile
