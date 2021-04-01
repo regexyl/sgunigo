@@ -98,27 +98,41 @@
 				
 				<div class="form-group">
 				<table class="table">
+					<div class="form-group row">
+						<div class="col-sm-5">
+						<label for="university" class="font-weight-bold">Choose a University:</label>
+						<select id="university" name="university" class="form-control col-sm-12">
+							<option>Choose a university</option>
+							<option value="NUS">NUS</option>
+							<option value="NTU">NTU</option>
+							<option value="SMU">SMU</option>
+							<option value="SIT">SIT</option>
+							<option value="SUSS">SUSS</option>
+							<option value="SUTD">SUTD</option>
+						</select>
+						</div>
+					</div><br>
+
 					<thread>
 						<tr>
 							<th scope="col">Choice Order</th>
-							<th scope="col">Course Code</th>
 							<th scope="col">Course Name</th>
 						</tr>
 					</thread>
 					<tbody>
 						<tr>
 							<th scope="row">1st</th>
+							{{!-- <td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='uniname1' class="form-control" placeholder="UNIVERSITY NAME" required>
+							</div>
+							</div>
+							</td> --}}
 							<td>
 							<div class="form-group row">
 							<div class="col-sm-9">
-								<input type="text" name='code1' class="form-control" placeholder="COURSE CODE" required>
-							</div>
-							</div>
-							</td>
-							<td>
-							<div class="form-group row">
-							<div class="col-sm-9">
-								<input type="text" name='course1' class="form-control" placeholder="COURSE NAME" required>
+								<input type="text" name='course_1' id='course_1' class="form-control" placeholder="COURSE NAME" required>
 							</div>
 							</div>
 							</td>
@@ -126,34 +140,34 @@
 
 						<tr>
 							<th scope="row">2nd</th>
+							{{!-- <td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='university2' class="form-control" placeholder="UNIVERSITY NAME" required>
+							</div>
+							</div>
+							<td> --}}
 							<td>
 							<div class="form-group row">
 							<div class="col-sm-9">
-								<input type="text" name='code2' class="form-control" placeholder="COURSE CODE" required>
-							</div>
-							</div>
-							</td>
-							<td>
-							<div class="form-group row">
-							<div class="col-sm-9">
-								<input type="text" name='course2' class="form-control" placeholder="COURSE NAME" required>
+								<input type="text" name='course_2' id='course_2' class="form-control" placeholder="COURSE NAME" required>
 							</div>
 							</div>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">3rd</th>
-							<td>
+							{{!-- <td>
 							<div class="form-group row">
 							<div class="col-sm-9">
 								<input type="text" name='code3' class="form-control" placeholder="COURSE CODE" required>
 							</div>
 							</div>
-							</td>
+							</td> --}}
 							<td>
 							<div class="form-group row">
 							<div class="col-sm-9">
-								<input type="text" name='course3' class="form-control" placeholder="COURSE NAME" required>
+								<input type="text" name='course_3' id='course_3' class="form-control" placeholder="COURSE NAME" required>
 							</div>
 							</div>
 							</td>
@@ -165,7 +179,7 @@
             </div>
             </li>
 
-            <li class="slide" data-tag="Academic Details">
+            {{!-- <li class="slide" data-tag="Academic Details">
             <div class="sized-container">
                 <h1>3. Academic Details</h1>
                 <h2>Please fill in your academic details</h2><br>
@@ -207,21 +221,25 @@
 					</div>
 				</div>
             </div>
-            </li>
+            </li> --}}
 
-            <li class="slide" data-tag="Upload Files">
+            {{!-- <li class="slide" data-tag="Upload Files">
             <div class="sized-container">
                 <h1>Lets get a little more in depth.</h1>
                 <h2>Information about this section.</h2>
             </div>
-            </li>
+            </li> --}}
 
-            <li class="slide" data-tag="Confirmation">
+            {{!-- <li class="slide" data-tag="Confirmation">
             <div class="sized-container">
-                <h1>Lets get a little more in depth.</h1>
-                <h2>Information about this section.</h2>
+				<div class="container login-container">
+        			<div class="card"> 
+						<h1>Lets get a little more in depth.</h1>
+						<h2>Information about this section.</h2>
+					</div>
+				</div>	
             </div>
-            </li>
+            </li> --}}
         </ul>
         </div>
         <div class="full-width-container">
@@ -236,7 +254,7 @@
 		
 				
 					<div class="col-md-12 text-center">
-						<input type="submit" class="btn btn-danger" value="Save">
+						<input type="submit" class="btn btn-danger" id="submit" value="Submit">
 					</div>
 				</div>
 			</div>
