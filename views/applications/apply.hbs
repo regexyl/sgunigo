@@ -90,24 +90,132 @@
 					</div>
             </div>
             </li>
+
             <li class="slide" data-tag="Course Preference">
-            <div class="sized-container">
-                <h1>Tell us about your area of expertise.</h1>
-                <h2>Information about this section.</h2>
+			<div class="sized-container special">
+                <h1>2. Course Preference</h1>
+                <h2>Please Indicate Your Top 3 Choice of Course</h2><br>
+				
+				<div class="form-group">
+				<table class="table">
+					<thread>
+						<tr>
+							<th scope="col">Choice Order</th>
+							<th scope="col">Course Code</th>
+							<th scope="col">Course Name</th>
+						</tr>
+					</thread>
+					<tbody>
+						<tr>
+							<th scope="row">1st</th>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='code1' class="form-control" placeholder="COURSE CODE" required>
+							</div>
+							</div>
+							</td>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course1' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row">2nd</th>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='code2' class="form-control" placeholder="COURSE CODE" required>
+							</div>
+							</div>
+							</td>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course2' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">3rd</th>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='code3' class="form-control" placeholder="COURSE CODE" required>
+							</div>
+							</div>
+							</td>
+							<td>
+							<div class="form-group row">
+							<div class="col-sm-9">
+								<input type="text" name='course3' class="form-control" placeholder="COURSE NAME" required>
+							</div>
+							</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				</div>
             </div>
             </li>
+
             <li class="slide" data-tag="Academic Details">
             <div class="sized-container">
-                <h1>Tell us about your area of expertise.</h1>
-                <h2>Information about this section.</h2>
+                <h1>3. Academic Details</h1>
+                <h2>Please fill in your academic details</h2><br>
+
+				<div class="form-group">
+				<table class="table">
+					<thread>
+						<tr>
+							<th scope="col">Subject Name</th>
+							<th scope="col">Subject Grade</th>
+						</tr>
+					</thread>
+					<tbody>
+						<td>
+						<div class="form-group row">
+						<div class="col-sm-9">
+							<input type="text" name='subject1' class="form-control" placeholder="SUBJECT NAME" required>
+						</div>
+						</div>
+						</td>
+						<td>
+						<div class="form-group row">
+						<div class="col-sm-9">
+							<input type="text" name='subjectgrade1' class="form-control" placeholder="SUBJECT GRADE" required>
+						</div>
+						</div>
+						</td>
+						<button id="b1" class="btn btn-light add-more" type="button">Add new +</button>
+					</tbody>
+				</table>
+				</div>
+
+				<br>
+
+				<div class="form-group col-md-12 col-lg-5 form-box mb-4">
+					<label>Overall Grade</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="grades" id="grades" value="{{userProfile.grades}}" required>
+					</div>
+				</div>
             </div>
             </li>
+
             <li class="slide" data-tag="Upload Files">
             <div class="sized-container">
                 <h1>Lets get a little more in depth.</h1>
                 <h2>Information about this section.</h2>
             </div>
             </li>
+
             <li class="slide" data-tag="Confirmation">
             <div class="sized-container">
                 <h1>Lets get a little more in depth.</h1>
@@ -118,6 +226,7 @@
         </div>
         <div class="full-width-container">
         <div class="button-container sized-container">
+			<p>By creating an account, you agree to our <a href="https://www.termsandconditionsgenerator.com/live.php?token=mDNKCXF21YZLJlKGi1MmcSszfdSdFLo5" style="color:dodgerblue">Terms & Conditions</a>.</p>
             <button class="next">next</button>
             <button class="previous">previous</button>
         </div>

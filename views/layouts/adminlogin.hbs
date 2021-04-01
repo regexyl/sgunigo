@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{> _main_head}}
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+
+    <div class="body-inner">
+        {{> _top_bar}}
+        <!-- Header start -->
+        <header id="header" class="header-one">
+          {{> _main_bar_login}}
+        </header>
+        <!--/ Header end -->
+
+  <div class="container login-container">
+        <div class="card">
+            <div class="card-content">
+                {{{body}}} 
+            </div>
+        </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  {{> _footer}}
+
+  {{> _scripts}}
+
+  </div>
+</body>
