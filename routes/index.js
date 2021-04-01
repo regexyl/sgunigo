@@ -35,6 +35,14 @@ router.get("/login", ensureGuest, (req, res) => {
   });
 });
 
+// @desc    Admin login
+// @route   GET /
+router.get("/admin-login", ensureGuest, (req, res) => {
+  res.render("admin-login", {
+    layout: "admin-login",
+  });
+});
+
 // @desc    Login and landing page
 // @route   GET /
 router.get("/microservices", (req, res) => {
