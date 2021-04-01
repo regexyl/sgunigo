@@ -3,7 +3,7 @@
 # to run this file as a python3 script
 
 import os
-from decouple import config
+import settings
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy_utils import database_exists, create_database
@@ -13,7 +13,7 @@ from os import environ
 from datetime import datetime
 
 app = Flask(__name__)
-MYSQL_URI = 'mysql+mysqlconnector://root' + config('MYSQL_PASSWORD') + '@localhost:' + config('MYSQL_PORT') + '/application'
+MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/application'
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
