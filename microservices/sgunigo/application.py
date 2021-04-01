@@ -11,7 +11,7 @@ from os import environ
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:8889/application'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root:root@localhost:3306/application'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
 
@@ -176,16 +176,18 @@ def update_application(application_id):
             ), 404
 
         # update status
-        data = request.get_json()
-        if data['status']:
-            # application1.status = application1['status']
-            db.session.commit()
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": application.json()
-                }
-            ), 200
+        # application1.status='PAID'
+        # db.session.commit()
+        # data = request.get_json()
+        # if data['status']:
+        application1.status = 'PAID'
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": application1.json()
+            }
+        ), 200
     except Exception as e:
         return jsonify(
             {
