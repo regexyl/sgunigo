@@ -25,7 +25,8 @@ function generatePagination () {
   $pagination.find('.indicator').eq(0).addClass('active');
 }
 
-function goToNextSlide () {
+function goToNextSlide (e) {
+  e.preventDefault();
   window.scrollTo(0,0);
   if(currentSlide >= slideCount - 1) return; 
   var windowWidth = $(window).width();
@@ -39,7 +40,8 @@ function goToNextSlide () {
   }, animationTime);
 }
 
-function goToPreviousSlide () {
+function goToPreviousSlide (e) {
+  e.preventDefault();
   window.scrollTo(0,0);
   if(currentSlide <= 0) return; 
   var windowWidth = $(window).width();
