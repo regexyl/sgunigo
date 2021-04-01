@@ -1,5 +1,3 @@
-const { request } = require("express");
-
 var currentSlide = 0,
     $slideContainer = $('.slide-container'),
     $slide = $('.slide'),
@@ -74,44 +72,6 @@ function setActiveIndicator () {
   }
 }
 
-
-// for submittingform
-var submitButton=document.getElementById('submit');
-submitButton.addEventListener('click',function(){
-    // console.log('Submitting');
-    // const response = await post('/application',);
-    // // waits until the request completes...
-    // console.log(response);
-    // expected output: "resolved"
-      var first_course=document.getElementById('course_1').value;
-      var second_course=document.getElementById('course_2').value;
-      var third_course=document.getElementById('course_3').value;
-      data={
-        nric:document.getElementById('uinfin').value,
-        applicant_name:document.getElementById('name').value,
-        email:document.getElementById('email').value,
-        contact_no:document.getElementById('mobileno').value,
-        grades:document.getElementById('grades').value,
-        university:document.getElementById('university').value,
-        courses:string.concat('[',first_course,',',second_course,',',third_course,']'),
-        statement:document.getElementById('statement').value
-      }
-      const settings = {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-          }
-      };
-      try {
-          const fetchResponse = await fetch(`/place_application`, settings);
-          const data = await fetchResponse.json();
-          return data;
-      } catch (e) {
-          return e;
-      }    
-});
 setSlideDimensions();
 generatePagination();
 $(window).resize(postitionSlides);
