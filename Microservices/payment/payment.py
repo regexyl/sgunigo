@@ -10,6 +10,7 @@ from os import environ
 from datetime import datetime
 
 app = Flask(__name__)
+tablename = 'payment_log'
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -23,7 +24,7 @@ db = SQLAlchemy(app)
 
 
 class payment_log(db.Model):
-    __tablename__ = 'payment_log'
+    __tablename__ = tablename
  
     payment_id = db.Column(db.Integer, primary_key=True, nullable=False) # SQLAlchemy auto sets first Integer in PK column to autoincrement=True
     application_id = db.Column(db.Integer, nullable=False)
