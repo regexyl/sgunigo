@@ -16,6 +16,7 @@ from os import environ
 from datetime import datetime
 
 app = Flask(__name__)
+CORS(app)
 tablename = 'application'
 
 dotenv_path = join(dirname(__file__), '.env')
