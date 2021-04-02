@@ -31,6 +31,8 @@ services:
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/applicant_details
       PYTHONUNBUFFERED: 1
+    networks:
+      - kong-net
     ports:
       - "5000:5000" 
  
@@ -46,23 +48,27 @@ services:
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/application
       PYTHONUNBUFFERED: 1
+    networks:
+      - kong-net
     ports:
       - "5001:5001"
   
   ####################################
-  # payment: The payment microservice
+  # payment: The payment microservice TBC
   ####################################
-  payment:
-    build:
-      context: ./
-      dockerfile: microservices/payment/payment.Dockerfile
-    image: g10t4/payment:esd
-    restart: always
-    environment:
-      dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/payment
-      PYTHONUNBUFFERED: 1
-    ports:
-      - "5400:5400"
+  # payment:
+  #   build:
+  #     context: ./
+  #     dockerfile: microservices/payment/payment.Dockerfile
+  #   image: g10t4/payment:esd
+  #   restart: always
+  #   environment:
+  #     dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/payment
+  #     PYTHONUNBUFFERED: 1
+  #   networks:
+  #     - kong-net
+  #   ports:
+  #     - "5400:5400"
 
   ################################
   # RabbitMQ: The messaging broker   
