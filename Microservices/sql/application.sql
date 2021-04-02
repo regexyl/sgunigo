@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `application` (
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`application_id`, `nric`, `applicant_name`, `email`, `contact_no`, `grades`,`university`,`courses`, `statement`, `status`, `created`, `modified`) VALUES
-(1, 'S9704965C', 'Aidil', 'aidil393@gmail.com', '90227421', 'AAAA', 'SMU', '[SIS,SOA,SOB]', 'Accept me in pls i just want to study pls','NEW', '2020-06-12 02:14:55', '2020-06-12 02:14:55');
+INSERT INTO `application` (`application_id`, `nric`, `applicant_name`, `email`, `contact_no`, `grades`,`university`,`course1`,`course2`, `course3`,`statement`, `status`, `created`, `modified`) VALUES
+(1, 'S9704965C', 'Aidil', 'aidil393@gmail.com', '90227421', 'AAAA', 'SMU', 'Information systems','Computer Science','Economics', 'Accept me in pls i just want to study pls','NEW', '2020-06-12 02:14:55', '2020-06-12 02:14:55');
 COMMIT;
 -- --------------------------------------------------------
 
