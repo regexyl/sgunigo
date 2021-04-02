@@ -4,8 +4,9 @@
 
 import os
 import settings
+from sqlalchemy.sql import func
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
@@ -13,41 +14,55 @@ from os import environ
 from datetime import datetime
 
 app = Flask(__name__)
-MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/application'
+tablename = 'application'
+
+MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/' + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
 
 db = SQLAlchemy(app)
 
-
 class application(db.Model):
-    __tablename__ = 'application'
+    __tablename__ = tablename
 
-    application_id = db.Column(db.Integer, primary_key=True)
+    application_id = db.Column(db.Integer, primary_key=True, nullable=False) # SQLAlchemy auto sets first Integer in PK column to autoincrement=True
     nric = db.Column(db.String(10), nullable=False)
     applicant_name = db.Column(db.String(100), nullable=False)
+    sex = db.Column(db.String(10), nullable=False)
+    race = db.Column(db.String(10), nullable=False)
+    nationality= db.Column(db.String(100), nullable=False)
+    dob = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(100), nullable=False)
-    contact_no = db.Column(db.String(8), nullable=False)
+    mobile_no = db.Column(db.String(8), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
     grades = db.Column(db.String(10), nullable=False)
     university = db.Column(db.String(100), nullable=False)
-    courses = db.Column(db.String(1000), nullable=False)
+    course1 = db.Column(db.String(100), nullable=False)
+    course2 = db.Column(db.String(100), nullable=False)
+    course3 = db.Column(db.String(100), nullable=False)
     statement = db.Column(db.String(1000), nullable=False)
-    status = db.Column(db.String(10), nullable=False)
-    created = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    modified = db.Column(db.DateTime, nullable=False,
-                         default=datetime.now, onupdate=datetime.now)
+    status = db.Column(db.String(10), nullable=False, server_default='NEW')
+    created = db.Column(db.DateTime, nullable=False, server_default=func.now())
+    modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
     def json(self):
         dto = {
             "application_id": self.application_id,
             "nric": self.nric, 
             "applicant_name": self.applicant_name,
+            "sex": self.sex,
+            "race": self.race,
+            "nationality": self.nationality,
+            "dob": self.dob,
             "email": self.email,
-            "contact_no": self.contact_no,
+            "mobile_no": self.mobile_no,
+            "address": self.address,
             "grades": self.grades,
             "university": self.university,
-            "courses": self.courses,
+            "course1": self.course1,
+            "course2": self.course2,
+            "course3": self.course3,
             "statement": self.statement,
             "status": self.status,
             "created": self.created,
@@ -64,6 +79,15 @@ if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
 else:
     print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
 
+# # Create new table if it does not exist
+# engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])  # Access the DB Engine
+# if not engine.dialect.has_table(engine, tablename):  # If table don't exist, Create.
+    
+#     # Implement the creation
+#     metadata.create_all()
+
+db.drop_all()
+db.create_all()
 
 @app.route("/application")
 def get_all():
@@ -80,7 +104,7 @@ def get_all():
     return jsonify(
         {
             "code": 404,
-            "message": "There are no Applications."
+            "message": "There are no applications."
         }
     ), 404
 
@@ -128,9 +152,10 @@ def find_by_university(university):
 
 @app.route("/application", methods=['POST'])
 def create_application():
-    application_id = request.json.get('application_id', None)
-    data = request.get_json()
-    application1 = application(application_id=application_id, **data,status='NEW')
+    # application_id = request.json.get('application_id', None)
+    data = request.get_json(force=True)
+    print('TEST: ' + data)
+    application1 = application(**data)
 
     try:
         db.session.add(application1)

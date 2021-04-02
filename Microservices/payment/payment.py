@@ -1,6 +1,7 @@
 import os
 import settings
 from flask import Flask, request, jsonify
+import sqlalchemy
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
