@@ -51,7 +51,7 @@ function handleRequest(request, response) {
   return response.send(200);
 }
 
-onApprove: function (data) {
+onApprove: function(data) {
     return fetch('/my-server/get-paypal-transaction', {
       headers: {
         'content-type': 'application/json'
