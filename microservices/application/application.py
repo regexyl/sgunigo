@@ -4,6 +4,7 @@
 
 import os
 import settings
+from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -79,15 +80,11 @@ if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
 else:
     print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
 
-# # Create new table if it does not exist
-# engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])  # Access the DB Engine
-# if not engine.dialect.has_table(engine, tablename):  # If table don't exist, Create.
-    
-#     # Implement the creation
-#     metadata.create_all()
-
-db.drop_all()
-db.create_all()
+# Create new table if it does not exist
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])  # Access the DB Engine
+if not engine.dialect.has_table(engine, tablename):  # If table don't exist, Create.
+    db.drop_all()
+    db.create_all()
 
 @app.route("/application")
 def get_all():
@@ -111,12 +108,12 @@ def get_all():
 
 @app.route("/application/<int:application_id>")
 def find_by_application_id(application_id):
-    application1 = application.query.filter_by(application_id=application_id).first()
-    if application1:
+    application_find = application.query.filter_by(application_id=application_id).first()
+    if application_find:
         return jsonify(
             {
                 "code": 200,
-                "data": application1.json()
+                "data": application_find.json()
             }
         )
     return jsonify(
@@ -152,10 +149,8 @@ def find_by_university(university):
 
 @app.route("/application", methods=['POST'])
 def create_application():
-    # application_id = request.json.get('application_id', None)
     data = request.get_json(force=True)
-    print('TEST: ' + data)
-    application1 = application(**data)
+    application_post = application(**data)
 
     try:
         db.session.add(application1)
@@ -171,7 +166,7 @@ def create_application():
     return jsonify(
         {
             "code": 201,
-            "data": application1.json()
+            "data": application_post.json()
         }
     ), 201
 
@@ -179,8 +174,8 @@ def create_application():
 @app.route("/application/<string:application_id>", methods=['PUT'])
 def update_application(application_id):
     try:
-        application1 = application.query.filter_by(application_id=application_id).first()
-        if not application1:
+        application_put = application.query.filter_by(application_id=application_id).first()
+        if not application_put:
             return jsonify(
                 {
                     "code": 404,
@@ -192,12 +187,12 @@ def update_application(application_id):
             ), 404
 
         # update status
-        application1.status = 'PAID'
+        application_put.status = 'PAID'
         db.session.commit()
         return jsonify(
             {
                 "code": 200,
-                "data": application1.json()
+                "data": application_put.json()
             }
         ), 200
     except Exception as e:

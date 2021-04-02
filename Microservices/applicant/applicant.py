@@ -1,5 +1,6 @@
 import os
 import settings
+from sqlalchemy import create_engine
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy_utils import database_exists, create_database
@@ -7,7 +8,9 @@ from flask_cors import CORS
 from os import environ
 
 app = Flask(__name__)
-MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/applicant_details'
+tablename = 'applicant_details'
+
+MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
@@ -16,32 +19,43 @@ db = SQLAlchemy(app)
 
 
 class applicant_details(db.Model):
-    __tablename__ = 'applicant_details'
+    __tablename__ = tablename
  
-    nric = db.Column(db.String(9), primary_key=True)
+    nric = db.Column(db.String(10), nullable=False, primary_key=True)
     applicant_name = db.Column(db.String(100), nullable=False)
+    sex = db.Column(db.String(10), nullable=False)
+    race = db.Column(db.String(10), nullable=False)
+    nationality= db.Column(db.String(100), nullable=False)
+    dob = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(100), nullable=False)
-    contact_no = db.Column(db.String(8), nullable=False)
-    grades = db.Column(db.String(4), nullable=False)
-    applications = db.Column(db.String(100), nullable=True)
-    
+    mobile_no = db.Column(db.String(8), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
+    grades = db.Column(db.String(10), nullable=False)
  
-    def __init__(self, nric, applicant_name,email,contact_no,grades,applications):
+    def __init__(self, nric, applicant_name, sex, race, nationality, dob, email, mobile_no, address, grades):
         self.nric = nric
         self.applicant_name = applicant_name
+        self.sex = sex
+        self.race = race
+        self.nationality = nationality
+        self.dob = dob
         self.email = email
-        self.contact_no = contact_no
+        self.mobile_no = mobile_no
+        self.address = address
         self.grades = grades
-        self.applications = applications
 
     def json(self):
         return {
             "nric": self.nric, 
             "applicant_name": self.applicant_name,
+            "sex": self.sex,
+            "race": self.race,
+            "nationality": self.nationality,
+            "dob": self.dob,
             "email": self.email,
-            "contact_no": self.contact_no,
-            "grades": self.grades,
-            "applications": self.applications
+            "mobile_no": self.mobile_no,
+            "address": self.address,
+            "grades": self.grades
             }
 
 # Create new database if it does not exist
@@ -51,6 +65,12 @@ if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
     print("Database location: " + app.config['SQLALCHEMY_DATABASE_URI'])
 else:
     print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
+
+# Create new table if it does not exist
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])  # Access the DB Engine
+if not engine.dialect.has_table(engine, tablename):  # If table don't exist, Create.
+    db.drop_all()
+    db.create_all()
 
 
 @app.route("/applicant_details")
@@ -104,8 +124,8 @@ def create_applicant(nric):
             }
         ), 400
  
-    data = request.get_json()
-    applicant = applicant_details(nric, **data)
+    data = request.get_json(force=True)
+    applicant = applicant_details(**data)
  
     try:
         db.session.add(applicant)

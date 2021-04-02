@@ -1,14 +1,16 @@
 import os
 import settings
+from sqlalchemy import create_engine
+from sqlalchemy.sql import func
 from flask import Flask, request, jsonify
-import sqlalchemy
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
-
 from datetime import datetime
+
 app = Flask(__name__)
+
 MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/payment'
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -20,13 +22,12 @@ db = SQLAlchemy(app)
 class payment_log(db.Model):
     __tablename__ = 'payment_log'
  
-    payment_id = db.Column(db.Integer, primary_key=True)
+    payment_id = db.Column(db.Integer, primary_key=True, nullable=False) # SQLAlchemy auto sets first Integer in PK column to autoincrement=True
     application_id = db.Column(db.Integer, nullable=False)
     nric = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(10), nullable=False)
-    created = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    modified = db.Column(db.DateTime, nullable=False,
-                         default=datetime.now, onupdate=datetime.now)
+    created = db.Column(db.DateTime, nullable=False, server_default=func.now())
+    modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     
 
     def json(self):
@@ -48,6 +49,11 @@ if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
 else:
     print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")
 
+# Create new table if it does not exist
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])  # Access the DB Engine
+if not engine.dialect.has_table(engine, tablename):  # If table don't exist, Create.
+    db.drop_all()
+    db.create_all()
 
 @app.route("/payment")
 def get_all():
@@ -107,7 +113,7 @@ def find_by_application_id(application_id):
 @app.route("/payment", methods=['POST'])
 def create_application():
     payment_id = request.json.get('payment_id', None)
-    data = request.get_json()
+    data = request.get_json(force=True)
     payment = payment_log(payment_id=payment_id, **data,status='NEW')
 
     try:
