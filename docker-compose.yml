@@ -12,6 +12,9 @@ services:
     image: g10t4/app:esd
     ports:
       - "3001:3001"
+    depends_on:
+      - applicant
+      - application
  
   #######################################
   # applicant: The Applicant microservice

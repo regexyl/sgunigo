@@ -24,10 +24,10 @@
             
             </div>
         </div>
-
         <br>
         <div class="form-group">
             <div class="form-group">
+                {{#if applications}}
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -49,78 +49,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each applications.Applications}}
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark Lee</td>
-                            <td>S9912345A</td>
-                            <td>AAB/B</td>
-                            <td>Singaporean</td>
-                            <td>marklee@nct.com</td>
-                            <td>SM Building</td>
-                            <td>(+65)81112222</td>
-                            <td>Computer Science</td>
-                            <td>Computing and Law</td>
-                            <td>Accountancy</td>
-                            <td>Eat.Sleep.Code</td>
+                            <td>{{applicant_name}}</td>
+                            <td>{{nric}}</td>
+                            <td>{{grades}}</td>
+                            <td>{{nationality}}</td>
+                            <td>{{email}}</td>
+                            <td>{{address}}</td>
+                            <td>{{mobile_no}}</td>
+                            <td>{{course1}}</td>
+                            <td>{{course2}}</td>
+                            <td>{{course3}}</td>
+                            <td>{{statement}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jung Jaehyun</td>
-                            <td>S9754321B</td>
-                            <td>BBA/A</td>
-                            <td>Singaporean</td>
-                            <td>jaehyun@nct.com</td>
-                            <td>SM other Building</td>
-                            <td>(+65)82221111</td>
-                            <td>Business Administration</td>
-                            <td>Accountancy</td>
-                            <td>Economics</td>
-                            <td>I wanna be rich</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Dandall Ruran</td>
-                            <td>S8067890C</td>
-                            <td>BBC/C</td>
-                            <td>British</td>
-                            <td>dandallruran@wooclap.com</td>
-                            <td>Victoria Street</td>
-                            <td>(+44)123456789</td>
-                            <td>Social Science</td>
-                            <td>Business Administration</td>
-                            <td>Information Systems</td>
-                            <td>I have interest in helping others.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Mary</td>
-                            <td>T0209876D</td>
-                            <td>BBA/A</td>
-                            <td>Singaporean</td>
-                            <td>mary@gmail.com</td>
-                            <td>Lamb Road</td>
-                            <td>(+65)88889999</td>
-                            <td>Information Systems</td>
-                            <td>Business Administration</td>
-                            <td>Accountancy</td>
-                            <td>IT can make money</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>William</td>
-                            <td>T0113579E</td>
-                            <td>CBB/A</td>
-                            <td>Singaporean</td>
-                            <td>will.i.am@gmail.com</td>
-                            <td>Hammington Street</td>
-                            <td>(+65)987651234</td>
-                            <td>Information Systems</td>
-                            <td>Business Administration</td>
-                            <td>Accountancy</td>
-                            <td>I want to be in SCIS</td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                     </table>
+                    {{else}}
+                    <p></p>
+                    {{/if}}
             </div>
         </div>
         
