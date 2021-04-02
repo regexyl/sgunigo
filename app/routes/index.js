@@ -106,12 +106,6 @@ router.get('/profile', ensureAuth, async (req, res) => {
 // @route POST /profile
 router.post('/profile', async (req, res) => {
   try {
-    // POST to MySQL DB
-    request.post(applicant_api, (err, response, body) => {
-      if (!err && response.statusCode == 200) {
-        console.log('Profile successfully created.')
-      }
-    })
     // POST to MongoDB
     req.body.user = req.user.id
     await Profile.updateOne({user: req.user.id}, req.body, {upsert: true}) // upsert: creates a new record if it doesn't exist

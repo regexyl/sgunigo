@@ -1,69 +1,81 @@
-// // Note: This is example code. Each server platform and programming language has a different way of handling requests, making HTTP API calls, and serving responses to the browser.
-
-// // 1. Set up your server to make calls to PayPal
-
-// // 1a. Add your client ID and secret
-// PAYPAL_CLIENT = 'AXpXwZyIVu2sOIqTaKWz2Qp1jfWZRcYET2PNB6WTJfNAP8pQHktzTj3hDts5bbez57eowOGGAEpxaMBn';
-// PAYPAL_SECRET = 'EM6Nh_z61DHWWHkmjGVi8DLS9bjSm-HyapJnLedsSn3ZyKmaJa9DB75dT2LseZArNXKNfyJrGv38cN0k';
-
-// // 1b. Point your server to the PayPal API
-// PAYPAL_OAUTH_API = 'https://api-m.sandbox.paypal.com/v1/oauth2/token/';
-// PAYPAL_ORDER_API = 'https://api-m.sandbox.paypal.com/v2/checkout/orders/';
-
-// // 1c. Get an access token from the PayPal API
-// basicAuth = base64encode(`${ PAYPAL_CLIENT }:${ PAYPAL_SECRET }`);
-// auth = http.post(PAYPAL_OAUTH_API, {
-//   headers: {
-//     Accept:        `application/json`,
-//     Authorization: `Basic ${ basicAuth }`
-//   },
-//   data: `grant_type=client_credentials`
-// });
-
-// // 2. Set up your server to receive a call from the client
-// function handleRequest(request, response) {
-
-//   // 2a. Get the order ID from the request body
-//   orderID = request.body.orderID;
-
-//   // 3. Call PayPal to get the transaction details
-//   details = http.get(PAYPAL_ORDER_API + orderID, {
-//     headers: {
-//       Accept:        `application/json`,
-//       Authorization: `Bearer ${ auth.access_token }`
-//     }
-//   });
-
-//   // 4. Handle any errors from the call
-//   if (details.error) {
-//     return response.send(500);
-//   }
-
-//   // 5. Validate the transaction details are as expected
-//   if (details.purchase_units[0].amount.value !== '5.77') {
-//     return response.send(400);
-//   }
-
-//   // 6. Save the transaction in your database
-//   database.saveTransaction(orderID);
-
-//   // 7. Return a successful response to the client
-//   return response.send(200);
-// }
-
-// onApprove: function(data) {
-//     return fetch('/my-server/get-paypal-transaction', {
-//       headers: {
-//         'content-type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         orderID: data.orderID
-//       })
-//     }).then(function(res) {
-//         console.log(res.json);
-//       return res.json();
-//     }).then(function(details) {
-//       alert('Transaction approved by ' + details.payer_given_name);
-//         console.log(details.payer_given_name);
-//     })
-// }
+function initPayPalButton() {
+                  var shipping = 0;
+                  var itemOptions = document.querySelector("#smart-button-container #item-options");
+              var quantity = parseInt();
+              var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
+              if (!isNaN(quantity)) {
+                quantitySelect.style.visibility = "visible";
+              }
+              var orderDescription = "Please choose the respective University's application fee";
+              if(orderDescription === '') {
+                orderDescription = 'Item';
+              }
+              paypal.Buttons({
+                style: {
+                  shape: 'pill',
+                  color: 'gold',
+                  layout: 'vertical',
+                  label: 'paypal',
+                  
+                },
+                createOrder: function(data, actions) {
+                  var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
+                  var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
+                  var tax = (0 === 0) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
+                  if(quantitySelect.options.length > 0) {
+                    quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
+                  } else {
+                    quantity = 1;
+                  }
+          
+                  tax *= quantity;
+                  tax = Math.round(tax * 100) / 100;
+                  var priceTotal = quantity * selectedItemPrice + parseFloat(shipping) + tax;
+                  priceTotal = Math.round(priceTotal * 100) / 100;
+                  var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
+          
+                  return actions.order.create({
+                    purchase_units: [{
+                      description: orderDescription,
+                      amount: {
+                        currency_code: 'SGD',
+                        value: priceTotal,
+                        breakdown: {
+                          item_total: {
+                            currency_code: 'SGD',
+                            value: itemTotalValue,
+                          },
+                          shipping: {
+                            currency_code: 'SGD',
+                            value: shipping,
+                          },
+                          tax_total: {
+                            currency_code: 'SGD',
+                            value: tax,
+                          }
+                        }
+                      },
+                      items: [{
+                        name: selectedItemDescription,
+                        unit_amount: {
+                          currency_code: 'SGD',
+                          value: selectedItemPrice,
+                        },
+                        quantity: quantity
+                      }]
+                    }]
+                  });
+                },
+                onApprove: function(data, actions) {
+                  return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    console.log(details);
+                    window.location.href = "/applications";
+                  });
+                },
+                onError: function(err) {
+                  console.log(err);
+                },
+              }).render('#paypal-button-container');
+            }
+            initPayPalButton();

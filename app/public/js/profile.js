@@ -36,3 +36,8 @@ submitButton.addEventListener('click',async function(){
           console.log(e);
       }    
 });
+if (authLevel == 'L0') {
+    $("#formPerson").show();
+} else {
+    $("#formPerson").hide();
+}
