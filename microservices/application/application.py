@@ -132,7 +132,7 @@ def find_by_application_id(application_id):
 
 @app.route("/application/<string:university>")
 def find_by_university(university):
-    application_list = application.query.filter_by(university=university)
+    application_list = application.query.filter_by(university=university) and application.query.filter_by(status="PAID")
     if application_list:
         return jsonify(
             {
