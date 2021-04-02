@@ -157,7 +157,7 @@ def create_application():
     application_post = application(**data)
 
     try:
-        db.session.add(application1)
+        db.session.add(application_post)
         db.session.commit()
     except Exception as e:
         return jsonify(
