@@ -44,21 +44,7 @@ router.get("/payment", ensureAuth, async (req, res) => {
   try {
     res.render("applications/payment", {
       name: req.user.firstName,
-      layout: "main_session"
-    });
-  } catch (err) {
-    console.error(err)
-    res.render('error/500')
-  }
-});
-
-// @desc    Paypal API
-// @route   GET /applications/paypal
-router.get("/paypal", ensureAuth, async (req, res) => {
-  try {
-    res.render("applications/paypal", {
-      name: req.user.firstName,
-      layout: "main_session"
+      layout: "payment"
     });
   } catch (err) {
     console.error(err)
