@@ -44,7 +44,7 @@ router.get("/payment", ensureAuth, async (req, res) => {
   try {
     res.render("applications/payment", {
       name: req.user.firstName,
-      layout: "payment"
+      layout: "main_session"
     });
   } catch (err) {
     console.error(err)
