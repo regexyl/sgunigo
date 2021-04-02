@@ -79,51 +79,39 @@ submitButton.addEventListener('click',async function(){
     // // waits until the request completes...
     // console.log(response);
     // expected output: "resolved"
-      var first_course=document.getElementById('course_1').value;
-      var second_course=document.getElementById('course_2').value;
-      var third_course=document.getElementById('course_3').value;
-      // data={
-      //   nric:document.getElementById('uinfin').value,
-      //   applicant_name:document.getElementById('name').value,
-      //   email:document.getElementById('email').value,
-      //   contact_no:document.getElementById('mobileno').value,
-      //   grades:document.getElementById('grades').value,
-      //   university:document.getElementById('university').value,
-      //   courses:'['.concat(first_course,',',second_course,',',third_course,']'),
-      //   statement:document.getElementById('statement').value
-      // }
       data={
-          "nric": "S9704965B", 
-          "applicant_name": "JACKSON" ,
-          "sex": "M",
-          "race": "Chinese",
-          "nationality": "Singaporean",
-          "dob": "10/03/1996",
-          "email": "jackson@gmail.com",
-          "mobile_no": "90227532",
-          "address": "Tampenis",
-          "grades": "BBBB",
-          "university": "NTU",
-          "course1": "SIS",
-          "course2": "SOA",
-          "course3": "SOL",
-          "statement": "I just want to study"
+        nric:document.getElementById('uinfin').value,
+        applicant_name:document.getElementById('name').value,
+        email:document.getElementById('email').value,
+        mobile_no:document.getElementById('mobileno').value,
+        grades:document.getElementById('grades').value,
+        university:document.getElementById('university').value,
+        course1:document.getElementById('course_1').value,
+        course2:document.getElementById('course_2').value,
+        course3:document.getElementById('course_3').value,
+        statement:document.getElementById('statement').value,
+        sex:document.getElementById('sex').value,
+        dob:document.getElementById('dob').value,
+        address:document.getElementById('regadd').value,
+        nationality:document.getElementById('nationality').value,
+        race:document.getElementById('race').value
       }
-      // body: JSON.stringify(data), 
+      console.log(JSON.stringify(data));
       const settings = {
           method: 'POST',
+          body: JSON.stringify(data), 
           headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
           }
       };
       try {
-          console.log(settings);
+          console.log('hello');
           const fetchResponse = await fetch(`http://localhost:5100/place_application`, settings);
           const data = await fetchResponse.json();
           return data;
       } catch (e) {
-          return e;
+          console.log(e);
       }    
 });
 
