@@ -64,5 +64,5 @@ onApprove: function(data) {
       return res.json();
     }).then(function(details) {
       alert('Transaction approved by ' + details.payer_given_name);
-  
+        console.log(details.payer_given_name);
   }
