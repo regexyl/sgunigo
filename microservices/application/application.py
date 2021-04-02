@@ -3,7 +3,8 @@
 # to run this file as a python3 script
 
 import os
-import settings
+from os.path import join, dirname
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 from flask import Flask, request, jsonify
@@ -17,7 +18,10 @@ from datetime import datetime
 app = Flask(__name__)
 tablename = 'application'
 
-MYSQL_URI = 'mysql+mysqlconnector://root' + settings.MYSQL_PASSWORD + '@localhost:' + settings.MYSQL_PORT + '/' + tablename
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+MYSQL_URI = 'mysql+mysqlconnector://root' + os.getenv('MYSQL_PASSWORD') + '@localhost:' + os.getenv('MYSQL_PORT') + '/' + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}

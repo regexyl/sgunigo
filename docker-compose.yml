@@ -24,12 +24,12 @@ services:
   #######################################
   applicant:
     build:
-      context: ./microservices/
-      dockerfile: applicant/applicant.Dockerfile
+      context: ./
+      dockerfile: microservices/applicant/applicant.Dockerfile
     image: g10t4/applicant:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://root:root@host.docker.internal:8889/applicant_details
+      dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/applicant_details
       PYTHONUNBUFFERED: 1
     ports:
       - "5000:5000" 
@@ -39,12 +39,12 @@ services:
   #####################################################
   application:
     build:
-      context: ./microservices/
-      dockerfile: application/application.Dockerfile
+      context: ./
+      dockerfile: microservices/application/application.Dockerfile
     image: g10t4/application:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://root:root@host.docker.internal:8889/application
+      dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/application
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
@@ -54,12 +54,12 @@ services:
   ####################################
   payment:
     build:
-      context: ./microservices/
-      dockerfile: payment/payment.Dockerfile
+      context: ./
+      dockerfile: microservices/payment/payment.Dockerfile
     image: g10t4/payment:esd
     restart: always
     environment:
-      dbURL: mysql+mysqlconnector://root:root@host.docker.internal:8889/payment
+      dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/payment
       PYTHONUNBUFFERED: 1
     ports:
       - "5400:5400"
@@ -82,8 +82,8 @@ services:
   ##############################################
   activity_log:
     build:
-      context: ./microservices/
-      dockerfile: activity_log/activity_log.Dockerfile
+      context: ./
+      dockerfile: microservices/activity_log/activity_log.Dockerfile
     image: g10t4/activity_log:esd
     restart: always
     depends_on:
@@ -98,8 +98,8 @@ services:
   ################################
   error:
     build:
-      context: ./microservices/
-      dockerfile: error/error.Dockerfile
+      context: ./
+      dockerfile: microservices/error/error.Dockerfile
     image: g10t4/error:esd
     restart: always
     depends_on:
@@ -114,8 +114,8 @@ services:
   #########################################################
   application_complex:
     build:
-      context: ./microservices/
-      dockerfile: application_complex/application_complex.Dockerfile
+      context: ./
+      dockerfile: microservices/application_complex/application_complex.Dockerfile
     image: g10t4/application_complex:esd
     restart: always
     depends_on:
