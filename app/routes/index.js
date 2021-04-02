@@ -112,9 +112,9 @@ router.post('/profile', async (req, res) => {
         console.log('Profile successfully created.')
       }
     })
-    // POST to MongoDB
-    req.body.user = req.user.id
-    await Profile.updateOne({user: req.user.id}, req.body, {upsert: true}) // upsert: creates a new record if it doesn't exist
+    // // POST to MongoDB
+    // req.body.user = req.user.id
+    // await Profile.updateOne({user: req.user.id}, req.body, {upsert: true}) // upsert: creates a new record if it doesn't exist
     res.redirect('/applications')
   } catch (err) {
     console.error(err)
