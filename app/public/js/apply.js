@@ -102,8 +102,8 @@ submitButton.addEventListener('click',async function(){
       };
       try {
           const fetchResponse = await fetch(`http://localhost:5100/place_application`, settings);
-          const response = await fetchResponse.json();
-          return response;
+          const data = await fetchResponse.json();
+          window.location.href = "http://localhost:3001/applications";
       } catch (e) {
           console.log(e);
       }    
