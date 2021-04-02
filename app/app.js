@@ -68,6 +68,7 @@ app.use(express.static(path.join(__dirname, "public"))) // __dirname - current d
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/applications", require("./routes/applications"))
+app.use("/admin", require("./routes/admin"))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

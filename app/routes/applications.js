@@ -3,8 +3,6 @@ const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Profile = require('../models/Profile')
 
-const applications_api = 'http://localhost:5001/'
-
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
