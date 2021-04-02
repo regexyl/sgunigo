@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-
 const Profile = require('../models/Profile')
+
+const applications_api = 'http://localhost:5001/'
 
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
   const userProfileExists = await Profile.exists({ user: req.user.id }) // exists: returns boolean
+  // Get application data from database
+  // request.get(applications_api + ) // continue later
   try {
     res.render("applications", {
       layout: "main_session",
