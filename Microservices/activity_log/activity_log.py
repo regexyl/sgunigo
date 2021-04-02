@@ -20,12 +20,12 @@ def receiveOrderLog():
     #it doesn't exit by default. Use Ctrl+C in the command window to terminate it.
 
 def callback(channel, method, properties, body): # required signature for the callback; no return
-    print("\nReceived an order log by " + __file__)
+    print("\nReceived an application log by " + __file__)
     processOrderLog(json.loads(body))
     print() # print a new line feed
 
 def processOrderLog(order):
-    print("Recording an order log:")
+    print("Recording an application log:")
     print(order)
 
 

@@ -40,7 +40,7 @@ class application(db.Model):
     nationality= db.Column(db.String(100), nullable=False)
     dob = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(100), nullable=False)
-    mobile_no = db.Column(db.String(8), nullable=False)
+    mobile_no = db.Column(db.String(12), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     grades = db.Column(db.String(10), nullable=False)
     university = db.Column(db.String(100), nullable=False)
