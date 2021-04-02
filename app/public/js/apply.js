@@ -74,12 +74,7 @@ function setActiveIndicator () {
 
 var submitButton=document.getElementById('submit');
 submitButton.addEventListener('click',async function(){
-    // console.log('Submitting');
-    // const response = await post('/application',);
-    // // waits until the request completes...
-    // console.log(response);
-    // expected output: "resolved"
-      data={
+    const data = {
         nric:document.getElementById('uinfin').value,
         applicant_name:document.getElementById('name').value,
         email:document.getElementById('email').value,
@@ -106,10 +101,9 @@ submitButton.addEventListener('click',async function(){
           }
       };
       try {
-          console.log('hello');
           const fetchResponse = await fetch(`http://localhost:5100/place_application`, settings);
-          const data = await fetchResponse.json();
-          return data;
+          const response = await fetchResponse.json();
+          return response;
       } catch (e) {
           console.log(e);
       }    
