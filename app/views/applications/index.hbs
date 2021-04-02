@@ -61,37 +61,46 @@
         <div class="container" id="applied">
             <h3 class="status">Applied Courses</h3>
 
+            {{#if paidApplications.applications}}
             <div class="row">
+                {{#each paidApplications.applications}}
                 <div class="col-lg-4 col-md-6">
-                <div class="ts-pricing-box">
+                <div class="ts-pricing-box ts-pricing-featured">
                     <div class="ts-pricing-header">
                     <h2 class="ts-pricing-price">
-                        <span class="status">SMU</span>
+                        <span class="status">{{university}}</span>
                     </h2>
                     <h3 class="ts-pricing-name">
                         <span class="status">Applied Courses</span>
                     </h3>
                     </div><!-- Pricing header -->
                     <div class="ts-pricing-features">
-                    <ul class="list-unstyled" id="courses_applied">
-                        
-                        
-                    </ul>
+                        <ul class="list-unstyled" id="courses_applied">
+                            <li>{{course1}}</li>
+                            <li>{{course2}}</li>
+                            <li>{{course3}}</li>
+                        </ul>
                     </div>
-                </div><!-- Plan 1 end -->
+                </div><!-- Plan 2 end -->
                 </div><!-- Col end -->
+                {{/each}}
             </div>
+            {{else}}
+            <p>You don't have any outstanding payments.</p>
+            {{/if}}
         </div>
 
         <div class="container" id="outstanding_payments">
             <h3 class="status">Outstanding payments</h3>
 
+            {{#if unpaidApplications.applications}}
             <div class="row">
+                {{#each unpaidApplications.applications}}
                 <div class="col-lg-4 col-md-6">
                 <div class="ts-pricing-box ts-pricing-featured">
                     <div class="ts-pricing-header">
                     <h2 class="ts-pricing-price">
-                        <span class="status">NUS</span>
+                        <span class="status">{{university}}</span>
                     </h2>
                     </div><!-- Pricing header -->
                     <div class="plan-action">
@@ -103,29 +112,12 @@
                     </div>
                 </div><!-- Plan 2 end -->
                 </div><!-- Col end -->
-
-                <div class="col-lg-4 col-md-6">
-                <div class="ts-pricing-box">
-                    <div class="ts-pricing-header">
-                    <h2 class="ts-pricing-price">
-                        <span class="currency">NTU</span>
-                    </h2>
-                    </div><!-- Pricing header -->
-                    <div class="plan-action">
-                    <ul class="list-unstyled">
-                        <br>
-                        <li>Please make payment as soon as possible</li>
-                    </ul>
-                    <a href="applications/payment" class="btn btn-dark">Check payments</a>
-                    </div>
-                </div><!-- Plan 3 end -->
-                </div><!-- Col end -->
+                {{/each}}
             </div>
+            {{else}}
+            <p>You don't have any outstanding payments.</p>
+            {{/if}}
         </div>
-
-        {{!-- <div class="container" id="incomplete">
-            <h3 class="status">Incomplete Applications</h3>
-        </div> --}}
 
     <div class="col-12">
         <div class="general-btn text-center">
@@ -133,8 +125,6 @@
         </div>
     </div>
 
-    
-        
     </div>
     <!--/ Container end -->
 </section><!-- Project area end -->

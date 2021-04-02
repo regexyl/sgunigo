@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "9";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const applications_uni_api = 'http://application:5001/application/'
+const applications_api = 'http://application:5001/application/'
 
 // @desc    View dashboard for university admins
 // @route   GET /admin/:university
@@ -15,7 +15,7 @@ router.get("/:university", async (req, res) => {
         method: 'GET'
     };
     try {
-        const fetchResponse = await fetch(applications_uni_api.concat(university), settings);
+        const fetchResponse = await fetch(applications_api.concat(university), settings);
         const applications = await fetchResponse.json();
         res.render("admin/index", {
           layout: "admin",

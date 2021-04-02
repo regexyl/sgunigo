@@ -45,22 +45,6 @@ router.get("/admin-login", ensureGuest, (req, res) => {
   });
 });
 
-// @desc    Login and landing page
-// @route   GET /
-router.get("/microservices", (req, res) => {
-  request_mod('http://127.0.0.1:5000/applicant_details', (error, response, body) => {
-    console.error('error:', error) // print the error
-    console.log('statusCode:', response && response.statusCode) // print the response status code if a response was received
-    console.log('body:', body) // print the data received
-    res.send(body) // Display the response on the website
-  })
-});
-// @desc    Login and landing page
-// @route   GET /
-router.get("/testing", (req, res) => {
-  res.send('testing')
-});
-
 // ####################
 // Setup Configuration
 // ####################
@@ -91,10 +75,11 @@ var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,ho
 router.get('/profile', ensureAuth, async (req, res) => {
   try {
     const userProfile = await Profile.findOne({ user: req.user.id }).lean()
+    const userId = req.user.id
     res.render("profile", { 
       layout: "empty",
       userProfile,
-      name: req.user.id
+      userId
     })
   } catch (err) {
     console.error(err)

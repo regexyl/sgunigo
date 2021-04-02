@@ -89,7 +89,8 @@ submitButton.addEventListener('click',async function(){
         dob:document.getElementById('dob').value,
         address:document.getElementById('regadd').value,
         nationality:document.getElementById('nationality').value,
-        race:document.getElementById('race').value
+        race:document.getElementById('race').value,
+        userid:document.getElementById('userid').value
       }
       console.log(JSON.stringify(data));
       const settings = {

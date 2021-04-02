@@ -36,6 +36,7 @@ class applicant_details(db.Model):
     mobile_no = db.Column(db.String(12), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     grades = db.Column(db.String(10), nullable=False)
+    userid = db.Column(db.String(30), nullable=False)
  
     def __init__(self, nric, applicant_name, sex, race, nationality, dob, email, mobile_no, address, grades):
         self.nric = nric
@@ -48,6 +49,7 @@ class applicant_details(db.Model):
         self.mobile_no = mobile_no
         self.address = address
         self.grades = grades
+        self.userid = userid
 
     def json(self):
         return {
@@ -66,7 +68,7 @@ class applicant_details(db.Model):
 # Create new database if it does not exist
 if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
     create_database(app.config['SQLALCHEMY_DATABASE_URI'])
-    print("New database created: " + database_exists(app.config['SQLALCHEMY_DATABASE_URI']))
+    print("New database created: " + str(database_exists(app.config['SQLALCHEMY_DATABASE_URI'])))
     print("Database location: " + app.config['SQLALCHEMY_DATABASE_URI'])
 else:
     print("Database at " + app.config['SQLALCHEMY_DATABASE_URI'] + " already exists")

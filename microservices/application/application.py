@@ -51,6 +51,7 @@ class application(db.Model):
     status = db.Column(db.String(10), nullable=False, server_default='UNPAID')
     created = db.Column(db.DateTime, nullable=False, server_default=func.now())
     modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+    userid = db.Column(db.String(30), nullable=False)
 
     def json(self):
         dto = {
@@ -72,7 +73,8 @@ class application(db.Model):
             "statement": self.statement,
             "status": self.status,
             "created": self.created,
-            "modified": self.modified
+            "modified": self.modified,
+            "userid": self.userid
         }
 
         return dto
@@ -146,6 +148,48 @@ def find_by_university(university):
             "code": 404,
             "data": {
                 "application_id": university
+            },
+            "message": "Application not found."
+        }
+    ), 404
+
+# Get individual applicant's PAID applications
+@app.route("/application/paid/<string:userid>")
+def find_by_userid_paid(userid):
+    applications = application.query.filter_by(userid=userid) and application.query.filter_by(status="PAID")
+    if applications:
+        return jsonify(
+            {
+                "code": 200,
+                "applications": [application.json() for application in applications]
+            }
+        )
+    return jsonify(
+        {
+            "code": 404,
+            "data": {
+                "application_id": userid
+            },
+            "message": "Application not found."
+        }
+    ), 404
+
+# Get individual applicant's UNPAID applications
+@app.route("/application/unpaid/<string:userid>")
+def find_by_userid_unpaid(userid):
+    applications = application.query.filter_by(userid=userid) and application.query.filter_by(status="UNPAID")
+    if applications:
+        return jsonify(
+            {
+                "code": 200,
+                "applications": [application.json() for application in applications]
+            }
+        )
+    return jsonify(
+        {
+            "code": 404,
+            "data": {
+                "application_id": userid
             },
             "message": "Application not found."
         }
