@@ -2,12 +2,6 @@ version: "3.8"
 
 volumes:
   rabbitmq_data:
-  pgdata: 
-  kongadata:
-
-networks:
-  kong-net:
-    driver: bridge
 
 services:
 
@@ -31,8 +25,6 @@ services:
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/applicant_details
       PYTHONUNBUFFERED: 1
-    networks:
-      - kong-net
     ports:
       - "5000:5000" 
  
@@ -48,8 +40,6 @@ services:
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/application
       PYTHONUNBUFFERED: 1
-    networks:
-      - kong-net
     ports:
       - "5001:5001"
   
@@ -99,6 +89,7 @@ services:
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
+
   ###############################
   # Error: The Error microservice
   ################################
@@ -114,6 +105,7 @@ services:
       rabbit_host: rabbitmq
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
+
 
   #########################################################
   # application_complex: The Submit Application microservice
@@ -137,85 +129,4 @@ services:
     ports:
       - "5100:5100"
 
- #######################################
-  # Postgres: The database used by Kong
-  #######################################
-  kong-database:
-    image: postgres:9.6
-    restart: always
-    networks:
-      - kong-net
-    environment:
-      POSTGRES_DB: kong
-      POSTGRES_USER: kong
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "kong"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  #######################################
-  # Kong database migration
-  #######################################
-  kong-migration:
-    image: kong:2.0.4
-    command: "kong migrations bootstrap"
-    restart: on-failure
-    networks:
-      - kong-net
-    environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: kong-database
-      KONG_PG_USER: kong
-      KONG_PG_PASSWORD: password
-    depends_on:
-      - kong-database
-
-  #######################################
-  # Kong: The API Gateway
-  #######################################
-  kong:
-    image: kong:2.0.4
-    restart: always
-    networks:
-      - kong-net
-    environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: kong-database
-      KONG_PG_USER: kong
-      KONG_PG_PASSWORD: password
-      KONG_PROXY_LISTEN: 0.0.0.0:8000
-      KONG_ADMIN_LISTEN: 0.0.0.0:8001
-    depends_on:
-      - kong-migration
-    ports:
-      - "8000:8000"
-  
-  #######################################
-  # Konga: Kong GUI
-  #######################################
-  konga:
-    image: pantsel/konga
-    restart: always
-    networks:
-        - kong-net
-    environment:
-      DB_ADAPTER: postgres
-      DB_HOST: kong-database
-      DB_USER: kong
-      DB_PASSWORD: password
-      DB_DATABASE: konga_db
-    depends_on:
-      - kong
-    ports:
-      - "1337:1337"
-    volumes:
-      - kongadata:/app/kongadata
-
-  
   
