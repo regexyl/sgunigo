@@ -252,7 +252,8 @@
                 onApprove: function(data, actions) {
                   return actions.order.capture().then(function(details) {
                     alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                    console.log(details)
+                    console.log(details);
+                    window.location.href = "/applications";
                   });
                 },
                 onError: function(err) {
