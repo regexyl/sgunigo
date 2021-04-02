@@ -3,3 +3,24 @@ curl -v POST https://api-m.sandbox.paypal.com/v1/oauth2/token \
   -H "Accept-Language: en_US" \
   -u "AXpXwZyIVu2sOIqTaKWz2Qp1jfWZRcYET2PNB6WTJfNAP8pQHktzTj3hDts5bbez57eowOGGAEpxaMBn:EM6Nh_z61DHWWHkmjGVi8DLS9bjSm-HyapJnLedsSn3ZyKmaJa9DB75dT2LseZArNXKNfyJrGv38cN0k" \
   -d "grant_type=client_credentials"
+
+
+curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer A21AAJQ5H-UjJbADy3DaFUhK8MZzXV_rSqUt4MyaPCSSRwmoZEHXus3HIkawYDx70IzdFtmQGBLstNKmHsHNUFGBiQD3uGTmg"
+
+
+curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer A21AAJQ5H-UjJbADy3DaFUhK8MZzXV_rSqUt4MyaPCSSRwmoZEHXus3HIkawYDx70IzdFtmQGBLstNKmHsHNUFGBiQD3uGTmg" \
+-d '{
+  "intent": "CAPTURE",
+  "purchase_units": [
+    {
+      "amount": {
+        "currency_code": "USD",
+        "value": "100.00"
+      }
+    }
+  ]
+}'
