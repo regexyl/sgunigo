@@ -6,7 +6,8 @@ submitButton.addEventListener('click',async function(){
     // console.log(response);
     // expected output: "resolved"
     var nric=document.getElementById('uinfin').value;
-      data={
+    var url='http://localhost:5000/applicant_details/'.concat(nric);
+    data={
         nric:document.getElementById('uinfin').value,
         applicant_name:document.getElementById('name').value,
         email:document.getElementById('email').value,
@@ -18,23 +19,28 @@ submitButton.addEventListener('click',async function(){
         nationality:document.getElementById('nationality').value,
         race:document.getElementById('race').value
       }
-      console.log(JSON.stringify(data));
-      const settings = {
-          method: 'POST',
-          body: JSON.stringify(data), 
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-          }
-      };
-      try {
-          console.log('hello');
-          const fetchResponse = await fetch('http://localhost:5000/applicant_details/'.concat(nric), settings);
-          const data = await fetchResponse.json();
-          window.location.href = "http://localhost:3001/applications";
-      } catch (e) {
-          console.log(e);
-      }    
+        console.log(JSON.stringify(data));
+        const settings = {
+            method: 'POST',
+            body: JSON.stringify(data), 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log(url);
+        try {
+            const fetchResponse = await fetch(url, settings);
+            const data = await fetchResponse.json();
+            if (data.code==400){
+                alert('You have not made any changes to your profile.')
+            }
+            window.location.href = "http://localhost:3001/applications";
+        } catch (e) {
+            console.log(e);
+        }   
+
+ 
 });
 if (authLevel == 'L0') {
     $("#formPerson").show();

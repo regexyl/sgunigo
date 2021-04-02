@@ -9,6 +9,7 @@ from flask_cors import CORS
 from os import environ
 
 app = Flask(__name__)
+CORS(app)
 tablename = 'applicant_details'
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -151,7 +152,6 @@ def create_applicant(nric):
             "data": applicant.json()
         }
     )
-
 
 if __name__ == '__main__':
     print("This is flask for " + os.path.basename(__file__) + ": manage applicant ...")
