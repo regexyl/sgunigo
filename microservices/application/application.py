@@ -133,6 +133,7 @@ def find_by_application_id(application_id):
             "message": "Application not found."
         }
     ), 404
+    
 # Get Individual university PAID applications
 @app.route("/application/<string:university>")
 def find_by_university(university):

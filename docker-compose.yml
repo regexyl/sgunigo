@@ -18,6 +18,8 @@ services:
     image: g10t4/app:esd
     ports:
       - "3001:3001"
+    networks:
+      - kong-net
     depends_on:
       - applicant
       - application

@@ -11,12 +11,12 @@ const applications_api = 'http://application:5001/application/'
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
-  const userProfileExists = await Profile.exists({ user: req.user.id }) // exists: returns boolean
-  const userId = req.user.id
-  const settings = {
-      method: 'GET'
-  };
   try {
+    const userProfileExists = await Profile.exists({ user: req.user.id }) // exists: returns boolean
+    const userId = req.user.id
+    const settings = {
+        method: 'GET'
+    };
       const paidFetchResponse = await fetch(applications_api.concat('paid/', userId), settings);
       const paidApplications = await paidFetchResponse.json();
       const unpaidFetchResponse = await fetch(applications_api.concat('unpaid/', userId), settings);
@@ -40,9 +40,11 @@ router.get("/", ensureAuth, async (req, res) => {
 router.get("/apply", ensureAuth, async (req, res) => {
   try {
     const userProfile = await Profile.findOne({ user: req.user.id }).lean()
+    const userId = req.user.id
     res.render("applications/apply", {
       layout: "apply",
-      userProfile
+      userProfile,
+      userId
     });
   } catch (err) {
     console.error(err)
