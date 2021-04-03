@@ -9,6 +9,7 @@ from flask_cors import CORS
 from os import environ
 
 app = Flask(__name__)
+
 CORS(app)
 tablename = 'applicant_details'
 
@@ -120,19 +121,21 @@ def find_by_nric(nric):
 
 @app.route("/applicant_details/<string:nric>", methods=['POST'])
 def create_applicant(nric):
+    data = request.get_json(force=True)
+    applicant = applicant_details(**data)
+ 
     if (applicant_details.query.filter_by(nric=nric).first()):
+        # Update applicant details if it exists
+
         return jsonify(
             {
                 "code": 400,
                 "data": {
                     "nric": nric
                 },
-                "message": "Applicant already exists."
+                "message": "Applicant already exists, changes will be updated."
             }
         ), 400
- 
-    data = request.get_json(force=True)
-    applicant = applicant_details(**data)
  
     try:
         db.session.add(applicant)
