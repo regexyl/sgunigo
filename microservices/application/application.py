@@ -2,6 +2,7 @@
 # The above shebang (#!) operator tells Unix-like environments
 # to run this file as a python3 script
 
+from operator import and_
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
@@ -132,7 +133,7 @@ def find_by_application_id(application_id):
             "message": "Application not found."
         }
     ), 404
-
+# Get Individual university PAID applications
 @app.route("/application/<string:university>")
 def find_by_university(university):
     application_list = application.query.filter_by(university=university) and application.query.filter_by(status="PAID")
@@ -199,6 +200,19 @@ def find_by_userid_unpaid(userid):
 @app.route("/application", methods=['POST'])
 def create_application():
     data = request.get_json(force=True)
+    # userid=data["userid"]
+    # university=data["university"]
+    # if ( application.query.filter_by(university=university) and application.query.filter_by(userid=userid)):
+    #     return jsonify(
+    #         {
+    #             "code": 400,
+    #             "data": {
+    #                 "userid": userid,
+    #                 "university": university
+    #             },
+    #             "message": "Application already exists."
+    #         }
+    #     ), 400
     application_post = application(**data)
 
     try:
