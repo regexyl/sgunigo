@@ -83,10 +83,10 @@ $('.previous').on('click', goToPreviousSlide);
 var submitButton=document.getElementById('submit');
 submitButton.addEventListener('click',async function(){
     const data = {
-        nric:document.getElementById('uinfin').value,
-        applicant_name:document.getElementById('name').value,
+        nric:document.getElementById('nric').value,
+        applicant_name:document.getElementById('applicant_name').value,
         email:document.getElementById('email').value,
-        mobile_no:document.getElementById('mobileno').value,
+        mobile_no:document.getElementById('mobile_no').value,
         grades:document.getElementById('grades').value,
         university:document.getElementById('university').value,
         course1:document.getElementById('course_1').value,
@@ -95,7 +95,7 @@ submitButton.addEventListener('click',async function(){
         statement:document.getElementById('statement').value,
         sex:document.getElementById('sex').value,
         dob:document.getElementById('dob').value,
-        address:document.getElementById('regadd').value,
+        address:document.getElementById('address').value,
         nationality:document.getElementById('nationality').value,
         race:document.getElementById('race').value,
         userid:document.getElementById('userid').value
