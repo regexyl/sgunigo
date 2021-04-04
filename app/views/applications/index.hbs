@@ -101,16 +101,16 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">University</th>
-                        <th scope="col">Last Modified</th>
-                        <th scope="col">Fee (SGD)</th>
-                        <th scope="col">Pay</th>
+                        <th>University</th>
+                        <th>Last Modified</th>
+                        <th>Fee (SGD)</th>
+                        <th>Pay</th>
                         </tr>
                     </thead>
                     <tbody>
-                {{#each unpaidApplications.applications}}
+                    {{#each unpaidApplications.applications}}
                     <tr>
-                        <td scope="row">
+                        <td>
                             {{#ifEquals university "NUS"}}
                             National University of Singapore
                             {{/ifEquals}}
@@ -173,11 +173,11 @@
                         </td>
                     </tr>
                 {{/each}}
+                </tbody>
+                </table>
             {{else}}
             <p>You don't have any outstanding payments.</p>
             {{/if}}
-
-            <br>
         </div>
 
     <div class="col-12">
@@ -207,7 +207,7 @@
                     <div style="margin-bottom: 1.25rem;">
                         <h4><span id="display-school"></span></4>
                         <p>Application ID: <span id="display-appId"></span></p>
-                        <p>Fee (SGD): <span id="display-price"></span></p>
+                        <p>Fee (SGD): $<span id="display-price"></span></p>
                         <select style="visibility: hidden" id="quantitySelect"></select>
                     </div>
                     <div id="paypal-button-container"></div>

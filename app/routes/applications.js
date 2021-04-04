@@ -33,7 +33,7 @@ router.get("/", ensureAuth, async (req, res) => {
     console.error(err)
     res.render('error/500')
   }
-  });
+});
 
 // @desc    Application form
 // @route   GET /applications/apply
