@@ -22,8 +22,6 @@ app = Flask(__name__)
 CORS(app)
 tablename = 'application'
 
-8
-
 MYSQL_URI = 'mysql+mysqlconnector://root' + os.getenv('MYSQL_PASSWORD') + '@localhost:' + os.getenv('MYSQL_PORT') + '/' + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
