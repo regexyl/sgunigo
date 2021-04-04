@@ -1,3 +1,4 @@
+// Enable animations for multi-part form
 var currentSlide = 0,
     $slideContainer = $('.slide-container'),
     $slide = $('.slide'),
@@ -72,6 +73,13 @@ function setActiveIndicator () {
   }
 }
 
+setSlideDimensions();
+generatePagination();
+$(window).resize(postitionSlides);
+$('.next').on('click', goToNextSlide);
+$('.previous').on('click', goToPreviousSlide);
+
+// Submit application form to Flask API
 var submitButton=document.getElementById('submit');
 submitButton.addEventListener('click',async function(){
     const data = {
@@ -109,9 +117,3 @@ submitButton.addEventListener('click',async function(){
           console.log(e);
       }    
 });
-
-setSlideDimensions();
-generatePagination();
-$(window).resize(postitionSlides);
-$('.next').on('click', goToNextSlide);
-$('.previous').on('click', goToPreviousSlide);

@@ -43,7 +43,11 @@
                 {{/unless}}
                 <div class="card-action">
                     {{#if userProfileExists}}
-                    <a class="red-text" href="/profile">Edit Profile</a>
+                    <a href="/profile">
+                        <div class="card">
+                            <div class="card-body">Edit Profile</div>
+                        </div>
+                    </a>
                     {{else}}
                     <a class="red-text" href="/profile">Go to Profile</a>
                     {{/if}}
@@ -94,37 +98,231 @@
             <h3 class="status">Outstanding payments</h3>
 
             {{#if unpaidApplications.applications}}
-            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">University</th>
+                        <th scope="col">Last Modified</th>
+                        <th scope="col">Fee (SGD)</th>
+                        <th scope="col">Pay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                 {{#each unpaidApplications.applications}}
-                <div class="col-lg-4 col-md-6">
-                <div class="ts-pricing-box ts-pricing-featured">
-                    <div class="ts-pricing-header">
-                    <h2 class="ts-pricing-price">
-                        <span class="status">{{university}}</span>
-                    </h2>
-                    </div><!-- Pricing header -->
-                    <div class="plan-action">
-                    <ul class="list-unstyled">
-                        <br>
-                        <li>Please make payment as soon as possible</li>
-                    </ul>
-                    <a href="applications/payment" class="btn btn-primary">Check payments</a>
-                    </div>
-                </div><!-- Plan 2 end -->
-                </div><!-- Col end -->
+                    <tr>
+                        <td scope="row">
+                            {{#ifEquals university "NUS"}}
+                            National University of Singapore
+                            {{/ifEquals}}
+                            {{#ifEquals university "NTU"}}
+                            Nanyang Technological University
+                            {{/ifEquals}}
+                            {{#ifEquals university "SMU"}}
+                            Singapore Management University
+                            {{/ifEquals}}
+                            {{#ifEquals university "SIT"}}
+                            Singapore Institute of Technology
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUSS"}}
+                            Singapore University of Social Sciences
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUTD"}}
+                            Singapore University of Technology and Design
+                            {{/ifEquals}}
+                        </td>
+                        <td>{{modified}}</td>
+                        <td id="uni_fee">
+                            {{#ifEquals university "NUS"}}
+                            $10
+                            {{/ifEquals}}
+                            {{#ifEquals university "NTU"}}
+                            $21.40
+                            {{/ifEquals}}
+                            {{#ifEquals university "SMU"}}
+                            $15
+                            {{/ifEquals}}
+                            {{#ifEquals university "SIT"}}
+                            $18
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUSS"}}
+                            $15
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUTD"}}
+                            $0
+                            {{/ifEquals}}
+                        </td>
+                        <td>
+                            {{#ifEquals university "NUS"}}
+                            <button type="button" class="btn btn-outline-danger" value="NUS" price="10" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                            {{#ifEquals university "NTU"}}
+                            <button type="button" class="btn btn-outline-danger" value="NTU" price="21.40" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                            {{#ifEquals university "SMU"}}
+                            <button type="button" class="btn btn-outline-danger" value="SMU" price="15" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                            {{#ifEquals university "SIT"}}
+                            <button type="button" class="btn btn-outline-danger" value="SIT" price="18" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUSS"}}
+                            <button type="button" class="btn btn-outline-danger" value="SUSS" price="15" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUTD"}}
+                            <button type="button" class="btn btn-outline-danger" value="SUTD" price="0" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            {{/ifEquals}}
+                        </td>
+                    </tr>
                 {{/each}}
-            </div>
             {{else}}
             <p>You don't have any outstanding payments.</p>
             {{/if}}
+
+            <br>
         </div>
 
     <div class="col-12">
         <div class="general-btn text-center">
-            <a class="btn btn-info" href="/applications/apply">New Application</a>
+            <a class="btn btn-danger" href="/applications/apply">New Application</a>
         </div>
     </div>
 
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Make Payment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Paypal -->
+            <div class="container">
+            <div class="modal-content animate">
+                <div class="container">
+                <!-- Paypal API -->
+                <div id="smart-button-container">
+                    <div style="text-align: center;">
+                    <div style="margin-bottom: 1.25rem;">
+                        <p>Please choose the respective University's application fee</p>
+                        <select id="item-options"><option value="NUS" price="10">NUS - 10 SGD</option><option value="NTU" price="21.40">NTU - 21.40 SGD</option><option value="SMU" price="15">SMU - 15 SGD</option><option value="SUSS" price="15">SUSS - 15 SGD</option><option value="SIT" price="18">SIT - 18 SGD</option></select>
+                        <select style="visibility: hidden" id="quantitySelect"></select>
+                    </div>
+                    <div id="paypal-button-container"></div>
+                    </div>
+                </div>
+                <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=SGD" data-sdk-integration-source="button-factory"></script>
+                
+                </div>
+            </div>
+            </div>
+
+            <div class="container">
+                <div id="modal2" class="modal">
+                    <div class="modal-content animate">
+
+                    <div class="container">
+                    
+                        <label for="uname"><b>Payment successfully made!</b></label>
+                        <p class="cd-signin-modal__message">Check your email inbox for email confirmation.</p>
+                        
+                        <button type="submit" onclick="back()">Back to User Page</button>
+                
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+        <script>
+            function initPayPalButton() {
+                    var shipping = 0;
+                    var itemOptions = document.querySelector("#smart-button-container #item-options");
+                var quantity = parseInt();
+                var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
+                if (!isNaN(quantity)) {
+                    quantitySelect.style.visibility = "visible";
+                }
+                var orderDescription = "Please choose the respective University's application fee";
+                if(orderDescription === '') {
+                    orderDescription = 'Item';
+                }
+                paypal.Buttons({
+                    style: {
+                    shape: 'pill',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+                    
+                    },
+                    createOrder: function(data, actions) {
+                        var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
+                        var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
+                        var tax = (0 === 0) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
+                        if(quantitySelect.options.length > 0) {
+                            quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
+                        } else {
+                            quantity = 1;
+                    }
+            
+                    tax *= quantity;
+                    tax = Math.round(tax * 100) / 100;
+                    var priceTotal = quantity * selectedItemPrice + parseFloat(shipping) + tax;
+                    priceTotal = Math.round(priceTotal * 100) / 100;
+                    var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
+            
+                    return actions.order.create({
+                        purchase_units: [{
+                        description: orderDescription,
+                        amount: {
+                            currency_code: 'SGD',
+                            value: priceTotal,
+                            breakdown: {
+                            item_total: {
+                                currency_code: 'SGD',
+                                value: itemTotalValue,
+                            },
+                            shipping: {
+                                currency_code: 'SGD',
+                                value: shipping,
+                            },
+                            tax_total: {
+                                currency_code: 'SGD',
+                                value: tax,
+                            }
+                            }
+                        },
+                        items: [{
+                            name: selectedItemDescription,
+                            unit_amount: {
+                            currency_code: 'SGD',
+                            value: selectedItemPrice,
+                            },
+                            quantity: quantity
+                        }]
+                        }]
+                    });
+                    },
+                    onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                        console.log(details);
+                        window.location.href = "/applications";
+                    });
+                    },
+                    onError: function(err) {
+                    console.log(err);
+                    },
+                }).render('#paypal-button-container');
+                }
+                initPayPalButton();
+        </script>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
     </div>
+  </div>
     <!--/ Container end -->
 </section><!-- Project area end -->
