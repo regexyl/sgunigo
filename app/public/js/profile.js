@@ -8,7 +8,7 @@ submitButton.addEventListener('click',async function(){
     var nric=document.getElementById('uinfin').value;
     var url='http://localhost:5000/applicant_details/'.concat(nric);
     data={
-        nric:document.getElementById('uinfin').value,
+        nric:document.getElementById('nric').value,
         applicant_name:document.getElementById('name').value,
         email:document.getElementById('email').value,
         mobile_no:document.getElementById('mobileno').value,
