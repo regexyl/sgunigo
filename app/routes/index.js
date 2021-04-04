@@ -20,13 +20,7 @@ const { request } = require("http");
 
 const request_mod = require('request')
 
-const dotenv = require("dotenv");
-dotenv.config({ path: `./.env` });
-IP_ADDRESS=process.env.IP_ADDRESS;
-API_KEY_APPLICANT=process.env.API_KEY_APPLICANT;
-console.log(IP_ADDRESS);
-
-const applicant_api = IP_ADDRESS.concat('/applicant/?apikey=').concat(API_KEY_APPLICANT);
+const applicant_api = 'http://localhost:5000'
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 

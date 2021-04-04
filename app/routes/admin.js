@@ -5,13 +5,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const dotenv = require("dotenv");
-dotenv.config({ path: `./.env` });
-IP_ADDRESS=process.env.IP_ADDRESS;
-API_KEY_ADMIN=process.env.API_KEY_ADMIN;
-console.log(IP_ADDRESS);
-
-const applications_api = IP_ADDRESS.concat('/application/?apikey=').concat(API_KEY_ADMIN);
+const applications_api = 'http://application:5001/application/'
 
 // @desc    View dashboard for university admins
 // @route   GET /admin/:university

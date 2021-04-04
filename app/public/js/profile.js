@@ -1,10 +1,3 @@
-const dotenv = require("dotenv");
-dotenv.config({ path: `./.env` });
-IP_ADDRESS=process.env.IP_ADDRESS;
-API_KEY_APPLICANT=process.env.API_KEY_APPLICANT;
-console.log(IP_ADDRESS);
-
-
 var submitButton=document.getElementById('save');
 submitButton.addEventListener('click',async function(){
     // console.log('Submitting');
@@ -13,7 +6,7 @@ submitButton.addEventListener('click',async function(){
     // console.log(response);
     // expected output: "resolved"
     var nric=document.getElementById('uinfin').value;
-    var url=IP_ADDRESS.concat('/applicant/').concat(nric).concat('?apikey=').concat(API_KEY_APPLICANT);
+    var url='http://localhost:5000/applicant_details/'.concat(nric);
     data={
         nric:document.getElementById('nric').value,
         applicant_name:document.getElementById('name').value,
