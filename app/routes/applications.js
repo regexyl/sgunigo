@@ -51,19 +51,3 @@ router.get("/apply", ensureAuth, async (req, res) => {
     res.render('error/500')
   }
 });
-
-// @desc    Show payment summary
-// @route   GET /applications/payment
-router.get("/payment", ensureAuth, async (req, res) => {
-  try {
-    res.render("applications/payment", {
-      name: req.user.firstName,
-      layout: "main_session"
-    });
-  } catch (err) {
-    console.error(err)
-    res.render('error/500')
-  }
-});
-
-module.exports = router;
