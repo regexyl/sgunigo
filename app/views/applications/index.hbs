@@ -153,22 +153,22 @@
                         </td>
                         <td>
                             {{#ifEquals university "NUS"}}
-                            <button type="button" class="btn btn-outline-danger" value="NUS" price="10" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="NUS" price="10" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                             {{#ifEquals university "NTU"}}
-                            <button type="button" class="btn btn-outline-danger" value="NTU" price="21.40" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="NTU" price="21.40" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                             {{#ifEquals university "SMU"}}
-                            <button type="button" class="btn btn-outline-danger" value="SMU" price="15" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="SMU" price="15" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                             {{#ifEquals university "SIT"}}
-                            <button type="button" class="btn btn-outline-danger" value="SIT" price="18" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="SIT" price="18" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                             {{#ifEquals university "SUSS"}}
-                            <button type="button" class="btn btn-outline-danger" value="SUSS" price="15" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="SUSS" price="15" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                             {{#ifEquals university "SUTD"}}
-                            <button type="button" class="btn btn-outline-danger" value="SUTD" price="0" data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
+                            <button type="button" class="btn btn-outline-danger payment-btn" value="SUTD" price="0" appId={{application_id}} data-toggle="modal" data-target="#exampleModalCenter">Pay</button>
                             {{/ifEquals}}
                         </td>
                     </tr>
@@ -205,8 +205,9 @@
                 <div id="smart-button-container">
                     <div style="text-align: center;">
                     <div style="margin-bottom: 1.25rem;">
-                        <p>Please choose the respective University's application fee</p>
-                        <select id="item-options"><option value="NUS" price="10">NUS - 10 SGD</option><option value="NTU" price="21.40">NTU - 21.40 SGD</option><option value="SMU" price="15">SMU - 15 SGD</option><option value="SUSS" price="15">SUSS - 15 SGD</option><option value="SIT" price="18">SIT - 18 SGD</option></select>
+                        <p id="display-school"></p>
+                        <p id="display-appId"></p>
+                        <p id="display-price"></p>
                         <select style="visibility: hidden" id="quantitySelect"></select>
                     </div>
                     <div id="paypal-button-container"></div>
@@ -234,11 +235,17 @@
                 </div>
             </div>
         </div>
-        <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+        <!-- initialize jQuery Library -->
+        <script src="/jquery/jquery.min.js"></script>
         <script>
+            <!-- Display -->
+            $(document).on('click', ".payment-btn", (event) => {
+                $("#display-school").html(event.target.attributes.value.value)
+                $("#display-appId").html(event.target.attributes.appId.value)
+                $("#display-price").html(event.target.attributes.price.value)
+            })
             function initPayPalButton() {
                     var shipping = 0;
-                    var itemOptions = document.querySelector("#smart-button-container #item-options");
                 var quantity = parseInt();
                 var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
                 if (!isNaN(quantity)) {
@@ -257,8 +264,8 @@
                     
                     },
                     createOrder: function(data, actions) {
-                        var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
-                        var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
+                        var selectedItemDescription = $("#display-school").text();
+                        var selectedItemPrice = parseFloat($("#display-price").text());
                         var tax = (0 === 0) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
                         if(quantitySelect.options.length > 0) {
                             quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
@@ -305,14 +312,26 @@
                     });
                     },
                     onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                        console.log(details);
-                        window.location.href = "/applications";
-                    });
+                        return actions.order.capture().then(function(details) {
+
+                            alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                            console.log(details);
+
+                            // Update applications database with PAID status
+                            try {
+                                const appId = $("#display-appId").text()
+                                const update_application_url = 'http://localhost:5001/application/'.concat(appId)
+                                alert(update_application_url)
+                                const fetchResponse = fetch(update_application_url, {method: 'PUT'});
+                                window.location.href = "/applications";
+                            } catch (e) {
+                                console.log(e);
+                            }    
+
+                        });
                     },
                     onError: function(err) {
-                    console.log(err);
+                        console.log(err);
                     },
                 }).render('#paypal-button-container');
                 }
