@@ -17,6 +17,10 @@ const bodyParser = require('body-parser');
 // Load config - pass  object with global variables to path
 dotenv.config({ path: `./config/${process.env.NODE_ENV}.env` });
 
+dotenv.config({ path: `./.env` });
+
+
+
 console.log(process.env.MYINFO_APP_REDIRECT_URL)
 // Passport config
 require("./config/passport")(passport); // pass in const passport as an argument - refer to passport.js' module.exports function argument
@@ -31,7 +35,8 @@ app.use(express.json());
 
 // Logging
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev")); // Add Morgan middleware that shows HTTP methods, etc. in the console while in dev mode
+  app.use(morgan("dev")); // Add Morgan ;'
+  ']m=iddleware that shows HTTP methods, etc. in the console while in dev mode
 }
 
 // Handlebars

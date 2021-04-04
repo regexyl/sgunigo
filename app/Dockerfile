@@ -1,7 +1,7 @@
 FROM node:slim
 WORKDIR /usr/src/app
-COPY package*.json ./
+COPY ./app/package*.json ./
 RUN npm install
-COPY . .
+COPY ./app/* ./.env ./
 EXPOSE 3001
 CMD ["npm", "run", "dev"]

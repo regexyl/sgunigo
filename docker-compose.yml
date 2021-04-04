@@ -13,8 +13,8 @@ services:
 
   app:
     build:
-      context: ./app/
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./app/Dockerfile
     image: g10t4/app:esd
     ports:
       - "3001:3001"
