@@ -5,6 +5,8 @@
 from operator import and_
 import os
 from os.path import join, dirname
+
+from sqlalchemy.sql.functions import user
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.sql import func
@@ -200,16 +202,15 @@ def find_by_userid_unpaid(userid):
 @app.route("/application", methods=['POST'])
 def create_application():
     data = request.get_json(force=True)
-    userid=data["userid"]
-    university=data["university"]
-    
-    if (application.query.filter_by(university=university, userid=userid)):
+    userid1=data["userid"]
+    university1=data["university"]
+    if (application.query.filter_by(university=university1, userid=userid1)):
         return jsonify(
             {
                 "code": 400,
                 "data": {
-                    "userid": userid,
-                    "university": university
+                    "userid": userid1,
+                    "university": university1
                 },
                 "message": "Application already exists."
             }
