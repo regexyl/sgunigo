@@ -2,12 +2,10 @@
 # The above shebang (#!) operator tells Unix-like environments
 # to run this file as a python3 script
 
-from operator import and_
 import os
 from os.path import join, dirname
-
-from sqlalchemy.sql.functions import user
 from dotenv import load_dotenv
+from sqlalchemy.sql.functions import user
 from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 from flask import Flask, request, jsonify
