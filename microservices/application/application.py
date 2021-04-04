@@ -158,7 +158,7 @@ def find_by_university(university):
 # Get individual applicant's PAID applications
 @app.route("/application/paid/<string:userid>")
 def find_by_userid_paid(userid):
-    applications = application.query.filter_by(userid=userid) and application.query.filter_by(status="PAID")
+    applications = application.query.filter_by(userid=userid, status="PAID")
     if applications:
         return jsonify(
             {
@@ -179,7 +179,7 @@ def find_by_userid_paid(userid):
 # Get individual applicant's UNPAID applications
 @app.route("/application/unpaid/<string:userid>")
 def find_by_userid_unpaid(userid):
-    applications = application.query.filter_by(userid=userid) and application.query.filter_by(status="UNPAID")
+    applications = application.query.filter_by(userid=userid, status="UNPAID")
     if applications:
         return jsonify(
             {
