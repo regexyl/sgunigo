@@ -17,10 +17,6 @@ const bodyParser = require('body-parser');
 // Load config - pass  object with global variables to path
 dotenv.config({ path: `./config/${process.env.NODE_ENV}.env` });
 
-dotenv.config({ path: `./.env` });
-
-
-
 console.log(process.env.MYINFO_APP_REDIRECT_URL)
 // Passport config
 require("./config/passport")(passport); // pass in const passport as an argument - refer to passport.js' module.exports function argument
