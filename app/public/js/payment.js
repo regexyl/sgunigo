@@ -1,4 +1,10 @@
 // Display modal details
+const dotenv = require("dotenv");
+dotenv.config({ path: `./.env` });
+IP_ADDRESS=process.env.IP_ADDRESS;
+API_KEY_APPLICANT=process.env.API_KEY_APPLICANT;
+console.log(IP_ADDRESS);
+
 $(document).on('click', ".payment-btn", (event) => {
   $("#display-school").html(event.target.attributes.value.value)
   $("#display-appId").html(event.target.attributes.appId.value)
@@ -80,9 +86,9 @@ function initPayPalButton() {
 
               // Update applications database with PAID status
               try {
-                  const appId = $("#display-appId").text()
-                  const update_application_url = 'http://localhost:5001/application/'.concat(appId)
-                  alert(update_application_url)
+                  const appId = $("#display-appId").text();
+                  const update_application_url = IP_ADDRESS.concat('/application/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
+                  alert(update_application_url);
                   const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   window.location.href = "/applications";
               } catch (e) {

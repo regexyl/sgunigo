@@ -4,9 +4,15 @@ const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Profile = require('../models/Profile')
 
+const dotenv = require("dotenv");
+dotenv.config({ path: `./.env` });
+IP_ADDRESS=process.env.IP_ADDRESS;
+API_KEY_APPLICANT=process.env.API_KEY_APPLICANT;
+console.log(IP_ADDRESS);
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const applications_api = 'http://application:5001/application/'
+const applications_api = IP_ADDRESS.concat('/application/?apikey=').concat(API_KEY_APPLICANT);
 
 // @desc    View dashboard of applications
 // @route   GET /applications/index
