@@ -31,8 +31,7 @@ app.use(express.json());
 
 // Logging
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev")); // Add Morgan ;'
-  ']m=iddleware that shows HTTP methods, etc. in the console while in dev mode
+  app.use(morgan("dev")); // Add Morgan middleware that shows HTTP methods, etc. in the console while in dev mode
 }
 
 // Handlebars
