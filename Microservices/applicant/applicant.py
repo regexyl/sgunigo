@@ -39,7 +39,7 @@ class applicant_details(db.Model):
     grades = db.Column(db.String(10), nullable=False)
     userid = db.Column(db.String(30), nullable=False)
  
-    def __init__(self, nric, applicant_name, sex, race, nationality, dob, email, mobile_no, address, grades):
+    def __init__(self, nric, applicant_name, sex, race, nationality, dob, email, mobile_no, address, grades, userid):
         self.nric = nric
         self.applicant_name = applicant_name
         self.sex = sex
@@ -63,7 +63,8 @@ class applicant_details(db.Model):
             "email": self.email,
             "mobile_no": self.mobile_no,
             "address": self.address,
-            "grades": self.grades
+            "grades": self.grades,
+            "userid": self.userid
             }
 
 # Create new database if it does not exist
@@ -118,27 +119,44 @@ def find_by_nric(nric):
         }
     ), 404
 
+@app.route("/applicant_details/id/<string:userid>")
+def find_by_userid(userid):
+    applicant = applicant_details.query.filter_by(userid=userid).first()
+    if applicant:
+        return jsonify(
+            {
+                "code": 200,
+                "data": applicant.json()
+            }
+        )
+    return jsonify(
+        {
+            "code": 404,
+            "message": "Applicant not found."
+        }
+    ), 404
+
 
 @app.route("/applicant_details/<string:nric>", methods=['POST'])
 def create_applicant(nric):
     data = request.get_json(force=True)
     applicant = applicant_details(**data)
  
-    if (applicant_details.query.filter_by(nric=nric).first()):
-        # Update applicant details if it exists
+    # if (applicant_details.query.filter_by(nric=nric).first()):
+    #     # Update applicant details if it exists
 
-        return jsonify(
-            {
-                "code": 400,
-                "data": {
-                    "nric": nric
-                },
-                "message": "Applicant already exists, changes will be updated."
-            }
-        ), 400
+    #     return jsonify(
+    #         {
+    #             "code": 400,
+    #             "data": {
+    #                 "nric": nric
+    #             },
+    #             "message": "Applicant already exists, changes will be updated."
+    #         }
+    #     ), 400
  
     try:
-        db.session.add(applicant)
+        db.session.merge(applicant)
         db.session.commit()
     except:
         return jsonify(

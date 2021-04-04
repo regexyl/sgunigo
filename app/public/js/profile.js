@@ -17,7 +17,8 @@ submitButton.addEventListener('click',async function(){
         dob:document.getElementById('dob').value,
         address:document.getElementById('regadd').value,
         nationality:document.getElementById('nationality').value,
-        race:document.getElementById('race').value
+        race:document.getElementById('race').value,
+        userid:document.getElementById('userid').value
       }
         console.log(JSON.stringify(data));
         const settings = {
@@ -34,8 +35,9 @@ submitButton.addEventListener('click',async function(){
             const data = await fetchResponse.json();
             if (data.code==400){
                 alert('You have not made any changes to your profile.')
+            } else {
+                window.location.href = "http://localhost:3001/applications";
             }
-            window.location.href = "http://localhost:3001/applications";
         } catch (e) {
             console.log(e);
         }   

@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth"); // destructuring
@@ -70,12 +71,19 @@ var _personApiUrl = process.env.MYINFO_API_PERSON;
 
 var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,noa-basic,ownerprivate,cpfcontributions,cpfbalances";
 
+const applicant_details_url = 'http://applicant:5000/applicant_details/'
+
 // @desc  Show profile page
 // @route GET /profile
 router.get('/profile', ensureAuth, async (req, res) => {
   try {
-    const userProfile = await Profile.findOne({ user: req.user.id }).lean()
     const userId = req.user.id
+    const settings = {
+      method: 'GET'
+    };
+    const fetchUserProfile = await fetch(applicant_details_url.concat('id/', userId), settings)
+    const userProfileResponse = await fetchUserProfile.json()
+    const userProfile = userProfileResponse.data
     res.render("profile", { 
       layout: "empty",
       userProfile,

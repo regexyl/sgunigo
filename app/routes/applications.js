@@ -51,3 +51,5 @@ router.get("/apply", ensureAuth, async (req, res) => {
     res.render('error/500')
   }
 });
+
+module.exports = router;
