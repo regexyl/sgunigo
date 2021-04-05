@@ -5,7 +5,7 @@ submitButton.addEventListener('click',async function(){
     // // waits until the request completes...
     // console.log(response);
     // expected output: "resolved"
-    var nric=document.getElementById('uinfin').value;
+    var nric=document.getElementById('nric').value;
     var url='http://localhost:5000/applicant_details/'.concat(nric);
     data={
         nric:document.getElementById('nric').value,
