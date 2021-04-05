@@ -11,11 +11,11 @@ submitButton.addEventListener('click',async function(){
         nric:document.getElementById('nric').value,
         applicant_name:document.getElementById('name').value,
         email:document.getElementById('email').value,
-        mobile_no:document.getElementById('mobileno').value,
+        mobile_no:document.getElementById('mobile_no').value,
         grades:document.getElementById('grades').value,
         sex:document.getElementById('sex').value,
         dob:document.getElementById('dob').value,
-        address:document.getElementById('regadd').value,
+        address:document.getElementById('address').value,
         nationality:document.getElementById('nationality').value,
         race:document.getElementById('race').value,
         userid:document.getElementById('userid').value
