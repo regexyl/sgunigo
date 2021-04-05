@@ -2,12 +2,12 @@ const fetch = require('node-fetch')
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const Profile = require('../models/Profile')
+const Profile = require('../models/Profile');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const applications_api = 'http://application:5001/application/'
-
+const IP_ADDRESS='http://172.20.10.4.';
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
