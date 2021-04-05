@@ -3591,26 +3591,3 @@ ul#courses_applied.list-unstyled {
 #applied {
   margin-bottom: 3.5rem;
 }
-
-/* Animation for tables (from https://stackoverflow.com/questions/37375625/how-to-animate-toggling-of-table-rows/37376274) */
-table {
-  border-collapse: collapse;
-}
-tr {
-  border-bottom: 1px solid #fff;
-}
-tr, td {
-  padding: 0;
-}
-tr td div {
-  max-height: 0;
-  padding: 0 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: max-height 0.3s, padding 0.3s;
-}
-tr.active td div {
-  max-height: 100px;
-  padding: 10px 10px;
-  transition: max-height 0.6s, padding 0.6s;
-}
