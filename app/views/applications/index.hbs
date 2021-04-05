@@ -37,7 +37,7 @@
             <div class="card horizontal">
             <div class="card-stacked white-text">
                 {{#unless userProfileExists}}
-                <div class="card-content red darken-1">
+                <div class="bg-danger text-light">
                 <p><b>You have not filled in your profile details yet. Use SingPass' MyInfo to fill it up!</b></p>
                 </div>
                 {{/unless}}
@@ -59,7 +59,7 @@
     <br>
 
  <!--/ Title row end -->
-
+    <input type="hidden" name="userid" id="userid" value={{userId}}>
     <!-- Body -->
     <div class="row">
         <div class="container" id="applied">
@@ -94,16 +94,18 @@
             {{/if}}
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-
         <div class="container" id="outstanding_payments">
-            <h3 class="status">Outstanding payments</h3>
+
+            <div class="payment-section">
+                <div class="element-left"><h3 class="status">Outstanding payments</h3></div>
+                <!-- Button to toggle between pay for INDIVIDUAL applications or ALL TOGETHER -->
+                <div class="toggle" class="element-right"> 
+                    <input type="checkbox" id="switch" /><label class="toggle-label" for="switch">Toggle</label>
+                </div>
+            </div>
 
             {{#if unpaidApplications.applications}}
-                <table class="table table-hover">
+                <table class="table table-hover" id="individualApps">
                     <thead>
                         <tr>
                         <th>University</th>
@@ -115,7 +117,7 @@
                     <tbody>
                     {{#each unpaidApplications.applications}}
                     <tr>
-                        <td>
+                        <td data-toggle="tooltip" data-placement="right" title="Course 1: {{course1}}, Course 2: {{course2}}, Course 3: {{course3}}">
                             {{#ifEquals university "NUS"}}
                             National University of Singapore
                             {{/ifEquals}}
@@ -179,6 +181,68 @@
                     </tr>
                 {{/each}}
                 </tbody>
+                </table>
+
+                <!-- Pay all fees together -->
+                <table class="table table-hover" id="allApps" style="display:none">
+                    <thead>
+                        <tr>
+                            <th>University</th>
+                            <th>Last Modified</th>
+                            <th>Fee (SGD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each unpaidApplications.applications}}
+                        <tr>
+                        <td data-toggle="tooltip" data-placement="right" title="Course 1: {{course1}}, Course 2: {{course2}}, Course 3: {{course3}}">
+                            {{#ifEquals university "NUS"}}
+                            National University of Singapore
+                            {{/ifEquals}}
+                            {{#ifEquals university "NTU"}}
+                            Nanyang Technological University
+                            {{/ifEquals}}
+                            {{#ifEquals university "SMU"}}
+                            Singapore Management University
+                            {{/ifEquals}}
+                            {{#ifEquals university "SIT"}}
+                            Singapore Institute of Technology
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUSS"}}
+                            Singapore University of Social Sciences
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUTD"}}
+                            Singapore University of Technology and Design
+                            {{/ifEquals}}
+                        </td>
+                        <td>{{modified}}</td>
+                        <td id="uni_fee">
+                            {{#ifEquals university "NUS"}}
+                            $10
+                            {{/ifEquals}}
+                            {{#ifEquals university "NTU"}}
+                            $21.40
+                            {{/ifEquals}}
+                            {{#ifEquals university "SMU"}}
+                            $15
+                            {{/ifEquals}}
+                            {{#ifEquals university "SIT"}}
+                            $18
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUSS"}}
+                            $15
+                            {{/ifEquals}}
+                            {{#ifEquals university "SUTD"}}
+                            $0
+                            {{/ifEquals}}
+                        </td>
+                        {{/each}}
+                        <tr>
+                            <td colspan="3">
+                                <button type="button" class="btn btn-outline-danger btn-block payment-all-btn" value="Pay for all applications" price="" data-toggle="modal" data-target="#exampleModalCenter">Pay All</button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             {{else}}
             <p>You don't have any outstanding payments.</p>
