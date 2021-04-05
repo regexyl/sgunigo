@@ -102,10 +102,7 @@
 
 				}
 			});
-
-
 		}
-
 
 		// Prefill Online Form with MyInfo data
 		function prefillForm(data) {
@@ -128,7 +125,7 @@
 			}
 			var formValues = {
 				"nric": str(data.uinfin),
-				"name": str(data.name),
+				"applicant_name": str(data.name),
 				"sex": str(data.sex),
 				"race": str(data.race),
 				"nationality": str(data.nationality),
@@ -166,7 +163,7 @@
 		function populate(frm, data) {
 			$.each(data, function(key, value) {
 				$('[name=' + key + ']', frm).val(value);
-				//$('[name=' + key + ']', frm).prop('disabled', true);
+				$('[name=' + key + ']', frm).prop('disabled', true);
 			});
 		}
 
@@ -277,9 +274,9 @@
 								<input type="text" class="form-control" name="grades" id="grades" value="{{userProfile.grades}}" required>
 							</div>
 						</div>
-						<!-- Hidden field: User ID-->
-						<input type="hidden" name="userid" id="userid" value="{{userId}}">
 					</div>
+					<!-- Hidden field: User ID-->
+					<input type="hidden" name="userid" id="userid" value="{{userId}}">
 				</div>
 			</div>
 		</form>

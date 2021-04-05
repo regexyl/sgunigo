@@ -7,9 +7,9 @@ submitButton.addEventListener('click',async function(){
     // expected output: "resolved"
     var nric=document.getElementById('nric').value;
     var url='http://localhost:5000/applicant_details/'.concat(nric);
-    data={
+    const profile = {
         nric:document.getElementById('nric').value,
-        applicant_name:document.getElementById('name').value,
+        applicant_name:document.getElementById('applicant_name').value,
         email:document.getElementById('email').value,
         mobile_no:document.getElementById('mobile_no').value,
         grades:document.getElementById('grades').value,
@@ -20,10 +20,10 @@ submitButton.addEventListener('click',async function(){
         race:document.getElementById('race').value,
         userid:document.getElementById('userid').value
       }
-        console.log(JSON.stringify(data));
+        console.log(JSON.stringify(profile));
         const settings = {
             method: 'POST',
-            body: JSON.stringify(data), 
+            body: JSON.stringify(profile), 
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -42,7 +42,6 @@ submitButton.addEventListener('click',async function(){
             console.log(e);
         }   
 
- 
 });
 if (authLevel == 'L0') {
     $("#formPerson").show();
