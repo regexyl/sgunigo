@@ -7,7 +7,8 @@ const Profile = require('../models/Profile');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const applications_api = 'http://application:5001/application/'
-const IP_ADDRESS='http://172.20.10.4.';
+const IP_ADDRESS='http://172.20.10.4.'
+const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
