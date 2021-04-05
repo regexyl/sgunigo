@@ -12,6 +12,7 @@
 	<script src="/jquery/purl.js"></script>
 
 	<script>
+
 		// SETUP VARIABLES
 		var scrollToAppForm = false;
 
@@ -60,7 +61,6 @@
 				callAuthoriseApi();
 				console.log('#formAuthorise')
 			});
-
 		});
 
 		// Function for calling API #1 - Authorise
@@ -98,8 +98,6 @@
 						// error occured
 						alert("ERROR:" + JSON.stringify(data.msg));
 					}
-
-
 				}
 			});
 		}
@@ -132,7 +130,7 @@
 				"dob": str(data.dob),
 				"email": str(data.email),
 				"mobile_no": str(data.mobileno.prefix) + str(data.mobileno.areacode) + " " + str(data.mobileno.nbr),
-				"address": address
+				"address": address,
 			};
 
 			// Populate values
@@ -153,7 +151,6 @@
 
 		// CALLBACK HANDLER
 		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
-			console.log('this.location.href has callback?')
 			scrollToAppForm = true;
 
 			// call the backend server APIs
@@ -206,7 +203,6 @@
 					</div>
 			</div>
 		</div>
-
 		<form id="formApplication" class="toggle_content">
 			<div class="container">
 				<div class="row justify-content-around">
@@ -274,9 +270,11 @@
 								<input type="text" class="form-control" name="grades" id="grades" value="{{userProfile.grades}}" required>
 							</div>
 						</div>
+						<!-- Hidden field: User ID-->
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="userid" id="userid" value="{{userId}}" required>
+						</div>
 					</div>
-					<!-- Hidden field: User ID-->
-					<input type="hidden" name="userid" id="userid" value="{{userId}}">
 				</div>
 			</div>
 		</form>
@@ -285,6 +283,21 @@
 		</div>
 
 	</section>
+	<script>
+		// Save User ID even when redirected to SingPass MyInfo page
+		const userid = $("#userid").val()
+		if (userid !== '') {
+			localStorage.setItem('saveUserId', userid);
+			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
+		} else {
+			const setUserId = localStorage.getItem('saveUserId');
+			console.log(`getItem "saveUserId" = ${String(setUserId)} in localStorage`)
+			userIdCopy = setUserId.slice()
+			console.log(`userIdCopy: ${userIdCopy}`)
+			$('#userid').attr('value', userIdCopy)
+			localStorage.removeItem('saveUserId')
+		}
+	</script>
 
 	<!-- jQuery -->
 	<script src="/jquery/jquery.min.js"></script>
