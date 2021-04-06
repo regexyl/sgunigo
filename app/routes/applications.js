@@ -6,9 +6,10 @@ const Profile = require('../models/Profile');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+
 const applications_api = 'http://application:5001/application/'
-const IP_ADDRESS='http://172.20.10.4'
-const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
+const applicant_details_api = 'http://applicant:5000/applicant_details/id/'
+
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
@@ -40,8 +41,13 @@ router.get("/", ensureAuth, async (req, res) => {
 // @route   GET /applications/apply
 router.get("/apply", ensureAuth, async (req, res) => {
   try {
-    const userProfile = await Profile.findOne({ user: req.user.id }).lean()
     const userId = req.user.id
+    const settings = {
+      method: 'GET'
+    };
+    const fetchResponse = await fetch(applicant_details_api.concat(userId), settings)
+    const userProfileResponse = await fetchResponse.json()
+    const userProfile = userProfileResponse.data
     res.render("applications/apply", {
       layout: "apply",
       userProfile,

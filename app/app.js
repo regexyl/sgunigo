@@ -44,10 +44,14 @@ app.engine(
 );
 app.set("view engine", ".hbs"); // default extension is .hbs
 
-// Handlebars helper function
+// Handlebars helper functions
 const hbs = exphbs.create({});
 hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+hbs.handlebars.registerHelper('hideNric', function(nric) {
+  return '*****'.concat(nric.slice(5))
 });
 
 // Sessions

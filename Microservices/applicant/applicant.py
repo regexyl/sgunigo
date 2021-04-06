@@ -19,7 +19,7 @@ load_dotenv(dotenv_path)
 MYSQL_URI = 'mysql+mysqlconnector://root' + os.getenv('MYSQL_PASSWORD') + '@localhost:' + os.getenv('MYSQL_PORT') + '/' + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 3600}
  
 db = SQLAlchemy(app)
 
@@ -141,19 +141,6 @@ def find_by_userid(userid):
 def create_applicant(nric):
     data = request.get_json(force=True)
     applicant = applicant_details(**data)
- 
-    # if (applicant_details.query.filter_by(nric=nric).first()):
-    #     # Update applicant details if it exists
-
-    #     return jsonify(
-    #         {
-    #             "code": 400,
-    #             "data": {
-    #                 "nric": nric
-    #             },
-    #             "message": "Applicant already exists, changes will be updated."
-    #         }
-    #     ), 400
  
     try:
         db.session.merge(applicant)
