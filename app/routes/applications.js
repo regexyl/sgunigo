@@ -1,5 +1,8 @@
 const fetch = require('node-fetch')
 const express = require("express");
+const bodyParser = require('body-parser')
+const multer = require('multer')
+const uploadDoc = require('../config/gcp-helpers')
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Profile = require('../models/Profile')
@@ -57,5 +60,29 @@ router.get("/apply", ensureAuth, async (req, res) => {
     res.render('error/500')
   }
 });
+
+// Multer configs
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+})
+
+router.use(multerMid.single('file'))
+
+// Post file in application to Google Cloud Storage
+router.post('/apply', async (req, res, next) => {
+  try {
+    console.log('CONNECTED TO POST APPLY IN ROUTER')
+    const myFile = req.file
+    const userid = req.user.id
+    console.log(myFile, userid)
+    const docUrl = await uploadDoc(myFile, userid)
+    res.status(200)
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router;

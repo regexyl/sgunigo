@@ -17,7 +17,6 @@ const bodyParser = require('body-parser');
 // Load config - pass  object with global variables to path
 dotenv.config({ path: `./config/${process.env.NODE_ENV}.env` });
 
-console.log(process.env.MYINFO_APP_REDIRECT_URL)
 // Passport config
 require("./config/passport")(passport); // pass in const passport as an argument - refer to passport.js' module.exports function argument
 
@@ -25,7 +24,6 @@ connectDB();
 const app = express();
 
 // Body parser - added for POST request in stories/add
-app.use(express.urlencoded({ extended: false })); // If extended is false, you cannot post "nested objects" e.g. { person: { name: cw } }
 app.use(cookieParser());
 app.use(express.json());
 

@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-
     <script src="/jquery/jquery.min.js"></script>
 	<script src="/jquery/purl.js"></script>
 
@@ -178,7 +177,6 @@
 				return "";
 		}
 	</script>
-
 </head>
 
 <body class="myinfo">
@@ -193,13 +191,14 @@
 		<div class="container">
 			<div class="row justify-content-center">
 					<div class="hero-content-div text-center">
-						<div class="hero-content">
+						<div class="hero-content" style="line-height: 20px;">
 							<h1>Personal Details</h1>
-							<p>Click on the button below to pre-fill your form using SingPass.</p>
+							<p style="margin-bottom: 0;">Click on the button below to pre-fill your form using SingPass.</p>
+							<br>
 						</div>
-						<img src="images/singpass_logo.png" alt="">
+						<img src="images/singpass_logo.png" width="30%" style="margin-bottom: 15px;" alt="">
 						<form id="formAuthorise">
-							<a href="#" onclick="$(this).closest('form').submit()" class="btn btn-danger"><img src="images/retrieve-myinfo.svg" alt=""></a>
+							<a href="#" onclick="$(this).closest('form').submit()" class="btn" width="25%"><img src="images/retrieve-myinfo.svg" alt=""></a>
 						</form>
 					</div>
 			</div>
