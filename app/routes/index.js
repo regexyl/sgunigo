@@ -71,8 +71,8 @@ var _personApiUrl = process.env.MYINFO_API_PERSON;
 
 var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,noa-basic,ownerprivate,cpfcontributions,cpfbalances";
 
-const applicant_details_url = 'http://applicant:5000/applicant_details/'
-
+const applicant_details_url = 'http://172.20.10.4:8000/applicant/'
+const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT';
 // @desc  Show profile page
 // @route GET /profile
 router.get('/profile', ensureAuth, async (req, res) => {
@@ -81,7 +81,7 @@ router.get('/profile', ensureAuth, async (req, res) => {
     const settings = {
       method: 'GET'
     };
-    const fetchUserProfile = await fetch(applicant_details_url.concat('id/', userId), settings)
+    const fetchUserProfile = await fetch(applicant_details_url.concat('id/', userId,'?apikey',API_KEY_APPLICANT), settings)
     const userProfileResponse = await fetchUserProfile.json()
     const userProfile = userProfileResponse.data
     res.render("profile", { 
