@@ -41,8 +41,13 @@ router.get("/", ensureAuth, async (req, res) => {
 // @route   GET /applications/apply
 router.get("/apply", ensureAuth, async (req, res) => {
   try {
-    const userProfile = await Profile.findOne({ user: req.user.id }).lean()
     const userId = req.user.id
+    const settings = {
+      method: 'GET'
+    };
+    const fetchResponse = await fetch(applicant_details_api.concat(userId), settings)
+    const userProfileResponse = await fetchResponse.json()
+    const userProfile = userProfileResponse.data
     res.render("applications/apply", {
       layout: "apply",
       userProfile,

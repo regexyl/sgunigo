@@ -5,13 +5,50 @@ $(document).on('click', ".payment-btn", (event) => {
   $("#display-price").html(event.target.attributes.price.value)
 })
 
+// Get total price of all unpaid apps
+let totalArr = []
+$('.payment-btn').each(function() { 
+    totalArr.push($(this).attr('price')); 
+    console.log(`totalArr: ${totalArr}`)
+});
+
+$(document).on('click', ".payment-all-btn", (event) => {
+    $("#display-school").html(event.target.attributes.value.value)
+
+    let total = 0
+    totalArr.forEach(uniPrice => total += Number(uniPrice))
+
+    $("#display-price").html(total)
+  })
+
+let individualAppsOn = true
+
+// Toggle between INDIVIDUAL PAYMENTS and PAY TOGETHER
+$(document).on('click', "#switch", () => {
+    if ($('#switch').is(':checked')) {
+        $('#individualApps').hide()
+        $('#allApps').show()
+        individualAppsOn = false
+    } else {
+        $('#individualApps').show()
+        $('#allApps').hide()
+        individualAppsOn = true
+    }
+})
+
+// Enable tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Paypal functions
 function initPayPalButton() {
       var shipping = 0;
-  var quantity = parseInt();
-  var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
-  if (!isNaN(quantity)) {
-      quantitySelect.style.visibility = "visible";
-  }
+      var quantity = parseInt();
+      var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
+    if (!isNaN(quantity)) {
+        quantitySelect.style.visibility = "visible";
+    }
   var orderDescription = "Please choose the respective University's application fee";
   if(orderDescription === '') {
       orderDescription = 'Item';
@@ -80,10 +117,19 @@ function initPayPalButton() {
 
               // Update applications database with PAID status
               try {
-                  const appId = $("#display-appId").text()
-                  const update_application_url = 'http://localhost:5001/application/'.concat(appId)
-                  alert(update_application_url)
-                  const fetchResponse = fetch(update_application_url, {method: 'PUT'});
+                  if (individualAppsOn) {
+                      console.log(`display-appId is ${$("#display-appId")}`)
+                      const appId = $("#display-appId").text()
+                      const update_application_url = 'http://localhost:5001/application/'.concat(appId)
+                      alert(update_application_url)
+                      const fetchResponse = fetch(update_application_url, {method: 'PUT'});
+                  } else {
+                    const userid = $('#userid').val()
+                    console.log(`userid is ${userid}`)
+                    const update_application_url = 'http://localhost:5001/application/all/'.concat(userid)
+                    alert(`UPDATE ALL: ${update_application_url}`)
+                    const fetchResponse = fetch(update_application_url, {method: 'PUT'});
+                  }
                   window.location.href = "/applications";
               } catch (e) {
                   console.log(e);

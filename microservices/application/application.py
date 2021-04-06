@@ -26,7 +26,7 @@ load_dotenv(dotenv_path)
 MYSQL_URI = 'mysql+mysqlconnector://root' + os.getenv('MYSQL_PASSWORD') + '@localhost:' + os.getenv('MYSQL_PORT') + '/' + tablename
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or MYSQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 299}
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 3600}
 
 db = SQLAlchemy(app)
 
@@ -264,6 +264,45 @@ def update_application(application_id):
                 "code": 500,
                 "data": {
                     "application_id": application_id
+                },
+                "message": "An error occurred while updating the application. " + str(e)
+            }
+        ), 500
+
+#Update ALL application statuses to "PAID"
+@app.route("/application/all/<string:userid>", methods=['PUT'])
+def update_all_applications(userid):
+    try:
+        unpaid_applications = application.query.filter_by(userid=userid, status="UNPAID")
+        if not unpaid_applications:
+            return jsonify(
+                {
+                    "code": 404,
+                    "data": {
+                        "userid": userid
+                    },
+                    "message": "You have no unpaid applications."
+                }
+            ), 404
+
+        # update status
+        # for application in unpaid_applications:
+        #     application.status = 'PAID'
+        unpaid_applications.update({'status':'PAID'})
+        db.session.commit()
+        print(unpaid_applications.json())
+        return jsonify(
+            {
+                "code": 200,
+                "data": unpaid_applications.json()
+            }
+        ), 200
+    except Exception as e:
+        return jsonify(
+            {
+                "code": 500,
+                "data": {
+                    "userid": userid
                 },
                 "message": "An error occurred while updating the application. " + str(e)
             }
