@@ -111,7 +111,7 @@ submitButton.addEventListener('click',async function(){
       };
       try {
           // const fetchResponse = await fetch(IP_ADDRESS.concat(`:5100/place_application`), settings);
-          const fetchResponse = await fetch(IP_ADDRESS.concat(`:8000/place_application?apikey=`).concat(API_KEY_APPLICANT), settings);
+          const fetchResponse = await fetch(IP_ADDRESS.concat(`:8000/place_application?`), settings);
           const response = await fetchResponse.json();
           if (response.code==201){
             alert('Successful application.')

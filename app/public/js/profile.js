@@ -6,9 +6,9 @@ submitButton.addEventListener('click',async function(){
     // console.log(response);
     // expected output: "resolved"
     var nric=document.getElementById('nric').value;
-    const IP_ADDRESS='http://172.20.10.4'
-    const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
-    const url=IP_ADDRESS.concat(':8000/applicant/',nric,'?apikey=',API_KEY_APPLICANT)
+    const IP_ADDRESS='http://localhost'
+    //const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
+    const url=IP_ADDRESS.concat(':8000/applicant/',nric)
     // var url='http://localhost:8000/applicant_details/'.concat(nric);
     const profile = {
         nric:document.getElementById('nric').value,
