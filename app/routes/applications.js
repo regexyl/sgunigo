@@ -7,8 +7,8 @@ const Profile = require('../models/Profile');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
-const applications_api = 'http://application:5001/application/'
-const applicant_details_api = 'http://applicant:5000/applicant_details/id/'
+const applications_api = 'http://localhost:5001/application/'
+const applicant_details_api = 'http://localhost:5000/applicant_details/id/'
 
 // @desc    View dashboard of applications
 // @route   GET /applications/index

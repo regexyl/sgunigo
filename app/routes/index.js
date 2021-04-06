@@ -71,7 +71,7 @@ var _personApiUrl = process.env.MYINFO_API_PERSON;
 
 var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,noa-basic,ownerprivate,cpfcontributions,cpfbalances";
 
-const applicant_details_url = 'http://applicant:5000/applicant_details/'
+const applicant_details_url = 'http://localhost:5000/applicant_details/'
 
 // @desc  Show profile page
 // @route GET /profile
