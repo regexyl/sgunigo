@@ -45,7 +45,7 @@ router.get("/apply", ensureAuth, async (req, res) => {
     const settings = {
       method: 'GET'
     };
-    const fetchResponse = await fetch(applicant_details_api.concat(userId), settings)
+    const fetchResponse = await fetch(IP_ADDRESS.concat(':8000/', 'applicant/id/', userId, '?apikey=',API_KEY_APPLICANT), settings)
     const userProfileResponse = await fetchResponse.json()
     const userProfile = userProfileResponse.data
     res.render("applications/apply", {
