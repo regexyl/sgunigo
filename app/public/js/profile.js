@@ -10,14 +10,14 @@ submitButton.addEventListener('click',async function(){
     const profile = {
         nric:document.getElementById('nric').value,
         applicant_name:document.getElementById('applicant_name').value,
+        sex:document.getElementById('sex').value,
+        race:document.getElementById('race').value,
+        nationality:document.getElementById('nationality').value,
+        dob:document.getElementById('dob').value,
         email:document.getElementById('email').value,
         mobile_no:document.getElementById('mobile_no').value,
-        grades:document.getElementById('grades').value,
-        sex:document.getElementById('sex').value,
-        dob:document.getElementById('dob').value,
         address:document.getElementById('address').value,
-        nationality:document.getElementById('nationality').value,
-        race:document.getElementById('race').value,
+        grades:document.getElementById('grades').value,
         userid:document.getElementById('userid').value
       }
         console.log(JSON.stringify(profile));

@@ -34,11 +34,14 @@
                             <th rowspan="2" >No.</th>
                             <th rowspan="2">Name</th>
                             <th rowspan="2">NRIC</th>
-                            <th rowspan="2">Grades</th>
+                            <th rowspan="2">Sex</th>
+                            <th rowspan="2">Race</th>
                             <th rowspan="2">Nationality</th>
+                            <th rowspan="2">DOB</th>
                             <th rowspan="2">Email</th>
-                            <th rowspan="2">Address</th>
                             <th rowspan="2">Mobile No.</th>
+                            <th rowspan="2">Address</th>
+                            <th rowspan="2">Grades</th>
                             <th colspan="3" style="text-align: center;">Courses</th>
                             <th rowspan="2">Personal Statement</th>
                         </tr>
@@ -53,12 +56,15 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>{{applicant_name}}</td>
-                            <td>{{nric}}</td>
-                            <td>{{grades}}</td>
+                            <td>{{#hideNric nric}}{{/hideNric}}</td>
+                            <td>{{sex}}</td>
+                            <td>{{race}}</td>
                             <td>{{nationality}}</td>
+                            <td>{{dob}}</td>
                             <td>{{email}}</td>
-                            <td>{{address}}</td>
                             <td>{{mobile_no}}</td>
+                            <td>{{address}}</td>
+                            <td>{{grades}}</td>
                             <td>{{course1}}</td>
                             <td>{{course2}}</td>
                             <td>{{course3}}</td>
