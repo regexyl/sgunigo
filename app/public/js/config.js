@@ -1,4 +1,4 @@
-const IP_ADDRESS='http://172.20.10.4.'
+const IP_ADDRESS='http://172.20.10.4'
 
 // const IP_ADDRESS='http://localhost';
 
