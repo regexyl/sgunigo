@@ -1,6 +1,6 @@
 // Display modal details
-const IP_ADDRESS='http://172.20.10.4:8000';
-const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT';
+// const IP_ADDRESS='http://172.20.10.4:8000';
+// const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT';
 
 $(document).on('click', ".payment-btn", (event) => {
   $("#display-school").html(event.target.attributes.value.value)
@@ -123,14 +123,14 @@ function initPayPalButton() {
                   if (individualAppsOn) {
                       console.log(`display-appId is ${$("#display-appId")}`)
                       const appId = $("#display-appId").text()
-                      const update_application_url = IP_ADDRESS.concat('/application/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
+                      const update_application_url = IP_ADDRESS.concat(':8000/application/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
                       alert(update_application_url)
                       const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   } else {
                     const userid = $('#userid').val()
                     console.log(`userid is ${userid}`)
                     
-                    const update_application_url = IP_ADDRESS.concat('/application/all/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
+                    const update_application_url = IP_ADDRESS.concat(':8000/application/all/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
                     alert(`UPDATE ALL: ${update_application_url}`)
                     const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   }
