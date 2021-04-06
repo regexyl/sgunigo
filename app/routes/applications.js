@@ -19,9 +19,9 @@ router.get("/", ensureAuth, async (req, res) => {
     const settings = {
         method: 'GET'
     };
-      const paidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/paid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
+      const paidFetchResponse = await fetch(applications_api, settings);
       const paidApplications = await paidFetchResponse.json();
-      const unpaidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/unpaid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
+      const unpaidFetchResponse = await fetch(applications_api, settings);
       const unpaidApplications = await unpaidFetchResponse.json();
       res.render("applications/index", {
         layout: "main_session",
