@@ -13,7 +13,7 @@ console.log(`IP address: ${process.env.IP_ADDRESS}`);
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const applications_api = (process.env.IP_ADDRESS).concat(':8000/application/');
+const applications_api = (process.env.IP_ADDRESS).concat(':5001/application/');
 
 // @desc    View dashboard for university admins
 // @route   GET /admin/:university
