@@ -76,8 +76,9 @@
 
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
+			alert('entered function callServerAPIs')
 			var authCode = $.url(this.location.href).param('code');
-			//alert ("authorisation code="+authCode);
+			alert ("authorisation code="+authCode);
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
@@ -87,7 +88,7 @@
 				},
 				type: "POST", // post to serverside
 				success: function(data) {
-					//alert ("data:"+JSON.stringify(data));
+					alert ("data:"+JSON.stringify(data));
 					// successful response from serverside
 					if (data.status == "OK") { // successful
 						// fill up the application form
@@ -286,6 +287,7 @@
 	<script>
 		// Save User ID even when redirected to SingPass MyInfo page
 		const userid = $("#userid").val()
+		alert(userid)
 		if (userid !== '') {
 			localStorage.setItem('saveUserId', userid);
 			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
