@@ -52,6 +52,10 @@ hbs.handlebars.registerHelper('hideNric', function(nric) {
   return '*****'.concat(nric.slice(5))
 });
 
+hbs.handlebars.registerHelper('postalCode', function(address) {
+  return address.slice(-6)
+});
+
 // Sessions
 app.use(
   session({
