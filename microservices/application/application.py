@@ -49,6 +49,7 @@ class application(db.Model):
     course2 = db.Column(db.String(100), nullable=False)
     course3 = db.Column(db.String(100), nullable=False)
     statement = db.Column(db.String(1000), nullable=False)
+    file = db.Column(db.String(200), nullable=False)
     status = db.Column(db.String(10), nullable=False, server_default='UNPAID')
     created = db.Column(db.DateTime, nullable=False, server_default=func.now())
     modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
@@ -72,6 +73,7 @@ class application(db.Model):
             "course2": self.course2,
             "course3": self.course3,
             "statement": self.statement,
+            "file": self.file,
             "status": self.status,
             "created": self.created,
             "modified": self.modified,

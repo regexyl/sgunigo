@@ -18,7 +18,7 @@
         </div>
         </div>
         <div class="viewport">
-        <form action="/profile" method="POST" id="formApplication" class="toggle_content">
+        <form action="/applications/apply" method="POST" id="formApplication" class="toggle_content" enctype="multipart/form-data">
         <ul class="slide-container">
             <li class="slide" data-tag="Personal Details">
             <div class="sized-container special">
@@ -101,14 +101,14 @@
 
             <li class="slide" data-tag="Course Preference">
 			<div class="sized-container special">
+				<div class="col-md-12 col-lg-6 form-box mb-4">
                 <h1>2. Course Preference</h1>
-                <h2>Please Indicate Your Top 3 Choice of Course</h2><br>
+				<br>
 				
-				<div class="form-group">
-				<table class="table">
+				<div class="form-group table-course">
 					<div class="form-group row">
 						<div class="col-sm-5">
-						<label for="university" class="font-weight-bold">Choose a University:</label>
+						<label for="university" class="">Choose a university:</label>
 						<select id="university" name="university" class="form-control col-sm-12">
 							<option>Choose a university</option>
 							<option value="NUS">NUS</option>
@@ -119,52 +119,67 @@
 							<option value="SUTD">SUTD</option>
 						</select>
 						</div>
-					</div><br>
+					</div>
+					<br>
+					<label for="">Rank your course preference:</label>
+					<table class="table">
+						<br>
 
-					<thread>
-						<tr>
-							<th scope="col">Choice Order</th>
-							<th scope="col">Course Name</th>
-						</tr>
-					</thread>
-					<tbody>
-						<tr>
-							<th scope="row">1st</th>
-							<td>
-							<div class="form-group row">
-							<div class="col-sm-9">
-								<input type="text" name='course1' id='course1' class="form-control" placeholder="COURSE NAME" required>
-							</div>
-							</div>
-							</td>
-						</tr>
+						<thread>
+							<tr>
+								<th scope="col">Choice Order</th>
+								<th scope="col">Course Name</th>
+							</tr>
+						</thread>
+						<tbody>
+							<tr>
+								<th scope="row">1st</th>
+								<td>
+								<div class="form-group row">
+								<div class="col-sm-9">
+									<input type="text" name='course1' id='course1' class="form-control" placeholder="COURSE NAME" required>
+								</div>
+								</div>
+								</td>
+							</tr>
 
-						<tr>
-							<th scope="row">2nd</th>
-							<td>
-							<div class="form-group row">
-							<div class="col-sm-9">
-								<input type="text" name='course2' id='course2' class="form-control" placeholder="COURSE NAME" required>
-							</div>
-							</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">3rd</th>
-							<td>
-							<div class="form-group row">
-							<div class="col-sm-9">
-								<input type="text" name='course3' id='course3' class="form-control" placeholder="COURSE NAME" required>
-							</div>
-							</div>
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
+							<tr>
+								<th scope="row">2nd</th>
+								<td>
+								<div class="form-group row">
+								<div class="col-sm-9">
+									<input type="text" name='course2' id='course2' class="form-control" placeholder="COURSE NAME" required>
+								</div>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">3rd</th>
+								<td>
+								<div class="form-group row">
+								<div class="col-sm-9">
+									<input type="text" name='course3' id='course3' class="form-control" placeholder="COURSE NAME" required>
+								</div>
+								</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				<div class="form-group">
+					<label>Upload your A-Level/Polytechnic transcripts:</label>
+					<div class="input-group drop-zone">
+						<span class="drop-zone__prompt">
+							<svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+							</svg><br>
+							Drop file here or click to upload
+						</span>
+						<input type="file" name="file" id="file" class="drop-zone__input" value="{{userProfile.filename}}" required>
+					</div>
 				</div>
             </div>
-
+		</div>
 			<div class="col-md-12 text-center">
 				<input type="submit" class="btn btn-danger" id="submit" value="Submit">
 			</div>
@@ -177,7 +192,7 @@
             <button class="next">next</button>
             <button class="previous">previous</button>
         </div>
-    </div>
+    	</div>
 
 
 

@@ -95,20 +95,6 @@ router.get('/profile', ensureAuth, async (req, res) => {
   }
 });
 
-// @desc  Process add profile
-// @route POST /profile
-router.post('/profile', async (req, res) => {
-  try {
-    // POST to MongoDB
-    req.body.user = req.user.id
-    await Profile.updateOne({user: req.user.id}, req.body, {upsert: true}) // upsert: creates a new record if it doesn't exist
-    res.redirect('/applications')
-  } catch (err) {
-    console.error(err)
-    res.render('error/500')
-  }
-});
-
 // callback function - directs back to home page
 router.get('/callback', ensureAuth, function(req, res, next) {
   res.render("profile", {
