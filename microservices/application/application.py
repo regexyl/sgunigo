@@ -13,6 +13,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database
 from flask_cors import CORS
 from os import environ
+import smtplib, ssl
+from email.mime.text import MIMEText
 
 from datetime import datetime
 

@@ -25,15 +25,16 @@
             </div>
         </div>
     </div>
+    <br>
     <div style="display: flex; justify-content: center; align-items: center; margin: 0px 0px">
                 {{#if applications.Applications}}
                 <table class="table table-striped table-bordered" style="font-size:12px; width:1400px; line-height: 18px; word-wrap: break-word; table-layout:fixed">
                     <thead>
                         <tr>
-                            <th rowspan="2" width="2.5%">No.</th>
+                            <th rowspan="2" width="3.5%">No.</th>
                             <th rowspan="2">Name</th>
                             <th rowspan="2">NRIC</th>
-                            <th rowspan="2" width="6.3%">Sex</th>
+                            <th rowspan="2" width="5.5%">Sex</th>
                             <th rowspan="2" width="6%">Race</th>
                             <th rowspan="2">Nationality</th>
                             <th rowspan="2">DOB</th>
@@ -69,7 +70,7 @@
                             <td>{{course2}}</td>
                             <td>{{course3}}</td>
                             <td>{{statement}}</td>
-                            <td><button type="button" class="btn btn-secondary"><a href="https://storage.googleapis.com/sgunigo-files/{{userid}}{{userid}}.pdf" target="_blank">View</a></button></td>
+                            <td><button type="button" class="btn btn-secondary"><a href="https://storage.googleapis.com/sgunigo-files/{{userid}}{{userid}}.pdf" target="_blank" style="font-size:12px;">View</a></button></td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -78,3 +79,6 @@
                     <p>You do not have any applicants yet.</p>
                     {{/if}}
         </div>
+        <br>
+        <br>
+        <br>
