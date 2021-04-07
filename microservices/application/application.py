@@ -229,11 +229,11 @@ def create_application():
         body_of_email = '<p>Dear ' + applicant_name + ', \nYour application for ' + university1 + ' has been saved. Please confirm it via payment on your application dashbaord.'
 
         msg = MIMEText(body_of_email, 'html')
-        msg[‘Subject’] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
-        msg[‘From’] = 'sgunigo@email.com'
-        msg[‘To’] = receiver_email
+        msg['Subject'] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
+        msg['From'] = 'sgunigo@email.com'
+        msg['To'] = receiver_email
 
-        gmail_smtp = smtplib.SMTP_SSL(host = ‘smtp.gmail.com’, port = 465)
+        gmail_smtp = smtplib.SMTP_SSL(host = 'smtp.gmail.com', port = 465)
         gmail_smtp.login(user = sender, password = sender_password)
         gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
         gmail_smtp.quit()
