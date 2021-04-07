@@ -1,5 +1,5 @@
 module.exports = {
-    IP_ADDRESS: 'http://192.168.137.172.',
+    IP_ADDRESS: 'http://192.168.137.172',
     API_KEY_APPLICANT: 'AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT',
     API_KEY_ADMIN:'auo7YwJWqPspBa3YUn0jk5WSZNErdQFH'
   };
