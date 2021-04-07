@@ -25,7 +25,7 @@ def place_order():
     if request.is_json:
         try:
             application = request.get_json()
-            print("\nReceived an order in JSON:", application)
+            print("\nReceived an Application in JSON:", application)
 
             # do the actual work
             # 1. Send Application info 
