@@ -256,9 +256,6 @@ def update_application(application_id):
                 }
             ), 404
 
-        print(dict(application_put.json()))
-        print(type(application_put))
-
         data = dict(application_put.json())
 
         applicant_name=data["applicant_name"]
@@ -311,6 +308,8 @@ def update_application(application_id):
 def update_all_applications(userid):
     try:
         unpaid_applications = application.query.filter_by(userid=userid, status="UNPAID")
+        unpaid_applications_list = application.query.filter_by(userid=userid, status="UNPAID").all()
+
         if not unpaid_applications:
             return jsonify(
                 {
@@ -321,19 +320,12 @@ def update_all_applications(userid):
                     "message": "You have no unpaid applications."
                 }
             ), 404
-        
-        # update status
-        # for application in unpaid_applications:
-        #     application.status = 'PAID'
-        unpaid_applications.update({'status':'PAID'})
-        db.session.commit()
 
-        data = dict(unpaid_applications.json())
+        for app_sqlalchemy in unpaid_applications_list:
+            print('entered for loop')
 
-        print(data)
-
-        for app in data:
-
+            app = dict(app_sqlalchemy.json())
+            
             applicant_name=app["applicant_name"]
             userid1=app["userid"]
             university1=app["university"]
@@ -358,19 +350,26 @@ def update_all_applications(userid):
             gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
             gmail_smtp.quit()
 
-        print(unpaid_applications.json())
+        print('finshed for list')
+        unpaid_applications.update({'status':'PAID'})
+        print('pairpadiiasidj')
+        db.session.commit()
+
+        print('check check')
+
         return jsonify(
             {
                 "code": 200,
-                "data": unpaid_applications.json()
+                "message": 
             }
         ), 200
+
     except Exception as e:
         return jsonify(
             {
                 "code": 500,
                 "data": {
-                    "userid": userid
+                    "userid":"All applications paid for user ID: " + userid + "."
                 },
                 "message": "An error occurred while updating the application. " + str(e)
             }
