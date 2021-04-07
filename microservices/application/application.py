@@ -346,7 +346,7 @@ def update_all_applications(userid):
             sender = 'sgunigo@gmail.com'
             sender_password = 'g10t4sgunigo' # Not secure but for development purposes
 
-            body_of_email = 'Dear ' + applicant_name + ', <br>Your application for ' + university1 + ' has been saved.<br><br>Course 1: ' + course1 + '<br>Course 2: ' + course2 + '<br>Course 3: ' + course3 + '<br><br>Please confirm it via payment on your application dashbaord.'
+            body_of_email = 'Dear ' + applicant_name + ', <br><br>Your application for ' + university1 + ' has been submitted.<br><br>Course 1: ' + course1 + '<br>Course 2: ' + course2 + '<br>Course 3: ' + course3 + '<br><br>The university will inform you of their decision by May.'
 
             msg = MIMEText(body_of_email, 'html')
             msg['Subject'] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
