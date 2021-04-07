@@ -118,16 +118,21 @@ function initPayPalButton() {
               // Update applications database with PAID status
               try {
                   if (individualAppsOn) {
+
                       console.log(`display-appId is ${$("#display-appId")}`)
                       const appId = $("#display-appId").text()
                       const update_application_url = 'http://localhost:5001/application/'.concat(appId)
                       alert(update_application_url)
                       const fetchResponse = fetch(update_application_url, {method: 'PUT'});
+
                   } else {
+
                     const userid = $('#userid').val()
                     console.log(`userid is ${userid}`)
+
                     const update_application_url = 'http://localhost:5001/application/all/'.concat(userid)
                     alert(`UPDATE ALL: ${update_application_url}`)
+
                     const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   }
                   window.location.href = "/applications";
