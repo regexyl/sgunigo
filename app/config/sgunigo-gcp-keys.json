@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sgunigo-308813",
+  "private_key_id": "9920e2bfc2a39cff9c5bf5559718966a834d686e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDNuOGnzJy6NShz\njRpatIx4lsPPeefzoNPmBi0OeoDeSQMjmHoDFLueH/vsWRj2dG5QAy5KDWmHQbVG\nL7KB2iiH4Ovq89TjbBkZRq+nwquWqNsXFmrNCt8jwHi46oAfKqDtZ7LY5g7K4btT\n0NP3wlwy9Fn1pHXrhU0pft/RJ/7fHaeeVCe5t2i6ngkG05HqaJQD3j/AhRevHVIw\n1tla63T3PeDbFKIL97EvHySewD6ttUutkiC67uEqVyxj9PTzYPly4gBfRMDRlwoL\nmNSLBqEYSB9dYy32J9L9wv0N52yiFvNfPnRvGZEoonyXddmf8WUwpT6NCm2Tcjfh\nf5HKwkZZAgMBAAECgf9pmumRT2LP3qSlV19FW5RrUvmxyCK02MVDj71mxqbgym+S\nFkk2y63ZvmbUgpMN8TcFBpz8kWYFc6Ba0fa7h1dxvpoHl/lGcHdx7Oy/HG/OfLVQ\nuhvuphC7iafEmpyquHdkEkJSlcbXid61aBNoBvN4NMz5Yd4myTHohfjfUGjF9MY3\nPTdQ1347x29bMlhAgSyFzv0iQiOacwZnCHmiwjaBeiMUAqJ7ko2Z8Z+ZWzROwA+W\n9zDQtYts/ypVkltPN7gCr/63mFqXJhKui5Wl3NQnnor2FZcejp3czulxKo900mFd\nADJRaHli9sFLrk9mhK8kqDMwxmi8agEFwF9wIiECgYEA/1d7QxHO/idHxBc8mgSI\n21AnqDN7dD8NGHEUo0Kg+OYR2WhSzPPnDiEkJqwr5GUxuKR8SW856PZ49A5u2FBd\nHQQol5QSVtA2V0vM/RreScfIbH/4Q8vbdeHwHDUv0mQoXSLe0wT7mpfo3aAFb60w\npARGaRQxvewgz9S2BCZ8cmkCgYEAzkCnBvawdXeyeJ59vWVGTF9VfoBhlB+JPR9C\nh+gcBv8bhH/xoXxO5ziEiaIaAvQG1WrCLhWFMRTIIKNOi+eJkaOqTThvJpmkPEBL\n5Axs5C+ldlHjRAafV+iCo1JQraU+SUD8+j1FfYowqQNAe1JgfQDZifWROkPTx6As\n8W6w1nECgYEA7tts6O6tzT39ekeqXwFC7LVsg4G1SKb6nxSZE6fuYScHJ3LZkfPO\n/n6uDKceYAbxniHwSdmMOIrn1pXxxtRWZiBPwIu5JBCd5Md5uIL70dTbffOvz+vR\nHdL/A8QVOiCLSaSnAIs2ugTExx08OJ2wVJ3TJ9TGOz256/C1W+iMnZECgYADgYHV\nUngpZwF3n2oPwBrzzWMMpW4DMI4Kpe9hlAZ17/wtwmb/Ebfdok5OcJz0k+VR12C5\nm9AJx4qnU19QbX0fJqMMcPsistXh2E3x8GwhbNXpLvcn/tzSh7dAw3NvoDFw2VPz\nhPsbaS/uj4mXDw1o0ozgFXaEgQamjAh3iiQjYQKBgGQjy2PVjBXDPDsi2ZDJ2G0d\n/soasCRDqeNj2V3ku6y9cz73PqVLr36VptJTRj2sM9yYmqTjEe8Z09bT05aKAsg/\n5Nft7XY9BKniqOqFgP6+/fM1zjByFiVYtNKzPGxge20vn8hQLDiD0wqho24wwYrp\nQRKAEL2jV48e7XzW3HIz\n-----END PRIVATE KEY-----\n",
+  "client_email": "sgunigo-storage@sgunigo-308813.iam.gserviceaccount.com",
+  "client_id": "100759180389362290449",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sgunigo-storage%40sgunigo-308813.iam.gserviceaccount.com"
+}
