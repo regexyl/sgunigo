@@ -206,6 +206,8 @@ def create_application():
     data = request.get_json(force=True)
     userid1=data["userid"]
     university1=data["university"]
+    receiver_email=data["email"]
+
     if (application.query.filter_by(university=university1, userid=userid1).first()):
         return jsonify(
             {
@@ -220,6 +222,23 @@ def create_application():
     application_post = application(**data)
 
     try:
+        # Create email details sent for application confirmation
+        sender = 'sgunigo@gmail.com'
+        sender_password = 'g10t4sgunigo' # Not secure but for development purposes
+
+        body_of_email = '<p>Dear ' + applicant_name + ', \nYour application for ' + university1 + ' has been saved. Please confirm it via payment on your application dashbaord.'
+
+        msg = MIMEText(body_of_email, 'html')
+        msg[‘Subject’] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
+        msg[‘From’] = 'sgunigo@email.com'
+        msg[‘To’] = receiver_email
+
+        gmail_smtp = smtplib.SMTP_SSL(host = ‘smtp.gmail.com’, port = 465)
+        gmail_smtp.login(user = sender, password = sender_password)
+        gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
+        gmail_smtp.quit()
+
+        # Post application details to MySQL database
         db.session.add(application_post)
         db.session.commit()
     except Exception as e:
