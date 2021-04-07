@@ -256,7 +256,10 @@ def update_application(application_id):
                 }
             ), 404
 
-        data = application_put
+        print(dict(application_put.json()))
+        print(type(application_put))
+
+        data = dict(application_put.json())
 
         applicant_name=data["applicant_name"]
         userid1=data["userid"]
@@ -325,7 +328,9 @@ def update_all_applications(userid):
         unpaid_applications.update({'status':'PAID'})
         db.session.commit()
 
-        data = unpaid_applications
+        data = dict(unpaid_applications.json())
+
+        print(data)
 
         for app in data:
 
