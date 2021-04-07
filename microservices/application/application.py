@@ -204,6 +204,7 @@ def find_by_userid_unpaid(userid):
 @app.route("/application", methods=['POST'])
 def create_application():
     data = request.get_json(force=True)
+    applicant_name=data["applicant_name"]
     userid1=data["userid"]
     university1=data["university"]
     receiver_email=data["email"]
