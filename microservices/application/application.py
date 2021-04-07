@@ -320,6 +320,10 @@ def update_all_applications(userid):
                     "message": "You have no unpaid applications."
                 }
             ), 404
+        
+        unpaid_applications.update({'status':'PAID'})
+        print('pairpadiiasidj')
+        db.session.commit()
 
         for app_sqlalchemy in unpaid_applications_list:
             print('entered for loop')
@@ -350,17 +354,14 @@ def update_all_applications(userid):
             gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
             gmail_smtp.quit()
 
-        print('finshed for list')
-        unpaid_applications.update({'status':'PAID'})
-        print('pairpadiiasidj')
-        db.session.commit()
-
         print('check check')
 
         return jsonify(
             {
                 "code": 200,
-                "message": 
+                "message": {
+                    "userid":"All applications paid for user ID: " + userid + "."
+                }
             }
         ), 200
 
@@ -368,9 +369,6 @@ def update_all_applications(userid):
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "userid":"All applications paid for user ID: " + userid + "."
-                },
                 "message": "An error occurred while updating the application. " + str(e)
             }
         ), 500
