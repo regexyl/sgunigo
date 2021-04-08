@@ -33,7 +33,7 @@
                 <h3 class="section-sub-title">University Applications</h3>
             </div>
         
-        <div class="col s12 m7">
+        <div class="col s12 m7" style="margin-bottom: 2rem;">
             <div class="card horizontal">
             <div class="card-stacked white-text">
                 {{#unless userProfileExists}}
@@ -256,6 +256,8 @@
             <a class="btn btn-danger" href="/applications/apply">New Application</a>
         </div>
     </div>
+
+    {{_spinner-paypal}}
 
     <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

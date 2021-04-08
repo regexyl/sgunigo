@@ -86,7 +86,7 @@ router.get('/profile', ensureAuth, async (req, res) => {
     // const userProfile = userProfileResponse.data
     res.render("profile", { 
       layout: "empty",
-      userProfile,
+      // userProfile,
       userId
     })
   } catch (err) {

@@ -206,7 +206,6 @@ def create_application():
     data = request.get_json(force=True)
     userid1=data["userid"]
     university1=data["university"]
-    receiver_email=data["email"]
 
     if (application.query.filter_by(university=university1, userid=userid1).first()):
         return jsonify(
@@ -222,22 +221,6 @@ def create_application():
     application_post = application(**data)
 
     try:
-        # Create email details sent for application confirmation
-        sender = 'sgunigo@gmail.com'
-        sender_password = 'g10t4sgunigo' # Not secure but for development purposes
-
-        body_of_email = '<p>Dear ' + applicant_name + ', \nYour application for ' + university1 + ' has been saved. Please confirm it via payment on your application dashbaord.'
-
-        msg = MIMEText(body_of_email, 'html')
-        msg['Subject'] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
-        msg['From'] = 'sgunigo@email.com'
-        msg['To'] = receiver_email
-
-        gmail_smtp = smtplib.SMTP_SSL(host = 'smtp.gmail.com', port = 465)
-        gmail_smtp.login(user = sender, password = sender_password)
-        gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
-        gmail_smtp.quit()
-
         # Post application details to MySQL database
         db.session.add(application_post)
         db.session.commit()
@@ -259,6 +242,7 @@ def create_application():
 #Update Application status to "PAID"
 @app.route("/application/<string:application_id>", methods=['PUT'])
 def update_application(application_id):
+
     try:
         application_put = application.query.filter_by(application_id=application_id).first()
         if not application_put:
@@ -272,9 +256,36 @@ def update_application(application_id):
                 }
             ), 404
 
+        data = dict(application_put.json())
+
+        applicant_name=data["applicant_name"]
+        userid1=data["userid"]
+        university1=data["university"]
+        receiver_email=data["email"]
+        course1=data["course1"]
+        course2=data["course2"]
+        course3=data["course3"]
+
         # update status
         application_put.status = 'PAID'
         db.session.commit()
+
+        # Create email details sent for application confirmation
+        sender = 'sgunigo@gmail.com'
+        sender_password = 'g10t4sgunigo' # Not secure but for development purposes
+
+        body_of_email = 'Dear ' + applicant_name + ', <br>Your application for ' + university1 + ' has been saved.<br><br>Course 1: ' + course1 + '<br>Course 2: ' + course2 + '<br>Course 3: ' + course3 + '<br><br>Please confirm it via payment on your application dashbaord.'
+
+        msg = MIMEText(body_of_email, 'html')
+        msg['Subject'] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Saved'
+        msg['From'] = 'sgunigo@email.com'
+        msg['To'] = receiver_email
+
+        gmail_smtp = smtplib.SMTP_SSL(host = 'smtp.gmail.com', port = 465)
+        gmail_smtp.login(user = sender, password = sender_password)
+        gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
+        gmail_smtp.quit()
+
         return jsonify(
             {
                 "code": 200,
@@ -297,6 +308,8 @@ def update_application(application_id):
 def update_all_applications(userid):
     try:
         unpaid_applications = application.query.filter_by(userid=userid, status="UNPAID")
+        unpaid_applications_list = application.query.filter_by(userid=userid, status="UNPAID").all()
+
         if not unpaid_applications:
             return jsonify(
                 {
@@ -307,26 +320,55 @@ def update_all_applications(userid):
                     "message": "You have no unpaid applications."
                 }
             ), 404
-
-        # update status
-        # for application in unpaid_applications:
-        #     application.status = 'PAID'
+        
         unpaid_applications.update({'status':'PAID'})
+        print('pairpadiiasidj')
         db.session.commit()
-        print(unpaid_applications.json())
+
+        for app_sqlalchemy in unpaid_applications_list:
+            print('entered for loop')
+
+            app = dict(app_sqlalchemy.json())
+            
+            applicant_name=app["applicant_name"]
+            userid1=app["userid"]
+            university1=app["university"]
+            receiver_email=app["email"]
+            course1=app["course1"]
+            course2=app["course2"]
+            course3=app["course3"]
+
+            # Create email details sent for application confirmation
+            sender = 'sgunigo@gmail.com'
+            sender_password = 'g10t4sgunigo' # Not secure but for development purposes
+
+            body_of_email = 'Dear ' + applicant_name + ', <br><br>Your application for ' + university1 + ' has been submitted.<br><br><b>Course 1</b>: ' + course1 + '<br><b>Course 2</b>: ' + course2 + '<br><b>Course 3</b>: ' + course3 + '<br><br>The university will inform you of their decision by May.'
+
+            msg = MIMEText(body_of_email, 'html')
+            msg['Subject'] = '[AppID: ' + userid1 + '] Application For ' + university1 + ' Submitted'
+            msg['From'] = 'sgunigo@email.com'
+            msg['To'] = receiver_email
+
+            gmail_smtp = smtplib.SMTP_SSL(host = 'smtp.gmail.com', port = 465)
+            gmail_smtp.login(user = sender, password = sender_password)
+            gmail_smtp.sendmail(sender, receiver_email, msg.as_string())
+            gmail_smtp.quit()
+
+        print('check check')
+
         return jsonify(
             {
                 "code": 200,
-                "data": unpaid_applications.json()
+                "message": {
+                    "userid":"All applications paid for user ID: " + userid + "."
+                }
             }
         ), 200
+
     except Exception as e:
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "userid": userid
-                },
                 "message": "An error occurred while updating the application. " + str(e)
             }
         ), 500

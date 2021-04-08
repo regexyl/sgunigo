@@ -76,8 +76,10 @@
 
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
+			//alert('entered function callServerAPIs')
 			var authCode = $.url(this.location.href).param('code');
-			//alert ("authorisation code="+authCode);
+			alert ("authorisation code="+authCode);
+			$(".content").attr("style", "display: flex !important") // start load spinner
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
@@ -151,7 +153,6 @@
 		// CALLBACK HANDLER
 		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
 			scrollToAppForm = true;
-
 			// call the backend server APIs
 			callServerAPIs();
 		}
@@ -161,6 +162,7 @@
 				$('[name=' + key + ']', frm).val(value);
 				$('[name=' + key + ']', frm).prop('disabled', true);
 			});
+			$(".content").attr("style", "display: none !important")  // stop load spinner
 		}
 
 		// used to output data items with value or desc
@@ -282,11 +284,14 @@
 			<input type="submit" class="btn btn-danger" value="Save" id='save'>
 		</div>
 
+		{{_spinner}}
+
 	</section>
 	<script>
 		// Save User ID even when redirected to SingPass MyInfo page
 		const userid = $("#userid").val()
 		if (userid !== '') {
+			$(".content").attr("style", "display: none !important") // start load spinner
 			localStorage.setItem('saveUserId', userid);
 			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
 		} else {

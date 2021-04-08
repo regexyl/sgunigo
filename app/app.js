@@ -24,6 +24,7 @@ connectDB();
 const app = express();
 
 // Body parser - added for POST request in stories/add
+app.use(express.urlencoded({ extended: false })); // If extended is false, you cannot post "nested objects" e.g. { person: { name: cw } }
 app.use(cookieParser());
 app.use(express.json());
 
