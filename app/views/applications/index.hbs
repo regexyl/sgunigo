@@ -33,7 +33,7 @@
                 <h3 class="section-sub-title">University Applications</h3>
             </div>
         
-        <div class="col s12 m7">
+        <div class="col s12 m7" style="margin-bottom: 2rem;">
             <div class="card horizontal">
             <div class="card-stacked white-text">
                 {{#unless userProfileExists}}
@@ -99,8 +99,8 @@
             <div class="payment-section">
                 <div class="element-left"><h3 class="status">Outstanding payments</h3></div>
                 <!-- Button to toggle between pay for INDIVIDUAL applications or ALL TOGETHER -->
-                <div class="toggle" class="element-right"> 
-                    <input type="checkbox" id="switch" /><label class="toggle-label" for="switch">Toggle</label>
+                <div class="toggle" class="element-right" data-toggle="tooltip" data-placement="top" title="Toggle between paying individually or together."> 
+                    <input type="checkbox" id="switch" /><label class="toggle-label" for="switch" id="label-toggle">Toggle</label>
                 </div>
             </div>
 
@@ -117,25 +117,27 @@
                     <tbody>
                     {{#each unpaidApplications.applications}}
                     <tr>
-                        <td data-toggle="tooltip" data-placement="right" title="Course 1: {{course1}}, Course 2: {{course2}}, Course 3: {{course3}}">
-                            {{#ifEquals university "NUS"}}
-                            National University of Singapore
-                            {{/ifEquals}}
-                            {{#ifEquals university "NTU"}}
-                            Nanyang Technological University
-                            {{/ifEquals}}
-                            {{#ifEquals university "SMU"}}
-                            Singapore Management University
-                            {{/ifEquals}}
-                            {{#ifEquals university "SIT"}}
-                            Singapore Institute of Technology
-                            {{/ifEquals}}
-                            {{#ifEquals university "SUSS"}}
-                            Singapore University of Social Sciences
-                            {{/ifEquals}}
-                            {{#ifEquals university "SUTD"}}
-                            Singapore University of Technology and Design
-                            {{/ifEquals}}
+                        <td>
+                            <span data-toggle="tooltip" data-placement="right" title="Course 1: {{course1}}, Course 2: {{course2}}, Course 3: {{course3}}">
+                                {{#ifEquals university "NUS"}}
+                                National University of Singapore
+                                {{/ifEquals}}
+                                {{#ifEquals university "NTU"}}
+                                Nanyang Technological University
+                                {{/ifEquals}}
+                                {{#ifEquals university "SMU"}}
+                                Singapore Management University
+                                {{/ifEquals}}
+                                {{#ifEquals university "SIT"}}
+                                Singapore Institute of Technology
+                                {{/ifEquals}}
+                                {{#ifEquals university "SUSS"}}
+                                Singapore University of Social Sciences
+                                {{/ifEquals}}
+                                {{#ifEquals university "SUTD"}}
+                                Singapore University of Technology and Design
+                                {{/ifEquals}}
+                            </span>
                         </td>
                         <td>{{modified}}</td>
                         <td id="uni_fee">
@@ -254,6 +256,8 @@
             <a class="btn btn-danger" href="/applications/apply">New Application</a>
         </div>
     </div>
+
+    {{_spinner-paypal}}
 
     <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

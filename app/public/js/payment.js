@@ -1,5 +1,5 @@
 // Display modal details
-// const IP_ADDRESS='http://172.20.10.4:8000';
+// const IP_ADDRESS='http://192.168.137.242';
 // const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT';
 
 $(document).on('click', ".payment-btn", (event) => {
@@ -80,6 +80,8 @@ function initPayPalButton() {
       priceTotal = Math.round(priceTotal * 100) / 100;
       var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
 
+      $(".content").attr("style", "display: flex !important") // start load spinner
+
       return actions.order.create({
           purchase_units: [{
           description: orderDescription,
@@ -116,22 +118,25 @@ function initPayPalButton() {
           return actions.order.capture().then(function(details) {
 
               alert('Transaction completed by ' + details.payer.name.given_name + '!');
+              $(".content").attr("style", "display: none !important") // start load spinner
               console.log(details);
 
               // Update applications database with PAID status
               try {
                   if (individualAppsOn) {
+
                       console.log(`display-appId is ${$("#display-appId")}`)
                       const appId = $("#display-appId").text()
                       const update_application_url = IP_ADDRESS.concat(':8000/application/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
-                      alert(update_application_url)
+                      //alert(update_application_url)
                       const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   } else {
+
                     const userid = $('#userid').val()
                     console.log(`userid is ${userid}`)
-                    
-                    const update_application_url = IP_ADDRESS.concat(':8000/application/all/').concat(appId).concat('?apikey=').concat(API_KEY_APPLICANT);
-                    alert(`UPDATE ALL: ${update_application_url}`)
+                    const update_application_url = IP_ADDRESS.concat(':8000/application/all/').concat(userid).concat('?apikey=').concat(API_KEY_APPLICANT);
+                    //alert(`UPDATE ALL: ${update_application_url}`)
+
                     const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   }
                   window.location.href = "/applications";

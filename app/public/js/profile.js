@@ -1,3 +1,5 @@
+//$(".content").attr("style", "display: none !important") // start load spinner
+
 var submitButton=document.getElementById('save');
 submitButton.addEventListener('click',async function(){
     // console.log('Submitting');
@@ -6,7 +8,7 @@ submitButton.addEventListener('click',async function(){
     // console.log(response);
     // expected output: "resolved"
     var nric=document.getElementById('nric').value;
-    const IP_ADDRESS='http://172.20.10.4'
+    const IP_ADDRESS='http://192.168.137.242'
     const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
     const url=IP_ADDRESS.concat(':8000/applicant/',nric,'?apikey=',API_KEY_APPLICANT)
     // var url='http://localhost:8000/applicant_details/'.concat(nric);

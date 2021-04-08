@@ -24,7 +24,7 @@ router.get("/:university", async (req, res) => {
     };
     try {
         const fetchResponse = await fetch(applications_api.concat(university).concat('?apikey=').concat(process.env.API_KEY_ADMIN), settings);
-        // const fetchResponse = await fetch('http://172.20.10.4.:8000/application/nus?apikey=auo7YwJWqPspBa3YUn0jk5WSZNErdQFH', settings);
+        // const fetchResponse = await fetch('http://192.168.137.242.:8000/application/nus?apikey=auo7YwJWqPspBa3YUn0jk5WSZNErdQFH', settings);
         const applications = await fetchResponse.json();
         res.render("admin/index", {
           layout: "admin",

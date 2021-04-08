@@ -17,7 +17,6 @@ const bodyParser = require('body-parser');
 // Load config - pass  object with global variables to path
 dotenv.config({ path: `./config/${process.env.NODE_ENV}.env` });
 
-console.log(process.env.MYINFO_APP_REDIRECT_URL)
 // Passport config
 require("./config/passport")(passport); // pass in const passport as an argument - refer to passport.js' module.exports function argument
 
@@ -52,6 +51,10 @@ hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
 
 hbs.handlebars.registerHelper('hideNric', function(nric) {
   return '*****'.concat(nric.slice(5))
+});
+
+hbs.handlebars.registerHelper('postalCode', function(address) {
+  return address.slice(-6)
 });
 
 // Sessions

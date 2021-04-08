@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-
     <script src="/jquery/jquery.min.js"></script>
 	<script src="/jquery/purl.js"></script>
 
@@ -77,8 +76,10 @@
 
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
+			//alert('entered function callServerAPIs')
 			var authCode = $.url(this.location.href).param('code');
 			//alert ("authorisation code="+authCode);
+			$(".content").attr("style", "display: flex !important") // start load spinner
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
@@ -152,7 +153,6 @@
 		// CALLBACK HANDLER
 		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
 			scrollToAppForm = true;
-
 			// call the backend server APIs
 			callServerAPIs();
 		}
@@ -162,6 +162,7 @@
 				$('[name=' + key + ']', frm).val(value);
 				$('[name=' + key + ']', frm).prop('disabled', true);
 			});
+			$(".content").attr("style", "display: none !important")  // stop load spinner
 		}
 
 		// used to output data items with value or desc
@@ -178,7 +179,6 @@
 				return "";
 		}
 	</script>
-
 </head>
 
 <body class="myinfo">
@@ -193,13 +193,14 @@
 		<div class="container">
 			<div class="row justify-content-center">
 					<div class="hero-content-div text-center">
-						<div class="hero-content">
+						<div class="hero-content" style="line-height: 20px;">
 							<h1>Personal Details</h1>
-							<p>Click on the button below to pre-fill your form using SingPass.</p>
+							<p style="margin-bottom: 0;">Click on the button below to fill up your profile using SingPass</p>
+							<br>
 						</div>
-						<img src="images/singpass_logo.png" alt="">
+						<img src="images/singpass_logo.png" width="30%" style="margin-bottom: 15px;" alt="">
 						<form id="formAuthorise">
-							<a href="#" onclick="$(this).closest('form').submit()" class="btn btn-danger"><img src="images/retrieve-myinfo.svg" alt=""></a>
+							<a href="#" onclick="$(this).closest('form').submit()" class="btn" width="25%"><img src="images/retrieve-myinfo.svg" alt=""></a>
 						</form>
 					</div>
 			</div>
@@ -261,7 +262,7 @@
 						<div class="form-group">
 							<label>Registered Address</label>
 							<div class="input-group">
-								<textarea cols="53" rows="3" name="address" id="address" required>{{userProfile.address}}</textarea>
+								<textarea cols="56" rows="3" name="address" id="address" required>{{userProfile.address}}</textarea>
 							</div>
 						</div>
 						<hr>
@@ -283,11 +284,14 @@
 			<input type="submit" class="btn btn-danger" value="Save" id='save'>
 		</div>
 
+		{{_spinner}}
+
 	</section>
 	<script>
 		// Save User ID even when redirected to SingPass MyInfo page
 		const userid = $("#userid").val()
 		if (userid !== '') {
+			$(".content").attr("style", "display: none !important") // start load spinner
 			localStorage.setItem('saveUserId', userid);
 			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
 		} else {
