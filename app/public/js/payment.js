@@ -130,7 +130,7 @@ function initPayPalButton() {
                     const userid = $('#userid').val()
                     console.log(`userid is ${userid}`)
                     
-                    const update_application_url = IP_ADDRESS.concat(':8000/application/all/').concat(userid).concat('?apikey=').concat(API_KEY_APPLICANT);
+                    const update_application_url = 'http://localhost:5001/application/all/'.concat(userid)
                     alert(`UPDATE ALL: ${update_application_url}`)
                     const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   }
