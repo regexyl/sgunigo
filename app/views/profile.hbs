@@ -94,7 +94,6 @@
 					if (data.status == "OK") { // successful
 						// fill up the application form
 						console.log("data",data);
-						alert('test@@@@2')
 						prefillForm(data.text);
 					} else {
 						// error occured
@@ -285,14 +284,7 @@
 			<input type="submit" class="btn btn-danger" value="Save" id='save'>
 		</div>
 
-		<!-- Loading spinner overlay (displayed when fetching data) -->
-		<div class="content">
-			<div class="spinner">
-				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="8" cy="8" r="7" stroke-width="2"/>
-				</svg>
-			</div>
-		</div>
+		{{_spinner}}
 
 	</section>
 	<script>
