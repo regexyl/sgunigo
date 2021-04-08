@@ -81,9 +81,9 @@ router.get('/profile', ensureAuth, async (req, res) => {
     const settings = {
       method: 'GET'
     };
-    // const fetchUserProfile = await fetch(applicant_details_url.concat('id/', userId), settings)
-    // const userProfileResponse = await fetchUserProfile.json()
-    // const userProfile = userProfileResponse.data
+    const fetchUserProfile = await fetch(applicant_details_url.concat('id/', userId,'?apikey',API_KEY_APPLICANT), settings)
+    const userProfileResponse = await fetchUserProfile.json()
+    const userProfile = userProfileResponse.data
     res.render("profile", { 
       layout: "empty",
       // userProfile,
