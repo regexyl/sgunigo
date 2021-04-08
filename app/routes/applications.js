@@ -82,6 +82,7 @@ router.post('/apply', async (req, res, next) => {
     const docUrl = await uploadDoc(myFile, userid)
     res.status(200)
   } catch (error) {
+    console.log(error)
     next(error)
   }
 })
