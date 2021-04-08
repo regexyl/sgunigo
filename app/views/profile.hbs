@@ -77,6 +77,7 @@
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
 			//alert('entered function callServerAPIs')
+			$(".content").css("display", "flex") // start load spinner
 			var authCode = $.url(this.location.href).param('code');
 			//alert ("authorisation code="+authCode);
 
@@ -152,7 +153,6 @@
 		// CALLBACK HANDLER
 		if (this.location.href.includes("callback?") && this.location.href.includes("code=")) {
 			scrollToAppForm = true;
-
 			// call the backend server APIs
 			callServerAPIs();
 		}
@@ -162,6 +162,7 @@
 				$('[name=' + key + ']', frm).val(value);
 				$('[name=' + key + ']', frm).prop('disabled', true);
 			});
+			$(".content").css("display", "none") // stop load spinner
 		}
 
 		// used to output data items with value or desc
@@ -281,6 +282,15 @@
 		</form>
 		<div class="col-md-12 text-center">
 			<input type="submit" class="btn btn-danger" value="Save" id='save'>
+		</div>
+
+		<!-- Loading spinner overlay (displayed when fetching data) -->
+		<div class="content">
+			<div class="spinner">
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="8" cy="8" r="7" stroke-width="2"/>
+				</svg>
+			</div>
 		</div>
 
 	</section>
