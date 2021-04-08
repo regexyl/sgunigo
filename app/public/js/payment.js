@@ -80,8 +80,6 @@ function initPayPalButton() {
       priceTotal = Math.round(priceTotal * 100) / 100;
       var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
 
-      $(".content").attr("style", "display: flex !important") // start load spinner
-
       return actions.order.create({
           purchase_units: [{
           description: orderDescription,
@@ -115,9 +113,10 @@ function initPayPalButton() {
       });
       },
       onApprove: function(data, actions) {
+          $(".content").attr("style", "display: flex !important") // start load spinner
           return actions.order.capture().then(function(details) {
 
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+              alert('Payment successful! Transaction completed by ' + details.payer.name.given_name + '.');
               $(".content").attr("style", "display: none !important") // start load spinner
               console.log(details);
 

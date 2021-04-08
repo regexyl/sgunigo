@@ -284,14 +284,20 @@
 			<input type="submit" class="btn btn-danger" value="Save" id='save'>
 		</div>
 
-		{{_spinner}}
+		<div class="content">
+			<div class="spinner">
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="8" cy="8" r="7" stroke-width="2"/>
+				</svg>
+			</div>
+		</div>
 
 	</section>
 	<script>
 		// Save User ID even when redirected to SingPass MyInfo page
 		const userid = $("#userid").val()
 		if (userid !== '') {
-			$(".content").attr("style", "display: none !important") // start load spinner
+			$(".content").attr("style", "display: none !important") // remove load spinner
 			localStorage.setItem('saveUserId', userid);
 			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
 		} else {
