@@ -142,19 +142,6 @@ def create_applicant(nric):
     data = request.get_json(force=True)
     applicant = applicant_details(**data)
  
-    # if (applicant_details.query.filter_by(nric=nric).first()):
-    #     # Update applicant details if it exists
-
-    #     return jsonify(
-    #         {
-    #             "code": 400,
-    #             "data": {
-    #                 "nric": nric
-    #             },
-    #             "message": "Applicant already exists, changes will be updated."
-    #         }
-    #     ), 400
- 
     try:
         db.session.merge(applicant)
         db.session.commit()
