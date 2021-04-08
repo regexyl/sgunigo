@@ -25,10 +25,10 @@ def place_order():
     if request.is_json:
         try:
             application = request.get_json()
-            print("\nReceived an Application in JSON:", application)
+            print("\nReceived an order in JSON:", application)
 
             # do the actual work
-            # 1. Send Application info 
+            # 1. Send order info {cart items}
             result = processPlaceApplication(application)
             print('\n------------------------')
             print('\nresult: ', result)
@@ -54,20 +54,20 @@ def place_order():
 
 
 def processPlaceApplication(application):
-    # 2. Send the Application info 
-    # Invoke the Application microservice
+    # 2. Send the order info {cart items}
+    # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     application_result = invoke_http(application_URL, method='POST', json=application)
     print('application_result:', application_result)
   
 
-    # Check the Application result; if a failure, send it to the error microservice.
+    # Check the order result; if a failure, send it to the error microservice.
     code = application_result["code"]
     message = json.dumps(application_result)
 
     if code not in range(200, 300):
         # Inform the error microservice
-        #print('\n\n-----Invoking error microservice as Application fails-----')
+        #print('\n\n-----Invoking error microservice as order fails-----')
         print('\n\n-----Publishing the (order error) message with routing_key=application.error-----')
 
         # invoke_http(error_URL, method="POST", json=order_result)
@@ -88,13 +88,13 @@ def processPlaceApplication(application):
             "message": "Application creation failure sent for error handling."
         }
 
-    # Notice that we are publishing to "Activity Log" only when there is no error in Application creation.
+    # Notice that we are publishing to "Activity Log" only when there is no error in order creation.
     # In http version, we first invoked "Activity Log" and then checked for error.
     # Since the "Activity Log" binds to the queue using '#' => any routing_key would be matched 
     # and a message sent to “Error” queue can be received by “Activity Log” too.
 
     else:
-        # 4. Record new Application
+        # 4. Record new order
         # record the activity log anyway
         #print('\n\n-----Invoking activity_log microservice-----')
         print('\n\n-----Publishing the (application info) message with routing_key=application.info-----')        
@@ -107,7 +107,10 @@ def processPlaceApplication(application):
     # - reply from the invocation is not used;
     # continue even if this invocation fails
     
-    # 5. Return created Application
+
+        
+
+    # 5. Return created order, shipping record
     return {
         "code": 201,
         "data": {

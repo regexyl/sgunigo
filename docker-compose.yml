@@ -15,7 +15,7 @@ services:
     build:
       context: ./
       dockerfile: ./app/Dockerfile
-    image: ideal97/app:esd
+    image: g10t4/app:esd
     ports:
       - "3001:3001"
     networks:
@@ -31,7 +31,7 @@ services:
     build:
       context: ./
       dockerfile: microservices/applicant/applicant.Dockerfile
-    image: ideal97/applicant:esd
+    image: g10t4/applicant:esd
     restart: always
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/applicant_details
@@ -48,7 +48,7 @@ services:
     build:
       context: ./
       dockerfile: microservices/application/application.Dockerfile
-    image: ideal97/application:esd
+    image: g10t4/application:esd
     restart: always
     environment:
       dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/application
@@ -65,7 +65,7 @@ services:
   #   build:
   #     context: ./
   #     dockerfile: microservices/payment/payment.Dockerfile
-  #   image: ideal97/payment:esd
+  #   image: g10t4/payment:esd
   #   restart: always
   #   environment:
   #     dbURL: mysql+mysqlconnector://root${MYSQL_PASSWORD}@host.docker.internal:${MYSQL_PORT}/payment
@@ -97,7 +97,7 @@ services:
     build:
       context: ./
       dockerfile: microservices/activity_log/activity_log.Dockerfile
-    image: ideal97/activity_log:esd
+    image: g10t4/activity_log:esd
     restart: always
     depends_on:
       - rabbitmq
@@ -116,7 +116,7 @@ services:
     build:
       context: ./
       dockerfile: microservices/error/error.Dockerfile
-    image: ideal97/error:esd
+    image: g10t4/error:esd
     restart: always
     depends_on:
       - rabbitmq
@@ -135,7 +135,7 @@ services:
     build:
       context: ./
       dockerfile: microservices/application_complex/application_complex.Dockerfile
-    image: ideal97/application_complex:esd
+    image: g10t4/application_complex:esd
     restart: always
     depends_on:
       - application

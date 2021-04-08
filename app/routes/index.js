@@ -71,8 +71,8 @@ var _personApiUrl = process.env.MYINFO_API_PERSON;
 
 var _attributes = "uinfin,name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,noa-basic,ownerprivate,cpfcontributions,cpfbalances";
 
-const applicant_details_url = 'http://192.168.137.172:8000/applicant/'
-const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT';
+const applicant_details_url = 'http://applicant:5000/applicant_details/'
+
 // @desc  Show profile page
 // @route GET /profile
 router.get('/profile', ensureAuth, async (req, res) => {

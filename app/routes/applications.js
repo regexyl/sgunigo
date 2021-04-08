@@ -5,13 +5,12 @@ const multer = require('multer')
 const uploadDoc = require('../config/gcp-helpers')
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const Profile = require('../models/Profile');
+const Profile = require('../models/Profile')
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const IP_ADDRESS='http://192.168.137.172'
-const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
-
+const applications_api = 'http://application:5001/application/'
+const applicant_details_api = 'http://applicant:5000/applicant_details/id/'
 
 // @desc    View dashboard of applications
 // @route   GET /applications/index
@@ -22,9 +21,9 @@ router.get("/", ensureAuth, async (req, res) => {
     const settings = {
         method: 'GET'
     };
-      const paidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/paid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
+      const paidFetchResponse = await fetch(applications_api.concat('paid/', userId), settings);
       const paidApplications = await paidFetchResponse.json();
-      const unpaidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/unpaid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
+      const unpaidFetchResponse = await fetch(applications_api.concat('unpaid/', userId), settings);
       const unpaidApplications = await unpaidFetchResponse.json();
       res.render("applications/index", {
         layout: "main_session",
@@ -48,7 +47,7 @@ router.get("/apply", ensureAuth, async (req, res) => {
     const settings = {
       method: 'GET'
     };
-    const fetchResponse = await fetch(IP_ADDRESS.concat(':8000/', 'applicant/id/', userId, '?apikey=',API_KEY_APPLICANT), settings)
+    const fetchResponse = await fetch(applicant_details_api.concat(userId), settings)
     const userProfileResponse = await fetchResponse.json()
     const userProfile = userProfileResponse.data
     res.render("applications/apply", {
