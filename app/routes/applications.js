@@ -12,16 +12,15 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const IP_ADDRESS='http://192.168.137.242'
 const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
 
-
 // @desc    View dashboard of applications
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
   try {
-    const userProfileExists = await Profile.exists({ user: req.user.id }) // exists: returns boolean
     const userId = req.user.id
     const settings = {
-        method: 'GET'
+      method: 'GET'
     };
+    const userProfileExists = await fetch(IP_ADDRESS.concat(':8000/application/', userId,'?apikey=',API_KEY_APPLICANT), settings) // exists: returns boolean
       const paidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/paid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
       const paidApplications = await paidFetchResponse.json();
       const unpaidFetchResponse = await fetch(IP_ADDRESS.concat(':8000/application/unpaid/', userId,'?apikey=',API_KEY_APPLICANT), settings);
