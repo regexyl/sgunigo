@@ -77,9 +77,9 @@
 		// Function for calling server side APIs (token & person) to get the person data for prefilling form
 		function callServerAPIs() {
 			//alert('entered function callServerAPIs')
-			$(".content").css("display", "flex") // start load spinner
 			var authCode = $.url(this.location.href).param('code');
-			//alert ("authorisation code="+authCode);
+			alert ("authorisation code="+authCode);
+			$(".content").attr("style", "display: flex !important") // start load spinner
 
 			// invoke AJAX call from frontend clientside to your backend serverside
 			$.ajax({
@@ -94,6 +94,7 @@
 					if (data.status == "OK") { // successful
 						// fill up the application form
 						console.log("data",data);
+						alert('test@@@@2')
 						prefillForm(data.text);
 					} else {
 						// error occured
@@ -162,7 +163,7 @@
 				$('[name=' + key + ']', frm).val(value);
 				$('[name=' + key + ']', frm).prop('disabled', true);
 			});
-			$(".content").css("display", "none") // stop load spinner
+			$(".content").attr("style", "display: none !important")  // stop load spinner
 		}
 
 		// used to output data items with value or desc
@@ -298,6 +299,7 @@
 		// Save User ID even when redirected to SingPass MyInfo page
 		const userid = $("#userid").val()
 		if (userid !== '') {
+			$(".content").attr("style", "display: none !important") // start load spinner
 			localStorage.setItem('saveUserId', userid);
 			console.log(`setItem "saveUserId" = ${userid} in localStorage`)
 		} else {

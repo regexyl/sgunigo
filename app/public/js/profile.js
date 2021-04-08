@@ -1,3 +1,5 @@
+//$(".content").attr("style", "display: none !important") // start load spinner
+
 var submitButton=document.getElementById('save');
 submitButton.addEventListener('click',async function(){
     // console.log('Submitting');
