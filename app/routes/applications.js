@@ -16,11 +16,11 @@ const applicant_details_api = 'http://applicant:5000/applicant_details/id/'
 // @route   GET /applications/index
 router.get("/", ensureAuth, async (req, res) => {
   try {
-    const userProfileExists = await Profile.exists({ user: req.user.id }) // exists: returns boolean
     const userId = req.user.id
     const settings = {
-        method: 'GET'
+      method: 'GET'
     };
+    const userProfileExists = await fetch(applicant_details_api.concat(userId), settings) 
       const paidFetchResponse = await fetch(applications_api.concat('paid/', userId), settings);
       const paidApplications = await paidFetchResponse.json();
       const unpaidFetchResponse = await fetch(applications_api.concat('unpaid/', userId), settings);
