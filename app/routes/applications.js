@@ -9,7 +9,7 @@ const Profile = require('../models/Profile');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const IP_ADDRESS='http://192.168.137.172'
+const IP_ADDRESS='http://192.168.137.242'
 const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
 
 
