@@ -77,8 +77,6 @@ function initPayPalButton() {
       priceTotal = Math.round(priceTotal * 100) / 100;
       var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
 
-      $(".content").attr("style", "display: flex !important") // start load spinner
-
       return actions.order.create({
           purchase_units: [{
           description: orderDescription,
@@ -112,9 +110,10 @@ function initPayPalButton() {
       });
       },
       onApprove: function(data, actions) {
+        $(".content").attr("style", "display: flex !important") // start load spinner
           return actions.order.capture().then(function(details) {
 
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+              alert('Payment successful! Transaction completed by ' + details.payer.name.given_name + '.');
               $(".content").attr("style", "display: none !important") // start load spinner
               console.log(details);
 
@@ -125,7 +124,6 @@ function initPayPalButton() {
                       console.log(`display-appId is ${$("#display-appId")}`)
                       const appId = $("#display-appId").text()
                       const update_application_url = 'http://localhost:5001/application/'.concat(appId)
-                      alert(update_application_url)
                       const fetchResponse = fetch(update_application_url, {method: 'PUT'});
 
                   } else {
@@ -134,7 +132,6 @@ function initPayPalButton() {
                     console.log(`userid is ${userid}`)
 
                     const update_application_url = 'http://localhost:5001/application/all/'.concat(userid)
-                    alert(`UPDATE ALL: ${update_application_url}`)
 
                     const fetchResponse = fetch(update_application_url, {method: 'PUT'});
                   }
