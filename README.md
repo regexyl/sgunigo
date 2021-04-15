@@ -14,4 +14,4 @@ For Mac users:
 ```
 bash dock.sh
 ```
-Finally, access the app via http://localhost:3001/
+Finally, access the app via http://localhost:3001/.
