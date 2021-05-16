@@ -117,8 +117,20 @@ submitButton.addEventListener('click',async function(){
           }
       };
       try {
+<<<<<<< HEAD
           const fetchResponse = await fetch(`http://localhost:5100/place_application`, settings);
           const data = await fetchResponse.json();
+=======
+          const fetchResponse = await fetch(IP_ADDRESS.concat(`:5100/place_application`), settings);
+          //const fetchResponse = await fetch(IP_ADDRESS.concat(`:8000/place_application?`), settings);
+          const response = await fetchResponse.json();
+          if (response.code==201){
+            alert('Successful application.')
+            window.location.href = "http://localhost:3001/applications";
+          }else if(response.data.application_result.code==400){
+            alert('You have already placed an application with this university. Choose another university.')
+          }
+>>>>>>> 4bacffd491ce7acb4e9c3332d53338cb651de9d2
           window.location.href = "http://localhost:3001/applications";
       } catch (e) {
           console.log(e);

@@ -8,7 +8,14 @@ submitButton.addEventListener('click',async function(){
     // console.log(response);
     // expected output: "resolved"
     var nric=document.getElementById('nric').value;
+<<<<<<< HEAD
     var url='http://localhost:5000/applicant_details/'.concat(nric);
+=======
+    const IP_ADDRESS='http://localhost'
+    //const API_KEY_APPLICANT='AYuRJuTIMUUfqYAANsTGJlxX8YVkCwTT'
+    const url=IP_ADDRESS.concat(':5000/applicant/',nric)
+    // var url='http://localhost:8000/applicant_details/'.concat(nric);
+>>>>>>> 4bacffd491ce7acb4e9c3332d53338cb651de9d2
     const profile = {
         nric:document.getElementById('nric').value,
         applicant_name:document.getElementById('applicant_name').value,
