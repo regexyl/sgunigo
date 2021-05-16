@@ -7,7 +7,8 @@ Make sure your WAMP/MAMP server and Docker engine is running, and that ports 300
 
 ## 2. Setup Instructions
 1. Go to the root of the project.
-2. Run the shell command:
+2. Check your environment variables in `.env`. (Mac users should have a default port of 8889 and passwword `:root`.
+3. Run the shell command:
 
 For Windows users, execute the following:
 ```
